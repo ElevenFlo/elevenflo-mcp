@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.elevenflo/mcp",
+  "title": "ElevenFlo MCP",
+  "description": "Court-grounded Chapter 11 bankruptcy research over hosted remote MCP",
+  "version": "0.1.0",
+  "websiteUrl": "https://elevenflo.com/mcp/overview",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://elevenflo.com/mcp"
+    }
+  ]
+}
