@@ -9,7 +9,7 @@ You need:
 - an MCP-compatible client
 - browser access for sign-in and consent
 
-If MCP is not enabled yet, ask your ElevenFlo contact to enable the customer beta before configuring a client.
+If MCP is not enabled yet, ask your ElevenFlo contact to enable launch access before configuring a client.
 
 ## 2. Add the endpoint
 

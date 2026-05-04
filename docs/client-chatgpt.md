@@ -1,7 +1,7 @@
 # ChatGPT
 
 > [!IMPORTANT]
-> ChatGPT support is for ChatGPT Apps / Developer Mode-compatible MCP usage. Deep Research and company-knowledge compatibility require the separate read-only `search` and `fetch` surface and are not included in this beta unless separately enabled.
+> ChatGPT support is for ChatGPT Apps / Developer Mode-compatible MCP usage. Deep Research and company-knowledge compatibility require the separate read-only `search` and `fetch` surface and are available only when separately enabled.
 
 For private or workspace setup, ChatGPT currently uses **Apps** in
 **Developer mode**.

@@ -41,15 +41,15 @@ Fix:
 
 ## The tool list is missing expected tools
 
-ElevenFlo MCP advertises only the launch subset to customer-beta accounts. If a tool from the catalog isn't showing up:
+ElevenFlo MCP advertises only the launch subset to enabled accounts. If a tool from the catalog isn't showing up:
 
 - Check the [Tool catalog](/mcp/tool-catalog) — that page is the canonical list.
-- Confirm your beta access; some tools may be gated by entitlement and only appear once your organization is enabled.
+- Confirm your MCP access; some tools may be gated by entitlement and only appear once your organization is enabled.
 - Reconnect through OAuth if the client cached an older `tools/list` response.
 
 `generate_bankruptcy_document` is not part of the customer launch subset.
 
-If the tool is in the catalog and you have beta access but the client still does not list it, contact ElevenFlo support with:
+If the tool is in the catalog and you have MCP access but the client still does not list it, contact ElevenFlo support with:
 
 - client name and version
 - endpoint URL

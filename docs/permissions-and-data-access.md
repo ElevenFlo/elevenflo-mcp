@@ -15,9 +15,9 @@ Interactive access uses:
 > [!WARNING]
 > Remote MCP over HTTP / Streamable HTTP. Use OAuth sign-in only. Do not manually paste a bearer token, API token, or custom `Authorization` header for ElevenFlo MCP. Bearer tokens carried by the OAuth flow itself are managed by the client; the prohibition is on static, manually configured tokens.
 
-## What the beta tools can access
+## What the launch tools can access
 
-The customer beta is read-oriented.
+The launch capability set is read-oriented.
 
 Tools can retrieve and analyze:
 
@@ -29,7 +29,7 @@ Tools can retrieve and analyze:
 - hearing and milestone events
 - indexed case-law metadata and previews
 
-## What the beta tools cannot do
+## What the launch tools cannot do
 
 The launch subset does not:
 
@@ -59,7 +59,7 @@ Revoke a grant when:
 - a device is lost
 - a user leaves the organization
 - a client is no longer trusted
-- a beta test is complete
+- a review or access period is complete
 
 ## Data handling
 

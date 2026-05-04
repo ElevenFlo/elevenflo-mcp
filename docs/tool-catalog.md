@@ -1,10 +1,10 @@
 # Tool catalog
 
-The ElevenFlo MCP beta exposes read-only research tools for Chapter 11 workflows. Use them to discover cases, search dockets and filings, retrieve exact source text, analyze selected document chunks, summarize case materials, inspect filing relationships, and surface case events.
+ElevenFlo MCP exposes read-only research tools for Chapter 11 workflows. Use them to discover cases, search dockets and filings, retrieve exact source text, analyze selected document chunks, summarize case materials, inspect filing relationships, and surface case events.
 
-The beta does not include filing, email, docket modification, account administration, billing, access management, or legal-document generation.
+The launch capability set does not include filing, email, docket modification, account administration, billing, access management, or legal-document generation.
 
-ElevenFlo MCP advertises 12 read-oriented native research tools today. Tools added during the beta will be listed here first.
+ElevenFlo MCP advertises 12 read-oriented native research tools today. Tools added to launch access will be listed here first.
 
 The live MCP `tools/list` response includes read-only annotations and structured input schemas for these tools. Parameters with fixed allowed values are advertised as enums so clients can render and validate the allowed values directly.
 
@@ -138,6 +138,6 @@ Most research loops run through these in order:
 4. `read_text` or `analyze_document` — pull exact language or extract structured terms.
 5. `build_case_context_pack` or `search_summaries` — widen back out for synthesis.
 
-## Held back from the customer beta
+## Held back from launch access
 
-`generate_bankruptcy_document` is not included in the customer beta. Document-generation tools require separate write/generation entitlement, audit, and support handling.
+`generate_bankruptcy_document` is not included in launch access. Document-generation tools require separate write/generation entitlement, audit, and support handling.

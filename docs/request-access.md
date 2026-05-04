@@ -1,6 +1,6 @@
 # Request Access
 
-ElevenFlo MCP is available as a controlled beta.
+ElevenFlo MCP is available through launch access for approved ElevenFlo accounts and organizations.
 
 Use it to connect Claude, Codex, Cursor, VS Code, ChatGPT, or another MCP-compatible client to ElevenFlo's bankruptcy and restructuring intelligence.
 
@@ -25,7 +25,7 @@ ElevenFlo MCP is built for:
 
 ## Access Requirements
 
-Beta access requires:
+Launch access requires:
 
 - an ElevenFlo account
 - MCP access enabled for your organization

@@ -1,6 +1,6 @@
 # Security and trust posture
 
-ElevenFlo MCP is a controlled beta for read-oriented Chapter 11 research.
+ElevenFlo MCP is an access-gated launch surface for read-oriented Chapter 11 research.
 
 ## Authentication
 
@@ -16,9 +16,9 @@ Use OAuth sign-in only. Do not manually paste a bearer token, API token, or
 custom `Authorization` header for ElevenFlo MCP. Bearer tokens created by the
 OAuth flow are managed by the MCP client.
 
-## Read-only beta scope
+## Read-only launch scope
 
-The beta tools can retrieve and analyze:
+The launch tools can retrieve and analyze:
 
 - bankruptcy case metadata
 - docket entries
@@ -28,7 +28,7 @@ The beta tools can retrieve and analyze:
 - hearing and milestone events
 - indexed case-law metadata and previews
 
-The beta tools cannot:
+The launch tools cannot:
 
 - file documents
 - send email
@@ -38,7 +38,7 @@ The beta tools cannot:
 - manage billing
 - grant access to other users
 
-`generate_bankruptcy_document` is not part of the customer beta.
+`generate_bankruptcy_document` is not part of launch access.
 
 ## Source grounding
 

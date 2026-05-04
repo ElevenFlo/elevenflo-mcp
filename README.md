@@ -49,14 +49,14 @@ The official MCP Registry metadata lives in [server.json](server.json).
 OpenAI/ChatGPT public app review is a separate platform review path and is not
 controlled by this registry metadata.
 
-## Beta Scope
+## Launch Scope
 
-The customer beta is controlled, read-oriented, OAuth-only, and source-grounded.
+The launch capability set is access-gated, read-oriented, OAuth-only, and source-grounded.
 It supports Chapter 11 case lookup, docket browsing, filing and source search,
 exact source-text retrieval, summaries, filing analysis, document graph
 exploration, case event search, and case-law metadata lookup.
 
-The beta does not support filing documents, sending email, modifying dockets,
+The launch capability set does not support filing documents, sending email, modifying dockets,
 creating legal-document artifacts, changing account settings, managing billing,
 or granting access to other users.
 

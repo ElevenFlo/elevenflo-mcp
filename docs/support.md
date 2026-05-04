@@ -1,6 +1,6 @@
 # Support
 
-For beta support, contact your ElevenFlo representative.
+For MCP support, contact your ElevenFlo representative.
 
 Copy this block, fill it in, and paste it into your support message:
 
