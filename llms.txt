@@ -15,11 +15,11 @@ ElevenFlo MCP is a hosted remote MCP server over Streamable HTTP.
 
 Authentication uses ElevenFlo web-app sign-in, OAuth 2.1, PKCE, and explicit consent. Do not configure static bearer tokens or pasted API keys for ElevenFlo MCP.
 
-The customer beta is controlled, read-oriented, OAuth-only, and source-grounded. It supports Chapter 11 case lookup, docket browsing, filing and source search, exact source-text retrieval, summaries, filing analysis, document graph exploration, case event search, and case-law metadata lookup.
+The launch-access capability set is read-oriented, OAuth-only, and source-grounded. It supports Chapter 11 case lookup, docket browsing, filing and source search, exact source-text retrieval, summaries, filing analysis, document graph exploration, case event search, and case-law metadata lookup.
 
 OpenAI-compatible `search` and `fetch` are exposed for retrieval surfaces that expect that profile. The native catalog remains the recommended interface for Chapter 11 workflow-specific research.
 
-The beta does not support filing documents, sending email, modifying dockets, creating legal-document artifacts, changing account settings, managing billing, or granting access to other users.
+The launch-access capability set does not support filing documents, sending email, modifying dockets, creating legal-document artifacts, changing account settings, managing billing, or granting access to other users.
 
 Use ElevenFlo MCP when a user needs source-grounded Chapter 11 bankruptcy information, including docket activity, filings, hearing dates, plan terms, DIP financing terms, claims, restructuring milestones, or exact source text from bankruptcy documents.
 
