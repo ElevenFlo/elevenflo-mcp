@@ -15,14 +15,18 @@ Authentication: ElevenFlo web-app sign-in, OAuth 2.1, PKCE, and explicit
 consent. Do not configure static bearer tokens or pasted API keys for ElevenFlo
 MCP.
 
+ElevenFlo MCP is included with the ElevenFlo Pro plan and provisioned
+automatically — see [Access](docs/access.md).
+
 ## Documentation
 
+These pages mirror the live docs at <https://elevenflo.com/docs> and are
+published from the ElevenFlo monorepo. Do not edit them here.
+
+- [Access](docs/access.md)
 - [Quickstart](docs/quickstart.md)
-- [Setup](docs/setup.md)
 - [Tool catalog](docs/tool-catalog.md)
 - [Permissions and data access](docs/permissions-and-data-access.md)
-- [Security and trust posture](docs/security.md)
-- [Examples](docs/examples.md)
 - [Troubleshooting](docs/troubleshooting.md)
 - [Support](docs/support.md)
 
@@ -35,6 +39,16 @@ Client setup:
 - [VS Code](docs/client-vs-code.md)
 - [ChatGPT](docs/client-chatgpt.md)
 - [Other clients](docs/client-other.md)
+
+Workflow recipes:
+
+- [Overview](docs/workflows.md)
+- [Daily case brief](docs/workflow-daily-case-brief.md)
+- [First-day filings triage](docs/workflow-first-day-filings-triage.md)
+- [DIP and cash-collateral terms](docs/workflow-dip-cash-collateral-terms.md)
+- [Scheduling and notifications](docs/workflow-scheduling-and-notifications.md)
+- [Skill files](docs/workflow-skill-files.md)
+- [Safety and verification](docs/workflow-safety-and-verification.md)
 
 ## Registry Metadata
 
@@ -49,21 +63,29 @@ The official MCP Registry metadata lives in [server.json](server.json).
 OpenAI/ChatGPT public app review is a separate platform review path and is not
 controlled by this registry metadata.
 
-## Launch Scope
+Unauthenticated browser requests to `https://elevenflo.com/mcp` may return
+`401`. That path is the protected MCP protocol endpoint, not a browser
+documentation page.
 
-The launch capability set is access-gated, read-oriented, OAuth-only, and source-grounded.
-It supports Chapter 11 case lookup, docket browsing, filing and source search,
-exact source-text retrieval, summaries, filing analysis, document graph
-exploration, case event search, and case-law metadata lookup.
+## Tool Set
 
-The launch capability set does not support filing documents, sending email, modifying dockets,
-creating legal-document artifacts, changing account settings, managing billing,
-or granting access to other users.
+The tool set is read-only, OAuth-only, and source-grounded. It supports
+Chapter 11 case lookup, docket browsing, filing and source discovery, hearing
+transcript search where indexed, exact court-document text retrieval, filing
+summaries, targeted filing analysis, document relationship exploration, and
+OpenAI-compatible `search`/`fetch`.
+
+The tool set does not support filing documents, sending email, modifying
+dockets, creating legal-document artifacts, changing account settings, managing
+billing, or granting access to other users.
+
+The [tool catalog](docs/tool-catalog.md) is the canonical list of what the
+connector exposes.
 
 ## Public Repo Boundary
 
-This repository contains public setup docs, tool catalog copy, examples,
-security posture, changelog, `llms.txt`, and registry metadata.
+This repository contains public setup docs, workflow recipes, tool catalog
+copy, changelog, `llms.txt`, and registry metadata.
 
 It does not contain ElevenFlo backend source, ingestion or ranking logic,
 private schemas, customer identifiers, secrets, billing internals, or provider

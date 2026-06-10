@@ -1,14 +1,15 @@
 # Support
 
-For MCP support, contact your ElevenFlo representative.
+For MCP support, email support@elevenflo.com.
 
-Copy this block, fill it in, and paste it into your support message:
+Copy this block, fill it in, and include it in your message:
 
 ```text
 Organization:
 Account email:
 MCP client and version:
 Endpoint URL:
+Case or filing involved:
 Tool or prompt attempted:
 Approximate time:
 Error message:
@@ -38,13 +39,14 @@ Use when a supported client cannot complete OAuth or cannot find the `elevenflo`
 Run the smoke test:
 
 ```text
-Use ElevenFlo MCP to find the Chapter 11 case for FTX and return the top match with the case name and case_watch_id.
+Use ElevenFlo MCP to find the FTX Trading Ltd. Chapter 11 case. Return the top match with case name, court, case number, and case identifier.
 ```
 
 Expected:
 
 ```text
 FTX Trading Ltd.
+case_id: 1857
 case_watch_id: 1857
 ```
 

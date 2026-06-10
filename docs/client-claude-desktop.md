@@ -1,6 +1,6 @@
 # Claude Desktop
 
-Open **Customize -> Connectors -> Add custom connector** and paste:
+Open **Customize → Connectors → Add custom connector** and paste:
 
 ```text
 https://elevenflo.com/mcp
@@ -11,7 +11,7 @@ Use `elevenflo` when Claude asks for a server label. Claude Desktop opens the El
 Smoke test:
 
 ```text
-Use the elevenflo MCP tool search_cases to find the Chapter 11 case FTX and return the top match.
+Use ElevenFlo MCP to find the FTX Trading Ltd. Chapter 11 case. Return the top match with case name, court, case number, and case identifier.
 ```
 
 > [!NOTE]
@@ -21,7 +21,11 @@ Use the elevenflo MCP tool search_cases to find the Chapter 11 case FTX and retu
 
 > [!TIP]
 > On Team and Enterprise, owners can add a custom connector centrally in
-> `Admin Settings -> Connectors`, and members can then connect it from
-> `Customize -> Connectors`.
+> `Admin Settings → Connectors`, and members can then connect it from
+> `Customize → Connectors`.
 
-> _Last verified 2026-04-29 against the current Claude Desktop UI. Anthropic occasionally renames these menus; if the path differs, the destination is the same — adding a custom connector by URL._
+For Claude skills and Cowork scheduling posture, see
+[Skill files](/docs/mcp/workflows/skill-files) and
+[Scheduling and notifications](/docs/mcp/workflows/scheduling-and-notifications).
+
+> _Reviewed 2026-06-04 against current Claude connector, skill, and Cowork docs. Anthropic occasionally renames these menus; if a path differs, the destination is the same — add a custom connector by URL. Verify ElevenFlo access in your exact Claude surface before relying on recurring workflows._

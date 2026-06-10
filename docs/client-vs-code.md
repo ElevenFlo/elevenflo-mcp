@@ -18,4 +18,4 @@ Then run a GitHub Copilot chat prompt that needs ElevenFlo data to trigger the O
 > [!NOTE]
 > GitHub Copilot MCP support requires a recent VS Code version with the MCP preview enabled.
 
-> _Last verified 2026-04-29 against current VS Code stable. Microsoft is iterating on the MCP surface; the `mcp.servers` setting key is stable but the UI for managing servers may move._
+> _Microsoft is iterating on the MCP surface; the `mcp.servers` key is stable but the server-management UI may move._

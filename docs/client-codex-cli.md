@@ -24,5 +24,14 @@ codex mcp login elevenflo
 Then run:
 
 ```text
-Use the elevenflo MCP tool search_cases to find the Chapter 11 case FTX and return the top match.
+Use ElevenFlo MCP to find the FTX Trading Ltd. Chapter 11 case. Return the top match with case name, court, case number, and case identifier.
 ```
+
+Codex is a power-user path for recipe repos, skills, plugins, and automation
+experiments. For recurring workflows, validate the manual prompt first and see
+[Scheduling and notifications](/docs/mcp/workflows/scheduling-and-notifications).
+
+Workflow recipes:
+
+- [Daily case brief](/docs/mcp/workflows/daily-case-brief)
+- [Skill files](/docs/mcp/workflows/skill-files)

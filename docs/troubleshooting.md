@@ -41,15 +41,16 @@ Fix:
 
 ## The tool list is missing expected tools
 
-ElevenFlo MCP advertises only the launch subset to enabled accounts. If a tool from the catalog isn't showing up:
+ElevenFlo MCP advertises only its research tool set. If a tool from the catalog isn't showing up:
 
-- Check the [Tool catalog](/mcp/tool-catalog) — that page is the canonical list.
-- Confirm your MCP access; some tools may be gated by entitlement and only appear once your organization is enabled.
+- Check the [Tool catalog](/docs/mcp/tool-catalog) — that page is the canonical list.
+- Confirm your Pro plan is active. MCP tools appear once you are on Pro.
 - Reconnect through OAuth if the client cached an older `tools/list` response.
 
-`generate_bankruptcy_document` is not part of the customer launch subset.
+`build_case_context_pack`, `search_intel_events`, `lookup_case_law`, and
+`generate_bankruptcy_document` are not part of the current customer tool set.
 
-If the tool is in the catalog and you have MCP access but the client still does not list it, contact ElevenFlo support with:
+If the tool is in the catalog and your Pro plan is active but the client still does not list it, contact ElevenFlo support with:
 
 - client name and version
 - endpoint URL
@@ -62,7 +63,7 @@ Try:
 
 - checking the case name
 - using `search_cases` first
-- narrowing by `case_watch_id`
+- narrowing by `case_id` or `case_watch_id`
 - broadening date filters
 - searching summaries before full text
 - using exact phrases only when the phrase is likely to appear in the filing
@@ -75,7 +76,14 @@ For exact language, use `read_text`.
 
 ## Rate limit or usage error
 
-Retry later or contact ElevenFlo support. Include the client name, account email, endpoint, and approximate time.
+Check the Account → AI connections usage meter for your current allowance and remaining balance. MCP usage is credit-based and resets at the start of each calendar month (UTC).
+
+The credit cap is connector-wide. Lightweight lookup and retrieval tools use fewer credits than document-analysis tools, but they still count against the monthly balance.
+
+If the account has credits remaining and the client still reports a usage
+error, reconnect through OAuth and retry. If the error persists, contact
+ElevenFlo support. Include the client name, account email, endpoint, tool name,
+and approximate time.
 
 ## Unsupported client
 

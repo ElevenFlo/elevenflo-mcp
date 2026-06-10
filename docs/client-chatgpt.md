@@ -1,16 +1,21 @@
 # ChatGPT
 
 > [!IMPORTANT]
-> ChatGPT support is for ChatGPT Apps / Developer Mode-compatible MCP usage. Deep Research and company-knowledge compatibility require the separate read-only `search` and `fetch` surface and are available only when separately enabled.
+> ChatGPT support depends on plan, workspace settings, and the exact ChatGPT
+> surface. ChatGPT Apps / Developer Mode-compatible MCP usage is the private or
+> workspace setup path. Deep Research and company-knowledge compatibility use
+> read-only `search` and `fetch` where available. Agent mode is not currently
+> the custom-MCP automation path.
 
-For private or workspace setup, ChatGPT currently uses **Apps** in
-**Developer mode**.
+For private or workspace setup, ChatGPT currently uses **Apps & Connectors** in
+**Developer mode**. Public app listing is a separate OpenAI review and
+publication flow.
 
 Requirements:
 
 - ChatGPT web
-- Pro, Plus, Business, Enterprise, or Education access
-- Developer mode enabled in `Settings -> Apps -> Advanced settings -> Developer mode`
+- ChatGPT access with Apps enabled for the workspace
+- Developer mode enabled where your plan and workspace allow it
 
 Create an app and paste:
 
@@ -18,18 +23,31 @@ Create an app and paste:
 https://elevenflo.com/mcp
 ```
 
-Use `ElevenFlo` as the app name or `elevenflo` as the server label if ChatGPT
-asks for one. Keep OAuth enabled. ChatGPT should open the ElevenFlo sign-in and
-consent flow in your browser.
+Use `ElevenFlo MCP` as the app name or `elevenflo` as the server label if
+ChatGPT asks for one. Keep OAuth enabled. ChatGPT should open the ElevenFlo
+sign-in and consent flow in your browser.
 
 Smoke test:
 
 ```text
-Use the ElevenFlo app to find the Chapter 11 case for FTX and return the top match with the case name and case_watch_id.
+Use ElevenFlo MCP to find the FTX Trading Ltd. Chapter 11 case. Return the top match with case name, court, case number, and case identifier.
+```
+
+Company knowledge / Deep Research compatibility smoke:
+
+```text
+Search ElevenFlo for FTX DIP financing filings, fetch the most relevant filing, and cite the source URL.
 ```
 
 > [!NOTE]
-> OpenAI's public app listing is a separate review and publication flow. The
-> steps above are the current private/manual install path.
+> Workspace Agents, Tasks, Deep Research, and company knowledge have separate
+> availability and tool-access rules. For scheduled workflow posture, use
+> [Scheduling and notifications](/docs/mcp/workflows/scheduling-and-notifications).
 
-> _Last verified 2026-04-29 against ChatGPT Apps / Developer Mode. OpenAI iterates on the developer-mode UI; if the menu path differs, the destination is the same — adding a custom MCP app via URL._
+Workflow recipes:
+
+- [Daily case brief](/docs/mcp/workflows/daily-case-brief)
+- [First-day filings triage](/docs/mcp/workflows/first-day-filings-triage)
+- [DIP and cash-collateral terms](/docs/mcp/workflows/dip-cash-collateral-terms)
+
+> _Reviewed 2026-06-04 against OpenAI ChatGPT Developer Mode, Tasks, Workspace Agents, and Codex docs. OpenAI iterates on plan availability and UI paths; verify ElevenFlo access in the exact ChatGPT surface before relying on recurring workflows._
