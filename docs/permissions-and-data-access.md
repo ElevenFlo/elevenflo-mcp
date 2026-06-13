@@ -47,6 +47,8 @@ ElevenFlo MCP does not generate legal documents. `generate_bankruptcy_document`,
 
 ElevenFlo's research corpus is built from public court records — dockets, filings, and hearing transcripts where indexed — plus public source/news metadata and bounded snippets. Nothing the tools retrieve is anyone's confidential information.
 
+`analyze_document` runs server-side AI analysis through Google Gemini. Google does not use this content to train its models. The document text it processes is public court-record material; to analyze filing text in your own model instead, retrieve it with `read_text`.
+
 Connecting ElevenFlo MCP does not give ElevenFlo access to your firm's documents, email, matters, or client files. The only information that reaches ElevenFlo is the tool calls your AI client makes: search queries, case and document identifiers, and the request context described in [Logging and auditing](#logging-and-auditing).
 
 Because research runs against public court records, a well-scoped prompt names a public case, a docket range, and a date window — it does not need client or matter information. Keep it that way.

@@ -76,7 +76,7 @@ For exact language, use `read_text`.
 
 ## Rate limit or usage error
 
-Check the Account → AI connections usage meter for your current allowance and remaining balance. MCP usage is credit-based and resets at the start of each calendar month (UTC).
+Check the Account → AI connections usage meter for your current allowance and remaining balance. MCP usage is credit-based and resets at the start of each calendar month.
 
 The credit cap is connector-wide. Lightweight lookup and retrieval tools use fewer credits than document-analysis tools, but they still count against the monthly balance.
 

@@ -30,6 +30,25 @@ ElevenFlo MCP is built for the people who work in Chapter 11 dockets every day:
 - a supported MCP client
 - browser access for ElevenFlo sign-in and OAuth consent
 
+## Credits
+
+Each MCP tool call costs a fixed number of credits. Pro includes 100,000
+credits per month, resetting at the start of each calendar month.
+
+Most tools cost 1–3 credits. `explore_document_graph` costs 5.
+`analyze_document`, which runs AI analysis over filing or transcript text,
+costs 15.
+
+In practice:
+
+- Identifying a case and scanning its docket runs about 5–10 credits.
+- A focused research session — locating filings, searching within them,
+  running several deep analyses — typically runs 50–200 credits.
+- The monthly allowance covers several hundred sessions at that rate.
+
+Failed tool calls are never charged. Current usage appears on your account
+page under **AI connections**.
+
 ## Endpoint
 
 ```text
