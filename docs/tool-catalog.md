@@ -99,7 +99,7 @@ Find the right case and move through its docket.
 
 - **Use when:** you have a case and want a filtered list of docket entries.
 - **Required inputs:** `case_id` or `case_watch_id`; optional filters (date range, docket number, judge, jurisdiction, document type).
-- **Returns:** docket activity entries. Document-backed entries include `document_id` for tool calls, optional compact `citation_ref`, and, in citation-bearing modes, `citation_map` browser filing links. RSS-only entries include activity/RSS identifiers and `document_search_available=false`.
+- **Returns:** docket activity entries. Document-backed entries include `document_id` for tool calls, optional compact `citation_ref`, and, in citation-bearing modes, `citation_map` browser filing links. Document-backed entries also carry `has_primary_pdf`; when it is `false` the filing has no downloadable PDF yet (e.g. some hearing transcripts or very fresh filings), so cite it without an `/api/search/open/<document_public_id>/` link. The entry is still returned and stays searchable when `document_search_available=true` — the flag only gates the open link, never whether the row appears or whether you can `read_text`/`analyze_document` it. RSS-only entries include activity/RSS identifiers and `document_search_available=false`; they are likewise surfaced as notice-only docket activity, just without a filing link.
 - **Next step:** `search_within` or `read_text` on a specific filing only when an entry has `document_search_available=true`.
 - **Example:** *List the first-day filings in this case with docket numbers.*
 
