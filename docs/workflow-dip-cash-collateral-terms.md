@@ -19,7 +19,7 @@ cited filings and exact-text excerpts.
 
 ## Requires
 
-- ElevenFlo Pro account (MCP is included);
+- ElevenFlo account with a verified email (MCP is available on every plan);
 - connected ElevenFlo MCP app or server;
 - exact case or financing filing, if known;
 - explicit docket range or filing identifiers when available.

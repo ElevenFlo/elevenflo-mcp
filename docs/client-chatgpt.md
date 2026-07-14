@@ -2,16 +2,22 @@
 
 > [!IMPORTANT]
 > ChatGPT support depends on plan, workspace settings, and the exact ChatGPT
-> surface. ChatGPT Apps / Developer Mode-compatible MCP usage is the private or
-> workspace setup path. Deep Research and company-knowledge compatibility use
-> read-only `search` and `fetch` where available. Agent mode is not currently
-> the custom-MCP automation path.
+> surface. The published ElevenFlo app directory is the primary setup path.
+> Developer Mode is the private/workspace fallback for custom MCP testing or
+> deployment. Deep Research and company-knowledge compatibility use read-only
+> `search` and `fetch` where available. Agent mode is not currently the
+> custom-MCP automation path.
+
+Start with the published ChatGPT app listing:
+[Open ElevenFlo in ChatGPT](https://chatgpt.com/apps/elevenflo/asdk_app_6a27946962bc819180664633b81cc507).
+OpenAI approved the ElevenFlo `1.0.0` public app version on 2026-06-24 and it
+was published on 2026-06-25.
 
 For private or workspace setup, ChatGPT currently uses **Apps & Connectors** in
-**Developer mode**. Public app listing is a separate OpenAI review and
-publication flow.
+**Developer mode**. Use this path when the directory listing is unavailable in
+your workspace or when you need a private test app.
 
-Requirements:
+Private or workspace setup requirements:
 
 - ChatGPT web
 - ChatGPT access with Apps enabled for the workspace
@@ -50,4 +56,4 @@ Workflow recipes:
 - [First-day filings triage](/docs/mcp/workflows/first-day-filings-triage)
 - [DIP and cash-collateral terms](/docs/mcp/workflows/dip-cash-collateral-terms)
 
-> _Reviewed 2026-06-04 against OpenAI ChatGPT Developer Mode, Tasks, Workspace Agents, and Codex docs. OpenAI iterates on plan availability and UI paths; verify ElevenFlo access in the exact ChatGPT surface before relying on recurring workflows._
+> _Reviewed 2026-06-25 after OpenAI approval/publication against the published ChatGPT app directory, Developer Mode, Tasks, Workspace Agents, Deep Research/company knowledge, and Codex docs. OpenAI iterates on plan availability and UI paths; verify ElevenFlo access in the exact ChatGPT surface before relying on recurring workflows._

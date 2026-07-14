@@ -25,7 +25,7 @@ window before relying on any host client to run it on a schedule.
 
 ## Requires
 
-- ElevenFlo Pro account (MCP is included);
+- ElevenFlo account with a verified email (MCP is available on every plan);
 - connected ElevenFlo MCP app or server;
 - explicit case name plus, when possible, court, case number, debtor, or
   petition date;

@@ -11,5 +11,5 @@ https://elevenflo.com/mcp
 Smoke test:
 
 ```text
-Use the elevenflo MCP tool search_cases to find the Chapter 11 case FTX and return the top match.
+Use the elevenflo MCP tool find_cases to find the Chapter 11 case FTX and return the top match.
 ```

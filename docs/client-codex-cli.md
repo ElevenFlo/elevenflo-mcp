@@ -19,7 +19,16 @@ Sign in:
 
 ```bash
 codex mcp login elevenflo
+codex mcp get elevenflo
+codex mcp list
 ```
+
+If Codex asks to sign in again before the default 30-day refresh-token family
+lifetime, confirm `codex mcp get elevenflo` still points to
+`https://elevenflo.com/mcp`. For file-backed credentials, a stale
+`~/.codex/.credentials.json` mtime after an automatic refresh indicates Codex did
+not persist the rotated refresh token; re-login repairs that local state, but
+the durable fix is client-side credential writeback after refresh.
 
 Then run:
 

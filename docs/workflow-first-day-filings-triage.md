@@ -24,7 +24,7 @@ Covers:
 
 ## Requires
 
-- ElevenFlo Pro account (MCP is included);
+- ElevenFlo account with a verified email (MCP is available on every plan);
 - connected ElevenFlo MCP app or server;
 - case name and, when possible, court, case number, debtor, or petition date;
 - petition date or first-day docket range.

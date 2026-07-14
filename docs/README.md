@@ -13,6 +13,10 @@ Use these pages to connect and use ElevenFlo MCP:
 - [Troubleshooting](troubleshooting.md)
 - [Support](support.md)
 
+ChatGPT users should start with the
+[published app directory](https://chatgpt.com/apps/elevenflo/asdk_app_6a27946962bc819180664633b81cc507)
+unless using private/workspace Developer Mode.
+
 Customer-facing endpoint:
 
 ```text

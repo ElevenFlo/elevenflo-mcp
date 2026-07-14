@@ -23,9 +23,9 @@ MCP.
 
 | Surface | What to know |
 | --- | --- |
-| ChatGPT app / app directory | Supported for manual use where ElevenFlo is available and connected. |
-| ChatGPT Developer Mode / custom MCP | Beta / admin-dependent. Use for testing and internal workspace deployment. Pro users may connect read/fetch MCPs in developer mode; full MCP is currently Business, Enterprise, and Edu. See OpenAI's [Developer mode and MCP apps](https://help.openai.com/en/articles/12584461-developer-mode-and-mcp-apps-in-chatgpt-beta). |
-| ChatGPT Workspace Agents | Beta / admin-dependent. Best ChatGPT path for scheduled enterprise workflows where available and admin-enabled. Verify ElevenFlo access in the exact workspace before publishing step-by-step instructions. See OpenAI's [Workspace Agents guide](https://help.openai.com/en/articles/20001143-chatgpt-workspace-agents-for-enterprise-and-business). |
+| [ChatGPT app / app directory](https://chatgpt.com/apps/elevenflo/asdk_app_6a27946962bc819180664633b81cc507) | Supported for manual use where ElevenFlo is available and connected. |
+| ChatGPT Developer Mode / custom MCP | Beta / admin-dependent. Use for testing and private or workspace deployment when the public app directory is not the right path. Availability depends on the current ChatGPT plan, workspace, admin settings, and rollout state; verify in OpenAI's [Developer mode and MCP apps](https://help.openai.com/en/articles/12584461-developer-mode-and-mcp-apps-in-chatgpt). |
+| ChatGPT Workspace Agents | Beta / admin-dependent. Best ChatGPT path for scheduled workspace workflows where available and admin-enabled. Verify ElevenFlo access in the exact workspace before publishing step-by-step instructions. See OpenAI's [Workspace Agents guide](https://help.openai.com/en/articles/20001143-chatgpt-workspace-agents-for-enterprise-and-business). |
 | ChatGPT Tasks | Available but unverified for ElevenFlo MCP. Tasks can schedule prompts and send push or email notifications, but ElevenFlo has not verified that Tasks can invoke the published ElevenFlo MCP surface. Use manual prompts or Workspace Agents where available until verified. See OpenAI's [Tasks guide](https://help.openai.com/en/articles/10291617-tasks-in-chatgpt). |
 | ChatGPT Agent | Not currently the custom-MCP automation path. OpenAI's current Developer Mode FAQ says Agent mode will not use custom apps. |
 | Deep Research / company knowledge | Potential read/fetch path where available. Verify with ElevenFlo `search` and `fetch`; do not use it for write or modify claims. |

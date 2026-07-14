@@ -1,20 +1,24 @@
 # Quickstart
 
-Setup takes about 5 minutes if you are already on ElevenFlo Pro.
+Setup takes about 5 minutes with any ElevenFlo account.
 
 ## 1. Confirm access
 
 You need:
 
-- an ElevenFlo Pro account (MCP is included with Pro)
+- an ElevenFlo account with a verified email address (MCP is available on every plan — free accounts include 2,500 credits per month, Pro includes 100,000)
 - an MCP-compatible client
 - browser access for sign-in and consent
 
-MCP is provisioned automatically when you upgrade to Pro — there is no separate access request. If a tool call returns an access error, confirm your Pro plan is active.
+MCP is provisioned automatically — there is no separate access request. If a tool call returns an access error, confirm your email address is verified.
 
 ## 2. Add the endpoint
 
-Transport: Remote MCP over HTTP / Streamable HTTP. Clients label this differently — Claude Code uses `--transport http`, VS Code uses `"type": "http"`, ChatGPT calls it "streaming HTTP" — but it is the same surface.
+Transport: Remote MCP over HTTP / Streamable HTTP. Clients label this differently — Claude Code uses `--transport http`, VS Code uses `"type": "http"`, and private/workspace ChatGPT Developer Mode calls it "streaming HTTP" — but it is the same surface.
+
+ChatGPT users should start with the
+[published app directory](https://chatgpt.com/apps/elevenflo/asdk_app_6a27946962bc819180664633b81cc507)
+unless using private/workspace Developer Mode.
 
 Add this MCP server URL in your client:
 
@@ -44,7 +48,9 @@ Ask:
 Use ElevenFlo MCP to find the FTX Trading Ltd. Chapter 11 case. Return the top match with case name, court, case number, and case identifier.
 ```
 
-`case_id` is the stable case identifier returned by ElevenFlo MCP. The response also includes `case_watch_id`, the legacy name for the same value; use either identifier in follow-up MCP calls.
+`case_id` is the stable public case identifier returned by ElevenFlo MCP. The
+response may also include `case_watch_id`, the legacy name for the same value;
+use `case_id` in follow-up MCP calls.
 
 Expected result:
 
@@ -63,7 +69,11 @@ Find recent filings in the case, identify the plan or disclosure statement, and 
 ## Guardrails
 
 - Use `/mcp` as the endpoint path.
-- Reconnect through OAuth if access was revoked or the grant expired.
-- Revoke unused client grants from Account → AI connections.
-- Use `read_text` for exact filing language.
+- Each OAuth approval creates an independent client grant.
+- Access tokens refresh automatically. The default refresh-token family lifetime
+  is 30 days from OAuth approval; daily reauthorization is not expected.
+- Reconnect through OAuth if access was revoked, entitlement changed, or the
+  grant expired after its refresh-token family lifetime.
+- Revoke unused client grants from Account → MCP connections.
+- Use `read_document_text` for exact filing language.
 - Use `analyze_document` only after selecting relevant documents and chunks.

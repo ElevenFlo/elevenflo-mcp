@@ -3,10 +3,13 @@
 Run this from any directory:
 
 ```bash
-claude mcp add --transport http elevenflo https://elevenflo.com/mcp
+claude mcp add --scope user --transport http elevenflo https://elevenflo.com/mcp
+claude mcp login elevenflo
+claude mcp get elevenflo
 ```
 
-Then start a prompt that needs ElevenFlo data. Claude Code opens the ElevenFlo OAuth sign-in and consent flow in your browser.
+Then start a prompt that needs ElevenFlo data. If OAuth has expired, Claude
+Code opens the ElevenFlo sign-in and consent flow in your browser.
 
 Smoke test:
 
