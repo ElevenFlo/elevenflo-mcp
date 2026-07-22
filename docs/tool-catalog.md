@@ -29,7 +29,7 @@ Cite the filing, docket entry, or retrieved text behind every output.
 
 ## Source grounding
 
-Tools return stable source identifiers such as `case_id`, `docket_number`, `activity_id`, `document_id`, `source_content_id`, and `chunk_id`. `case_id` is the public case identifier; the legacy `case_watch_id` may still appear in results but is not needed in the 1.1 input schemas. Use `document_id` with MCP tools such as `search_within_documents`, `read_document_text`, `analyze_document`, and `get_document_summary` only when `document_search_available` is true. Some docket entries are notice-only (ingested from court RSS feeds) and have no searchable filing text; these RSS-only entries have an `activity_id` and may have an `rss_docket_entry_id`. Use `source_content_id` only as a source/news citation handle that resolves to publisher metadata and links. Use `document_public_id` only for browser-facing filing links such as `/api/search/open/<document_public_id>/`. Pass document tool identifiers to `read_document_text` when exact wording, dates, amounts, deadlines, vote percentages, releases, injunctions, or defined terms matter.
+Tools return stable source identifiers such as `case_id`, `docket_number`, `activity_id`, `document_id`, `source_content_id`, and `chunk_id`. `case_id` is the preferred public MCP case identifier. Current case-discovery results also include `case_watch_id`, the internal/app join name for the same resolved value; public clients use `case_id` in follow-up calls and must not infer a physical-storage rename from the public label. Use `document_id` with MCP tools such as `search_within_documents`, `read_document_text`, `analyze_document`, and `get_document_summary` only when `document_search_available` is true. Some docket entries are notice-only (ingested from court RSS feeds) and have no searchable filing text; these RSS-only entries have an `activity_id` and may have an `rss_docket_entry_id`. Use `source_content_id` only as a source/news citation handle that resolves to publisher metadata and links. Use `document_public_id` only for browser-facing filing links such as `/api/search/open/<document_public_id>/`. Pass document tool identifiers to `read_document_text` when exact wording, dates, amounts, deadlines, vote percentages, releases, injunctions, or defined terms matter.
 
 Document-bearing native tools support `response_mode`:
 
@@ -91,7 +91,10 @@ Find the right case and move through its docket.
 
 - **Use when:** you need to locate a Chapter 11 case by debtor, counsel, judge, jurisdiction, or industry.
 - **Required inputs:** a query (debtor name, alias, or descriptor).
-- **Returns:** matching cases with `case_id`, `case_watch_id`, identifying metadata, coverage state, and downstream availability fields.
+- **Returns:** matching cases with equal `case_id` and `case_watch_id` values,
+  identifying metadata, coverage state, and downstream availability fields.
+  Use `case_id` for follow-up public MCP calls; `case_watch_id` remains the
+  internal/app join name.
 - **Next step:** `browse_docket` or `find_case_documents` to scope filings, or `search_filings` to search the case corpus.
 - **Example:** *What is the Chapter 11 case for FTX?*
 

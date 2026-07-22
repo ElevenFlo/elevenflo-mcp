@@ -48,9 +48,11 @@ Ask:
 Use ElevenFlo MCP to find the FTX Trading Ltd. Chapter 11 case. Return the top match with case name, court, case number, and case identifier.
 ```
 
-`case_id` is the stable public case identifier returned by ElevenFlo MCP. The
-response may also include `case_watch_id`, the legacy name for the same value;
-use `case_id` in follow-up MCP calls.
+`case_id` is the stable public case identifier returned by ElevenFlo MCP; use
+it in follow-up MCP calls. Current case-discovery results also include
+`case_watch_id`, the internal/app join name for the same resolved value. That
+does not signal a storage rename or create a second identifier a client needs
+to retain.
 
 Expected result:
 
