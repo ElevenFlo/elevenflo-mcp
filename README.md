@@ -15,8 +15,8 @@ Authentication: ElevenFlo web-app sign-in, OAuth 2.1, PKCE, and explicit
 consent. Do not configure static bearer tokens or pasted API keys for ElevenFlo
 MCP.
 
-ElevenFlo MCP is included with the ElevenFlo Pro plan and provisioned
-automatically — see [Access](docs/access.md).
+ElevenFlo MCP is available on every plan, including free accounts, and is
+provisioned automatically — see [Access](docs/access.md).
 
 ## Documentation
 
