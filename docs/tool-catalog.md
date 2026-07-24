@@ -209,10 +209,11 @@ Compress long filings into structured extracts and case-level synthesis.
 
 ### `search_summaries`
 
-- **Use when:** you want compressed summary segments across a case.
+- **Use when:** you want compact final-summary discovery across a case.
 - **Required inputs:** `case_id` and a query; `document_ids` can optionally narrow the search.
-- **Returns:** matching summary segments with provenance to underlying filings.
-- **Next step:** `read_document_text` on the source filings before relying on legal language.
+- **Returns:** matching summary previews with provenance to underlying filings.
+- **Next step:** `get_document_summary` for a selected full summary, then
+  `read_document_text` before relying on legal language.
 - **Example:** *Which filings discuss plan recoveries, settlements, releases, and the liquidation trust?*
 
 ## Relationships and signals
