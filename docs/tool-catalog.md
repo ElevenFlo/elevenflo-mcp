@@ -90,11 +90,12 @@ Find the right case and move through its docket.
 ### `find_cases`
 
 - **Use when:** you need to locate a Chapter 11 case by debtor, counsel, judge, jurisdiction, or industry.
-- **Required inputs:** a query (debtor name, alias, or descriptor).
+- **Required inputs:** at least one of `query`, `case_type`, or
+  `coverage_state`. Filter lists use OR semantics within each list.
 - **Returns:** matching cases with equal `case_id` and `case_watch_id` values,
-  identifying metadata, coverage state, and downstream availability fields.
-  Use `case_id` for follow-up public MCP calls; `case_watch_id` remains the
-  internal/app join name.
+  identifying metadata, canonical `case_type_tags`, coverage state, and
+  downstream availability fields. Use `case_id` for follow-up public MCP
+  calls; `case_watch_id` remains the internal/app join name.
 - **Next step:** `browse_docket` or `find_case_documents` to scope filings, or `search_filings` to search the case corpus.
 - **Example:** *What is the Chapter 11 case for FTX?*
 
