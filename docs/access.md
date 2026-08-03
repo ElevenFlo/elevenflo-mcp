@@ -21,7 +21,7 @@ ElevenFlo MCP is built for the people who work in Chapter 11 dockets every day:
 - Find the right Chapter 11 case.
 - Search dockets and court filings.
 - Retrieve exact filing language.
-- Analyze motions, orders, plans, and disclosure statements.
+- Analyze retrieved motions, orders, plans, and disclosure statements in your calling agent.
 - Build case briefs and research notes grounded in primary court sources.
 - Research docket activity, hearing context, filed-material milestones, and indexed source metadata/snippets.
 
@@ -34,12 +34,11 @@ ElevenFlo MCP is built for the people who work in Chapter 11 dockets every day:
 ## Credits
 
 Each MCP tool call costs a fixed number of credits. Free accounts include
-2,500 credits per month and Pro includes 100,000, resetting at the start of
+500 credits per month and Pro includes 100,000, resetting at the start of
 each calendar month.
 
-Most tools cost 1–3 credits. `explore_document_graph` costs 5.
-`analyze_document`, which runs AI analysis over filing or transcript text,
-costs 15.
+Tools cost 1, 2, 3, or 5 credits. `explore_document_graph` costs 5.
+Verbatim document reads, summaries, and workflow extraction cost 5 credits.
 
 In practice:
 

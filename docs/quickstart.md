@@ -6,7 +6,7 @@ Setup takes about 5 minutes with any ElevenFlo account.
 
 You need:
 
-- an ElevenFlo account with a verified email address (MCP is available on every plan — free accounts include 2,500 credits per month, Pro includes 100,000)
+- an ElevenFlo account with a verified email address (MCP is available on every plan; free accounts include 500 credits per month, Pro includes 100,000)
 - an MCP-compatible client
 - browser access for sign-in and consent
 
@@ -78,4 +78,3 @@ Find recent filings in the case, identify the plan or disclosure statement, and 
   grant expired after its refresh-token family lifetime.
 - Revoke unused client grants from Account → MCP connections.
 - Use `read_document_text` for exact filing language.
-- Use `analyze_document` only after selecting relevant documents and chunks.

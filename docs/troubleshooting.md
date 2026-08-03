@@ -80,7 +80,7 @@ Try:
 
 ## Analysis fails on a long document
 
-Use `search_within_documents` first, then pass selected chunk IDs to `analyze_document`.
+Use `search_within_documents` first, then pass selected chunk IDs to `read_document_text`.
 
 For exact language, use `read_document_text`.
 
@@ -88,9 +88,9 @@ For exact language, use `read_document_text`.
 
 Check the Account → MCP connections usage meter for your current allowance and remaining balance. MCP usage is credit-based and resets at the start of each calendar month.
 
-The credit cap is connector-wide. Lightweight lookup and retrieval tools use fewer credits than document-analysis tools, but they still count against the monthly balance.
+The credit cap is connector-wide. Each tool call counts against the monthly balance.
 
-Free accounts include 2,500 credits per month. If a tool call reports the
+Free accounts include 500 credits per month. If a tool call reports the
 credit limit was reached, the balance resets at the start of the next calendar
 month, or [upgrade to Pro](/pricing) for 100,000 credits per month.
 
