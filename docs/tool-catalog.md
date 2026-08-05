@@ -223,7 +223,7 @@ Map how filings connect.
 
 ## Not currently included
 
-ElevenFlo MCP does not generate legal documents. `generate_bankruptcy_document` is not part of the hosted MCP tool set.
+ElevenFlo MCP does not generate legal documents.
 
 `build_case_context_pack`, `search_intel_events`, and `lookup_case_law` are not
 part of the hosted MCP tool set today. They may be added later, after separate

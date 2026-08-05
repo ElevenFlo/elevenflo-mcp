@@ -35,5 +35,5 @@ drafts, and workspace storage belong to the host client, not to ElevenFlo MCP.
 
 The tool catalog is the source of truth for what the connector exposes.
 
-`build_case_context_pack`, `search_intel_events`, `lookup_case_law`, and
-`generate_bankruptcy_document` are not part of the current customer tool set.
+`build_case_context_pack`, `search_intel_events`, and `lookup_case_law` are
+not part of the current customer tool set.

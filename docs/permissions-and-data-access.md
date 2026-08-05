@@ -41,7 +41,10 @@ The tool set does not:
 - manage billing
 - grant access to other users
 
-ElevenFlo MCP does not generate legal documents. `generate_bankruptcy_document`, `build_case_context_pack`, `search_intel_events`, and `lookup_case_law` are not part of the hosted MCP tool set. The [tool catalog](/docs/mcp/tool-catalog) is the canonical list of what the connector exposes.
+ElevenFlo MCP does not generate legal documents. `build_case_context_pack`,
+`search_intel_events`, and `lookup_case_law` are not part of the hosted MCP
+tool set. The [tool catalog](/docs/mcp/tool-catalog) is the canonical list of
+what the connector exposes.
 
 ## Public records and confidentiality
 

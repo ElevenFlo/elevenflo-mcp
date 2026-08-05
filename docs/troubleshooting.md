@@ -57,8 +57,8 @@ ElevenFlo MCP advertises only its research tool set. If a tool from the catalog 
   every plan.
 - Reconnect through OAuth if the client cached an older `tools/list` response.
 
-`build_case_context_pack`, `search_intel_events`, `lookup_case_law`, and
-`generate_bankruptcy_document` are not part of the current customer tool set.
+`build_case_context_pack`, `search_intel_events`, and `lookup_case_law` are
+not part of the current customer tool set.
 
 If the tool is in the catalog and the client still does not list it, contact ElevenFlo support with:
 
