@@ -49,17 +49,13 @@ Use ElevenFlo MCP to find the FTX Trading Ltd. Chapter 11 case. Return the top m
 ```
 
 `case_id` is the stable public case identifier returned by ElevenFlo MCP; use
-it in follow-up MCP calls. Current case-discovery results also include
-`case_watch_id`, the internal/app join name for the same resolved value. That
-does not signal a storage rename or create a second identifier a client needs
-to retain.
+it in follow-up MCP calls.
 
 Expected result:
 
 ```text
 FTX Trading Ltd.
 case_id: 1857
-case_watch_id: 1857
 ```
 
 ## 5. Try a research prompt
@@ -77,4 +73,4 @@ Find recent filings in the case, identify the plan or disclosure statement, and 
 - Reconnect through OAuth if access was revoked, entitlement changed, or the
   grant expired after its refresh-token family lifetime.
 - Revoke unused client grants from Account → MCP connections.
-- Use `read_document_text` for exact filing language.
+- Use `read_document_chunks` for exact filing language.

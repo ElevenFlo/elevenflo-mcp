@@ -47,7 +47,6 @@ Expected:
 ```text
 FTX Trading Ltd.
 case_id: 1857
-case_watch_id: 1857
 ```
 
 If the smoke test fails, include the failure text in the support request.

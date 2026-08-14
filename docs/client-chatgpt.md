@@ -4,9 +4,7 @@
 > ChatGPT support depends on plan, workspace settings, and the exact ChatGPT
 > surface. The published ElevenFlo app directory is the primary setup path.
 > Developer Mode is the private/workspace fallback for custom MCP testing or
-> deployment. Deep Research and company-knowledge compatibility use read-only
-> `search` and `fetch` where available. Agent mode is not currently the
-> custom-MCP automation path.
+> deployment. Agent mode is not currently the custom-MCP automation path.
 
 Start with the published ChatGPT app listing:
 [Open ElevenFlo in ChatGPT](https://chatgpt.com/apps/elevenflo/asdk_app_6a27946962bc819180664633b81cc507).
@@ -39,10 +37,10 @@ Smoke test:
 Use ElevenFlo MCP to find the FTX Trading Ltd. Chapter 11 case. Return the top match with case name, court, case number, and case identifier.
 ```
 
-Company knowledge / Deep Research compatibility smoke:
+Research smoke:
 
 ```text
-Search ElevenFlo for FTX DIP financing filings, fetch the most relevant filing, and cite the source URL.
+Find FTX DIP financing filings, retrieve the relevant document passages, and cite the source filing.
 ```
 
 > [!NOTE]

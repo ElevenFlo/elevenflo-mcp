@@ -31,8 +31,6 @@ Workflow recipes show copy-paste prompts and host-specific skill guidance for
 repeatable Chapter 11 research. Scheduling, notifications, email
 drafts, and workspace storage belong to the host client, not to ElevenFlo MCP.
 
-`search` and `fetch` are also exposed for OpenAI-compatible clients; the native catalog is the primary interface.
-
 The tool catalog is the source of truth for what the connector exposes.
 
 `build_case_context_pack`, `search_intel_events`, and `lookup_case_law` are

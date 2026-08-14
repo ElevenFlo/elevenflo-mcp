@@ -80,9 +80,9 @@ Try:
 
 ## Analysis fails on a long document
 
-Use `search_within_documents` first, then pass selected chunk IDs to `read_document_text`.
+Use `search_document_chunks` first, then pass selected chunk IDs to `read_document_chunks`.
 
-For exact language, use `read_document_text`.
+For exact language, use `read_document_chunks`.
 
 ## Rate limit or usage error
 

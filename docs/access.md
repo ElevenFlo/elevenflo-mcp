@@ -37,7 +37,7 @@ Each MCP tool call costs a fixed number of credits. Free accounts include
 500 credits per month and Pro includes 100,000, resetting at the start of
 each calendar month.
 
-Tools cost 1, 2, 3, or 5 credits. `explore_document_graph` costs 5.
+Tools cost 1, 2, 3, or 5 credits. `list_document_relationships` costs 5.
 Verbatim document reads, summaries, and workflow extraction cost 5 credits.
 
 In practice:
