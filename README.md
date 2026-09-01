@@ -88,6 +88,7 @@ return typed rows, grouped aggregates, or normalized value suggestions. Fifteen
 datasets are on the public contract:
 
 - `ballot-tabulation`
+- `ballot-class-results`
 - `committee-appointments`
 - `hearings-case-rollup`
 - `sale-process`

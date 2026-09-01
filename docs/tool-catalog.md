@@ -192,6 +192,7 @@ Suggest normalized values for a field the dataset marks suggestable.
 ### Available datasets
 
 - `ballot-tabulation`
+- `ballot-class-results`
 - `bar-dates`
 - `case-disclosure-solicitation`
 - `case-outcomes`
@@ -211,6 +212,12 @@ ElevenFlo maintains more datasets than this list. Monthly operating reports and
 fee timekeepers are two that ElevenFlo MCP does not serve, and naming one
 returns an `unknown_dataset` error. This page is a static copy. Call
 `list_structured_datasets` for the live list.
+
+`ballot-tabulation` is **Plan voting results**. It returns one current ballot
+declaration with projected class totals. Its operative flag is true only for
+the latest non-supplemental declaration for the case and plan. `ballot-class-results`
+returns immutable class-row evidence from those declarations. These class rows
+are not canonical plan votes.
 
 ## Credits
 
