@@ -3,15 +3,15 @@
 The live `tools/list` response is the exact input and output contract. Inputs
 reject unknown fields, errors return `{code, message, retryable?, recovery?}`,
 and every list-returning tool returns bounded rows. ElevenFlo MCP
-exposes read-only bankruptcy research tools; this page is the complete
-list, and a tool absent here is not available. See
+exposes read-only bankruptcy research tools. This page is the complete list,
+and a tool absent here is not available. See
 [Permissions and data access](https://elevenflo.com/docs/mcp/permissions-and-data-access)
-for what the connector cannot do.
+for what ElevenFlo MCP cannot do.
 
 Cases are addressed by `case_id`, documents by UUID `document_id`. Use
-identifiers exactly as returned; no aliases are accepted. When a document row
-carries `has_primary_pdf: true`, open the filing at `/api/search/open/<uuid>/`
-using that same UUID.
+identifiers exactly as returned. ElevenFlo MCP accepts no aliases. When a
+document row carries `has_primary_pdf: true`, open the filing at
+`/api/search/open/<uuid>/` using that same UUID.
 
 ## The research loop
 
@@ -27,17 +27,16 @@ using that same UUID.
 ### `find_cases`
 
 Find cases by debtor identity or by structured case metadata. Case-type tags
-group cases by how ElevenFlo covers them; they do not name the bankruptcy
+group cases by how ElevenFlo covers them. They do not name the bankruptcy
 chapter.
 
 `query` matches case name, case number, jurisdiction, judge, and indexed
 industry and case-type tags. It does not match counsel, docket text, or filing
-content; use `search_filings` for those. `case_type`, `petition_date_from`,
-`petition_date_to`, and `assets_over_usd` are exact filters applied on top of
-`query`, and they also work without one.
+content. Use `search_filings` for those. The other filters listed below are
+exact, apply on top of `query`, and also work without one.
 
 - Inputs: optional `query`, `case_type`, `petition_date_from`,
-  `petition_date_to`, and `assets_over_usd`; `limit` is 1 to 50. At least one
+  `petition_date_to`, and `assets_over_usd`. `limit` is 1 to 50. At least one
   search criterion is required.
 - Returns: `case_id`, identifying metadata, petition date, disclosed petition
   asset range, coverage state, and case-type tags. Filter-only results are
@@ -45,7 +44,7 @@ content; use `search_filings` for those. `case_type`, `petition_date_from`,
 
 ### `list_document_types`
 
-List canonical filing categories and tags.
+List filing categories and tags.
 
 - Inputs: optional `query`.
 - Returns: category keys, labels, and canonical tags.
@@ -61,8 +60,8 @@ terminal notice controls over any projected date.
 
 ## Cross-document search
 
-Each of these requires every substantive query term to appear in the matching
-evidence, so one common word cannot pull in unrelated results.
+These tools require every substantive query term to appear in the matching
+evidence. One common word cannot pull in unrelated results.
 
 ### `search_filings`
 
@@ -76,8 +75,8 @@ Search filing evidence across all cases or within one case.
 Search bankruptcy news and source coverage.
 
 - Inputs: `query`; optional `case_id` and `limit`.
-- Returns: source rows with publisher metadata and snippets. Raw article text
-  is not exposed.
+- Returns: source rows with publisher metadata and snippets, never raw article
+  text.
 
 ### `search_transcripts`
 
@@ -144,18 +143,13 @@ List citation relationships for selected documents.
 ## Structured data
 
 Structured datasets carry typed, source-linked fields extracted from filings.
-Use them when the question is about typed fields, comparable records, or a
-population rather than filing text.
-
-Call `describe_structured_dataset` before querying an unfamiliar dataset: it
-declares the filters, sorts, facets, and metrics that dataset accepts.
-Responses return only public fields and operations, never extraction
-diagnostics, confidence scores, computation timestamps, raw blobs, or storage
-identifiers.
+Use them when the question is about typed fields, comparable records, or many
+cases at once rather than the text of one filing. Responses return only public
+fields and operations, never internal extraction metadata.
 
 ### `list_structured_datasets`
 
-List the datasets available to the caller.
+List the datasets available to you.
 
 - Inputs: optional `limit` and signed `cursor`.
 - Returns: dataset slugs, grain, freshness, coverage window, available
@@ -163,7 +157,7 @@ List the datasets available to the caller.
 
 ### `describe_structured_dataset`
 
-Describe one dataset before querying it.
+Call this before you query an unfamiliar dataset.
 
 - Input: `dataset`, using a slug returned by `list_structured_datasets`.
 - Returns: public fields and meanings, typed filter operators, selectable
@@ -180,7 +174,7 @@ Return typed rows from one dataset.
 
 ### `aggregate_structured_data`
 
-Answer population questions over one dataset.
+Count and summarize records across one dataset.
 
 - Inputs: `dataset`; optional typed `where`, `group_by`, metrics, ordering, and
   bounded result limit as declared by the dataset description.
@@ -197,16 +191,26 @@ Suggest normalized values for a field the dataset marks suggestable.
 
 ### Available datasets
 
-`ballot-tabulation`, `bar-dates`, `case-disclosure-solicitation`,
-`case-outcomes`, `committee-appointments`, `exclusivity-periods`,
-`fee-applicant-rollups`, `hearings-case-rollup`, `keip-kerp`,
-`post-confirmation-reports`, `rule-2019-statements`, `sale-process`,
-`schedule-summary-totals`, `transfers-of-claim`, `voluntary-petitions`.
+- `ballot-tabulation`
+- `bar-dates`
+- `case-disclosure-solicitation`
+- `case-outcomes`
+- `committee-appointments`
+- `exclusivity-periods`
+- `fee-applicant-rollups`
+- `hearings-case-rollup`
+- `keip-kerp`
+- `post-confirmation-reports`
+- `rule-2019-statements`
+- `sale-process`
+- `schedule-summary-totals`
+- `transfers-of-claim`
+- `voluntary-petitions`
 
-This allowlist is narrower than the set ElevenFlo maintains. Monthly operating
-reports and fee timekeepers, among others, are not exposed, and naming one
-returns an `unknown_dataset` error. `list_structured_datasets` is the live,
-request-scoped catalog.
+ElevenFlo maintains more datasets than this list. Monthly operating reports and
+fee timekeepers are two that ElevenFlo MCP does not serve, and naming one
+returns an `unknown_dataset` error. This page is a static copy. Call
+`list_structured_datasets` for the live list.
 
 ## Credits
 
@@ -217,6 +221,7 @@ request-scoped catalog.
 | 3 | `search_document_chunks`, `aggregate_structured_data` |
 | 5 | `search_document_summaries`, `get_document_summary`, `read_document_chunks`, `extract_document_passages`, `find_case_document_hubs`, `list_document_relationships` |
 
-Free accounts include 500 credits a month and Pro includes 100,000, resetting
-at the start of each calendar month. Failed calls are not charged. Current
-usage appears on your account page under **MCP connections**.
+Free accounts include 500 credits a month and Pro includes 100,000. Each
+allowance resets at the start of the calendar month. ElevenFlo does not charge
+for failed calls. Current usage appears in your account settings under
+**MCP connections**.

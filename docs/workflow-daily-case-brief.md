@@ -7,9 +7,6 @@ explicit start and end date/time with timezone.
 
 ## Prompt
 
-Fill the bracketed fields. Run it manually and confirm the output before you
-let your client run it on a schedule.
-
 ```text
 Use ElevenFlo MCP to prepare a daily chapter 11 case brief for [CASE NAME].
 
@@ -64,10 +61,7 @@ Caveats
 
 Run the
 [acceptance checklist](https://elevenflo.com/docs/mcp/workflows/safety-and-verification#acceptance-checklist),
-plus two checks specific to a recurring brief:
+plus one check specific to a recurring brief:
 
-- The output names the date/time window it reviewed, and never says "since
-  yesterday" unless your client supplied the prior run time and the output
-  names that time.
-- Docket-entry date, filing date, and order-entered date are distinguished
-  where they differ.
+- The output never says "since yesterday" unless your client supplied the prior
+  run time and the output names that time.

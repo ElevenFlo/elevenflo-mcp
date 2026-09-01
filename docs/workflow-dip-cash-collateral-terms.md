@@ -80,7 +80,5 @@ Run the
 [acceptance checklist](https://elevenflo.com/docs/mcp/workflows/safety-and-verification#acceptance-checklist),
 plus two checks specific to a term extract:
 
-- Interim terms are separated from final terms, and proposed relief from
-  entered relief.
-- Terms the filings did not cover are marked "not found in the reviewed
-  scope", never left blank or inferred.
+- Interim terms are separated from final terms.
+- No field in the term table is left blank or inferred.

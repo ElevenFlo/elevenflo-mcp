@@ -1,27 +1,25 @@
 # Automation
 
 Scheduling, notifications, email drafts, Slack posts, and file writes belong to
-your client, not to ElevenFlo MCP. This page covers which client surfaces can
-run a workflow prompt on a schedule, and how to package a prompt as a skill
-file so every run follows the same steps.
+your client, not to ElevenFlo MCP.
 
 ## Scheduling a run
 
 Run the prompt manually first with an explicit date range and confirm the
 output cites filings or exact text. Then confirm the client can reach ElevenFlo
-tools in the surface that will run later, and that the connection survives
+tools in the surface that will run later. Confirm that the connection survives
 token expiry. Only then create the recurring task.
 
-Status labels below: **Verified** means ElevenFlo tested the surface against
-the published app or server. **Unverified** means the client documents the
-capability but ElevenFlo has not tested it. **Admin-dependent** means
-availability turns on plan, organization, region, or rollout state.
+The table uses these status labels. **Verified** means ElevenFlo tested the
+surface against the published app or server. **Unverified** means the client
+documents the capability but ElevenFlo has not tested it. **Admin-dependent**
+means availability turns on plan, organization, region, or rollout state.
 
 | Surface | Status | What to know |
 | --- | --- | --- |
 | [ChatGPT plugin](https://chatgpt.com/plugins/elevenflo) | Verified | Manual use where ElevenFlo is available and connected. |
 | ChatGPT Developer Mode / custom MCP | Admin-dependent | Testing, and private or organization-managed deployment. See OpenAI's [Developer mode and MCP apps](https://help.openai.com/en/articles/12584461-developer-mode-and-mcp-apps-in-chatgpt). |
-| ChatGPT published agents | Admin-dependent | The ChatGPT surface that supports scheduled recurring runs. Verify ElevenFlo access under the exact admin settings first. See OpenAI's [agents guide](https://help.openai.com/en/articles/20001143-chatgpt-workspace-agents-for-enterprise-and-business). |
+| ChatGPT published agents | Admin-dependent | The ChatGPT surface that supports scheduled recurring runs. Confirm ElevenFlo access under the exact admin settings first. See OpenAI's [agents guide](https://help.openai.com/en/articles/20001143-chatgpt-workspace-agents-for-enterprise-and-business). |
 | ChatGPT Tasks | Unverified | Tasks can schedule prompts and notify you, but ElevenFlo has not confirmed Tasks can invoke the published ElevenFlo surface. See OpenAI's [Tasks guide](https://help.openai.com/en/articles/10291617-tasks-in-chatgpt). |
 | ChatGPT Agent | Not supported | OpenAI's current Developer Mode FAQ says Agent mode will not use custom apps. |
 | Deep Research / company knowledge | Unverified | Confirm the connection is live before relying on a result. Not a write path. |
@@ -30,9 +28,10 @@ availability turns on plan, organization, region, or rollout state.
 | Claude Cowork scheduled tasks | Unverified | Cowork scheduled tasks can use connected tools, skills, and installed plugins, and currently depend on Claude Desktop or Cowork availability. See Anthropic's [scheduled tasks guide](https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork). |
 | Generic MCP clients | Unverified | Setup and manual prompts. Do not rely on scheduling unless the client documents it and you have tested it. |
 
-Before a recurring run goes live, confirm the output states the run date/time,
-timezone, review window, case identifier, and source basis, and that it does
-not depend on model memory for the previous run time.
+Before a recurring run goes live, run the
+[acceptance checklist](https://elevenflo.com/docs/mcp/workflows/safety-and-verification#acceptance-checklist)
+against a manual run. Confirm that the output does not depend on model memory
+for the previous run time.
 
 ## Notification wording
 
@@ -49,14 +48,14 @@ Draft an email summary for review.
 
 Neither "send me an email every morning" nor "ElevenFlo will email the brief"
 describes anything the connector does. For Claude with Google services,
-Anthropic's current help docs say Claude can create Gmail drafts; you send the
+Anthropic's current help docs say Claude can create Gmail drafts. You send the
 email yourself from Gmail.
 
 ## Skill files
 
-A skill file holds your client to the same steps every run. Write one after a
-copy-paste prompt has worked manually. Packaging differs by client, and Claude
-packaging changes; verify against Anthropic's current docs before publishing.
+A skill file holds your client to the same steps every run. Write one after the
+copy-paste prompt works manually. Packaging differs by client. Claude packaging
+changes, so confirm it against Anthropic's current docs before you publish.
 
 | Client surface | Packaging |
 | --- | --- |

@@ -61,26 +61,22 @@ Missing documents
 - No final cash-collateral order found in the reviewed first-day range.
 ```
 
-Filing availability lags the docket. When an entry is metadata-only or its
-filing text is unavailable, the output must say so rather than imply full
-coverage.
+Filing availability lags the docket.
 
 ## Comparable cases
 
-Two public datasets fit first-day work. `voluntary-petitions` carries
-case-opening metadata including district, chapter, filing date, and disclosed
-asset, liability, and creditor ranges. `hearings-case-rollup` carries per-case
-hearing and session counts with first and last hearing dates. Query them from
+Two public datasets fit first-day work: `voluntary-petitions` for case-opening
+metadata, and `hearings-case-rollup` for per-case hearing and session counts.
+Query them from
 [structured data](https://elevenflo.com/docs/mcp/tool-catalog#structured-data)
 rather than reading more filings. Structured rows carry typed fields, not
-filing language; verify any operative term against the filing text.
+filing language. Confirm every operative term against the filing text.
 
 ## Check before you rely on it
 
 Run the
 [acceptance checklist](https://elevenflo.com/docs/mcp/workflows/safety-and-verification#acceptance-checklist),
-plus two checks specific to a first-day map:
+plus one check specific to a first-day map:
 
 - Motions, declarations, notices, proposed orders, and entered orders are
-  distinguished, and no proposed order is treated as entered relief.
-- Unavailable documents are listed, not omitted.
+  distinguished.
