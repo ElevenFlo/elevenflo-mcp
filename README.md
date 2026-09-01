@@ -84,7 +84,7 @@ metadata, links, and snippets; raw article text is not exposed.
 **Structured data.** Query typed datasets when the question is about
 comparable records or a population rather than filing text: discover the
 datasets available to your account, describe one before querying it, then
-return typed rows, grouped aggregates, or normalized value suggestions. Nine
+return typed rows, grouped aggregates, or normalized value suggestions. Fifteen
 datasets are on the public contract:
 
 - `ballot-tabulation`
@@ -96,6 +96,12 @@ datasets are on the public contract:
 - `keip-kerp`
 - `rule-2019-statements`
 - `fee-applicant-rollups`
+- `post-confirmation-reports`
+- `schedule-summary-totals`
+- `bar-dates`
+- `exclusivity-periods`
+- `case-outcomes`
+- `case-disclosure-solicitation`
 
 That is an explicit allowlist, not every structured dataset ElevenFlo
 maintains. Other datasets resolve as `unknown_dataset`.
