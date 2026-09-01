@@ -1,57 +1,13 @@
 # ChatGPT
 
-> [!IMPORTANT]
-> ChatGPT support depends on plan, workspace settings, and the exact ChatGPT
-> surface. The published ElevenFlo app directory is the primary setup path.
-> Developer Mode is the private/workspace fallback for custom MCP testing or
-> deployment. Agent mode is not currently the custom-MCP automation path.
+Start with the published listing:
+[Open ElevenFlo in ChatGPT](https://chatgpt.com/plugins/elevenflo).
 
-Start with the published ChatGPT app listing:
-[Open ElevenFlo in ChatGPT](https://chatgpt.com/apps/elevenflo/asdk_app_6a27946962bc819180664633b81cc507).
-OpenAI approved the ElevenFlo `1.0.0` public app version on 2026-06-24 and it
-was published on 2026-06-25.
+For a private or organization-managed connection, use **Apps & Connectors** in
+developer mode on ChatGPT web, with Apps enabled for the organization. Create an
+app named `ElevenFlo MCP` pointing at `https://elevenflo.com/mcp`, keep OAuth
+enabled, and complete sign-in in the browser.
 
-For private or workspace setup, ChatGPT currently uses **Apps & Connectors** in
-**Developer mode**. Use this path when the directory listing is unavailable in
-your workspace or when you need a private test app.
-
-Private or workspace setup requirements:
-
-- ChatGPT web
-- ChatGPT access with Apps enabled for the workspace
-- Developer mode enabled where your plan and workspace allow it
-
-Create an app and paste:
-
-```text
-https://elevenflo.com/mcp
-```
-
-Use `ElevenFlo MCP` as the app name or `elevenflo` as the server label if
-ChatGPT asks for one. Keep OAuth enabled. ChatGPT should open the ElevenFlo
-sign-in and consent flow in your browser.
-
-Smoke test:
-
-```text
-Use ElevenFlo MCP to find the FTX Trading Ltd. Chapter 11 case. Return the top match with case name, court, case number, and case identifier.
-```
-
-Research smoke:
-
-```text
-Find FTX DIP financing filings, retrieve the relevant document passages, and cite the source filing.
-```
-
-> [!NOTE]
-> Workspace Agents, Tasks, Deep Research, and company knowledge have separate
-> availability and tool-access rules. For scheduled workflow posture, use
-> [Scheduling and notifications](/docs/mcp/workflows/scheduling-and-notifications).
-
-Workflow recipes:
-
-- [Daily case brief](/docs/mcp/workflows/daily-case-brief)
-- [First-day filings triage](/docs/mcp/workflows/first-day-filings-triage)
-- [DIP and cash-collateral terms](/docs/mcp/workflows/dip-cash-collateral-terms)
-
-> _Reviewed 2026-06-25 after OpenAI approval/publication against the published ChatGPT app directory, Developer Mode, Tasks, Workspace Agents, Deep Research/company knowledge, and Codex docs. OpenAI iterates on plan availability and UI paths; verify ElevenFlo access in the exact ChatGPT surface before relying on recurring workflows._
+Agent mode cannot use custom apps; use a normal chat. Published agents, Tasks,
+Deep Research, and company knowledge have separate availability and tool-access
+rules.

@@ -8,17 +8,9 @@ claude mcp login elevenflo
 claude mcp get elevenflo
 ```
 
-Then start a prompt that needs ElevenFlo data. If OAuth has expired, Claude
-Code opens the ElevenFlo sign-in and consent flow in your browser.
-
-Smoke test:
-
-```text
-Use ElevenFlo MCP to find the FTX Trading Ltd. Chapter 11 case. Return the top match with case name, court, case number, and case identifier.
-```
+Then run a prompt that needs ElevenFlo data. Claude Code opens sign-in in your
+browser when the grant is missing or expired.
 
 > [!TIP]
-> If Claude Code already has an `elevenflo` server registered, run `claude mcp list` and remove the old entry before re-adding.
-
-For Claude Code skill-file packaging, see
-[Skill files](/docs/mcp/workflows/skill-files).
+> If `claude mcp list` already shows an `elevenflo` server, run
+> `claude mcp remove elevenflo` before adding it again.

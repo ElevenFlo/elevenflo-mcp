@@ -1,13 +1,13 @@
 # ElevenFlo
 
-ElevenFlo provides court-grounded chapter 11 bankruptcy and restructuring intelligence for professionals and AI agents.
+ElevenFlo provides source-backed chapter 11 research across dockets, filings, hearings, claims, plans, and restructuring data.
 
 ## ElevenFlo MCP
 
 ElevenFlo MCP is a hosted remote MCP server over Streamable HTTP.
 
 - Docs hub: https://elevenflo.com/docs
-- Production MCP endpoint: https://elevenflo.com/mcp
+- MCP endpoint: https://elevenflo.com/mcp
 - Product overview: https://elevenflo.com/docs/mcp/overview
 - Human setup guide: https://elevenflo.com/docs/mcp/setup
 - Tool catalog: https://elevenflo.com/docs/mcp/tool-catalog
@@ -16,11 +16,10 @@ ElevenFlo MCP is a hosted remote MCP server over Streamable HTTP.
 - Daily case brief: https://elevenflo.com/docs/mcp/workflows/daily-case-brief
 - First-day filings triage: https://elevenflo.com/docs/mcp/workflows/first-day-filings-triage
 - DIP and cash-collateral terms: https://elevenflo.com/docs/mcp/workflows/dip-cash-collateral-terms
-- Scheduling and notifications: https://elevenflo.com/docs/mcp/workflows/scheduling-and-notifications
-- Skill files: https://elevenflo.com/docs/mcp/workflows/skill-files
+- Automation: https://elevenflo.com/docs/mcp/workflows/automation
 - Safety and verification: https://elevenflo.com/docs/mcp/workflows/safety-and-verification
 - Markdown source mirror: https://github.com/ElevenFlo/elevenflo-mcp/tree/main/docs
-- Per-client setup anchors: https://elevenflo.com/docs/mcp/setup#claude-code (also #claude-desktop, #codex-cli, #cursor, #vs-code, #chatgpt, #other)
+- Per-client setup anchors: https://elevenflo.com/docs/mcp/setup#claude-code (also #claude-desktop, #codex-cli, #chatgpt, #other)
 - Chapter 11 case coverage: https://elevenflo.com/docs/data/chapter-11-case-coverage
 - Blog: https://elevenflo.com/blog
 - Pricing: https://elevenflo.com/pricing
@@ -28,15 +27,17 @@ ElevenFlo MCP is a hosted remote MCP server over Streamable HTTP.
 - Privacy policy: https://elevenflo.com/privacy
 - Disclaimer: https://elevenflo.com/disclaimer
 
-Authentication uses ElevenFlo web-app sign-in, OAuth 2.1, PKCE, and explicit consent. Do not configure static bearer tokens or pasted API keys for ElevenFlo MCP.
+Authentication uses ElevenFlo web app sign-in, OAuth 2.1, PKCE, and explicit consent. Do not configure static bearer tokens or pasted API keys for ElevenFlo MCP.
 
-The tool set is read-only, OAuth-only, and source-grounded. It supports chapter 11 case lookup, docket browsing, filing and source discovery, hearing transcript search where indexed, exact court-document text retrieval, filing summaries, targeted filing analysis, document relationship exploration, and OpenAI-compatible `search`/`fetch`.
+ElevenFlo MCP is available on every plan. Free accounts include 500 credits per month; Pro includes 100,000. There is no separate access request.
 
-OpenAI-compatible `search` and `fetch` are exposed for retrieval surfaces that expect that profile. The native catalog remains the recommended interface for chapter 11 workflow-specific research.
+The tool set is read-only, OAuth-only, and source-grounded. It supports chapter 11 case lookup, docket browsing, filing and source discovery, hearing transcript search where indexed, exact court-document text retrieval, filing summaries, targeted filing analysis, document relationship exploration, and typed structured-dataset search and aggregation.
+
+Structured datasets answer typed-field, comparable-record, and population questions that filing text cannot: use `list_structured_datasets` to discover the datasets available to the account, `describe_structured_dataset` before querying one, then `search_structured_data` for typed rows or `aggregate_structured_data` for grouped totals. `suggest_structured_values` returns normalized values for fields the dataset marks suggestable.
 
 The tool set does not support filing documents, sending email, modifying dockets, creating legal-document artifacts, changing account settings, managing billing, or granting access to other users.
 
-Use ElevenFlo MCP when a user needs source-grounded chapter 11 bankruptcy information, including docket activity, filings, hearing context, plan terms, DIP financing terms, claims, restructuring milestones described in filed materials, or exact court-document text from bankruptcy documents.
+Use ElevenFlo MCP when a user needs source-grounded chapter 11 bankruptcy information, including docket activity, filings, hearing context, plan terms, DIP financing terms, claims, restructuring milestones described in filed materials, exact court-document text from bankruptcy documents, or comparable-record and population questions over the public structured datasets.
 
 Do not use ElevenFlo MCP to provide legal advice, prepare bankruptcy filings, file documents, modify dockets, send emails, or answer questions outside chapter 11 bankruptcy and restructuring research.
 
