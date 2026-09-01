@@ -193,7 +193,7 @@ Suggest normalized values for a field that the dataset marks suggestable.
 
 ## Public structured datasets
 
-The public MCP currently exposes these nine dataset slugs:
+The public MCP currently exposes these fifteen dataset slugs:
 
 - `ballot-tabulation`
 - `committee-appointments`
@@ -204,13 +204,19 @@ The public MCP currently exposes these nine dataset slugs:
 - `keip-kerp`
 - `rule-2019-statements`
 - `fee-applicant-rollups`
+- `post-confirmation-reports`
+- `schedule-summary-totals`
+- `bar-dates`
+- `exclusivity-periods`
+- `case-outcomes`
+- `case-disclosure-solicitation`
 
 This is an explicit allowlist, not every structured dataset ElevenFlo
-maintains. Other datasets, including monthly operating reports,
-post-confirmation reports, and fee timekeepers, are not available on the public
-MCP and resolve as `unknown_dataset`. Use `list_structured_datasets` as the live
-request-scoped catalog and `describe_structured_dataset` before relying on a
-field, filter, or aggregate.
+maintains. Other datasets, including monthly operating reports and fee
+timekeepers, are not available on the public MCP and resolve as
+`unknown_dataset`. Use `list_structured_datasets` as the live request-scoped
+catalog and `describe_structured_dataset` before relying on a field, filter, or
+aggregate.
 
 ## Boundaries
 
