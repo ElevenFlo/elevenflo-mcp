@@ -108,14 +108,14 @@ Read the stored summary for one document.
 Find supporting chunks within selected documents.
 
 - Inputs: one to 25 `document_ids` and `query`.
-- Returns: matching chunk IDs, exact text, and offsets grouped by document.
+- Returns: matching chunk IDs, 1-based page numbers (0 when unavailable), exact text, and offsets grouped by document.
 
 ### `read_document_chunks`
 
 Read selected chunks from one document.
 
 - Inputs: `document_id` and one to eight `chunk_ids`.
-- Returns: exact chunk text and offsets.
+- Returns: exact chunk text, 1-based page numbers (0 when unavailable), and offsets.
 
 ### `extract_document_passages`
 
@@ -194,6 +194,7 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `ballot-tabulation`
 - `ballot-class-results`
 - `bar-dates`
+- `dip-financing`
 - `case-disclosure-solicitation`
 - `case-outcomes`
 - `committee-appointments`

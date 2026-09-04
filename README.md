@@ -84,7 +84,7 @@ metadata, links, and snippets; raw article text is not exposed.
 **Structured data.** Query typed datasets when the question is about
 comparable records or a population rather than filing text: discover the
 datasets available to your account, describe one before querying it, then
-return typed rows, grouped aggregates, or normalized value suggestions. Fifteen
+return typed rows, grouped aggregates, or normalized value suggestions. Seventeen
 datasets are on the public contract:
 
 - `ballot-tabulation`
@@ -100,6 +100,7 @@ datasets are on the public contract:
 - `post-confirmation-reports`
 - `schedule-summary-totals`
 - `bar-dates`
+- `dip-financing`
 - `exclusivity-periods`
 - `case-outcomes`
 - `case-disclosure-solicitation`
