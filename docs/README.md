@@ -15,8 +15,8 @@ structured-dataset search and aggregation.
 
 - [Before you connect](quickstart.md)
 - [Verify the connection](verify.md)
-- Client setup (per client): [Claude Code](client-claude-code.md) · [Claude Desktop](client-claude-desktop.md) · [Codex CLI](client-codex-cli.md) · [ChatGPT](client-chatgpt.md) · [Other clients](client-other.md)
-- Workflow recipes: [Overview](workflows.md) · [Daily case brief](workflow-daily-case-brief.md) · [First-day filings triage](workflow-first-day-filings-triage.md) · [DIP and cash-collateral terms](workflow-dip-cash-collateral-terms.md) · [Automation](workflow-automation.md) · [Safety and verification](workflow-safety-and-verification.md)
+- Client setup (per client): [Claude Code](client-claude-code.md) · [Claude Desktop](client-claude-desktop.md) · [Codex CLI](client-codex-cli.md) · [ChatGPT](client-chatgpt.md) · [Microsoft 365 Copilot](client-microsoft-365-copilot.md) · [Gemini](client-gemini.md) · [Other clients](client-other.md)
+- Workflows: [Overview](workflows.md) · [Daily case brief](workflow-daily-case-brief.md) · [First-day filings triage](workflow-first-day-filings-triage.md) · [DIP and cash-collateral terms](workflow-dip-cash-collateral-terms.md) · [Automation](workflow-automation.md) · [Safety and verification](workflow-safety-and-verification.md)
 - [Tool catalog](tool-catalog.md)
 - [Permissions and data access](permissions-and-data-access.md)
 - [Troubleshooting](troubleshooting.md)
