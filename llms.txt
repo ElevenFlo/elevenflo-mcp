@@ -10,14 +10,19 @@ ElevenFlo MCP is a hosted remote MCP server over Streamable HTTP.
 - MCP endpoint: https://elevenflo.com/mcp
 - Product overview: https://elevenflo.com/docs/mcp/overview
 - Human setup guide: https://elevenflo.com/docs/mcp/setup
+- Bankruptcy docket MCP server: https://elevenflo.com/docs/mcp/bankruptcy-docket-mcp-server
 - Tool catalog: https://elevenflo.com/docs/mcp/tool-catalog
 - Permissions and data access: https://elevenflo.com/docs/mcp/permissions-and-data-access
-- Workflow recipes: https://elevenflo.com/docs/mcp/workflows
+- Research workflows: https://elevenflo.com/docs/mcp/workflows
 - Daily case brief: https://elevenflo.com/docs/mcp/workflows/daily-case-brief
 - First-day filings triage: https://elevenflo.com/docs/mcp/workflows/first-day-filings-triage
 - DIP and cash-collateral terms: https://elevenflo.com/docs/mcp/workflows/dip-cash-collateral-terms
+- Post-confirmation reports: https://elevenflo.com/docs/mcp/workflows/post-confirmation-reports
 - Automation: https://elevenflo.com/docs/mcp/workflows/automation
 - Safety and verification: https://elevenflo.com/docs/mcp/workflows/safety-and-verification
+- Research a Chapter 11 docket with Claude or ChatGPT: https://elevenflo.com/docs/workflows/docket-research-with-claude-and-chatgpt
+- Track a Chapter 11 case with an AI assistant: https://elevenflo.com/docs/workflows/track-a-chapter-11-case
+- From PACER to a cited answer: https://elevenflo.com/docs/workflows/pacer-to-cited-answer
 - Markdown source mirror: https://github.com/ElevenFlo/elevenflo-mcp/tree/main/docs
 - Per-client setup anchors: https://elevenflo.com/docs/mcp/setup#claude-code (also #claude-desktop, #codex-cli, #chatgpt, #other)
 - Chapter 11 case coverage: https://elevenflo.com/docs/data/chapter-11-case-coverage

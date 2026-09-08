@@ -1,32 +1,32 @@
 # Chapter 11 workflows
 
-Three research workflows, each one a complete copy-paste prompt. Paste the
-prompt into any connected client, fill the bracketed fields, and review the
-cited output.
+Start with a research task. Each workflow explains the output, provides a
+prompt and shows how to check the sources.
 
-| Workflow | What it does |
+| Workflow | Output |
 | --- | --- |
-| [Daily case brief](https://elevenflo.com/docs/mcp/workflows/daily-case-brief) | Date-bounded monitor for new docket activity. Returns an executive summary, material filings, deadlines, excerpts, and caveats. |
-| [First-day filings triage](https://elevenflo.com/docs/mcp/workflows/first-day-filings-triage) | Maps the first 24 to 72 hours of a new case. Returns a filing map, first-day motion summaries, key asks, and hearing posture. |
-| [DIP and cash-collateral terms](https://elevenflo.com/docs/mcp/workflows/dip-cash-collateral-terms) | Extracts financing economics, liens, milestones, budgets, and challenge periods. Returns a term table with exact-text support and confidence per field. |
+| [DIP and cash-collateral terms](https://elevenflo.com/docs/mcp/workflows/dip-cash-collateral-terms) | Financing comparison and term table. Includes three entered orders and the passages behind the amounts. |
+| [Post-confirmation reports](https://elevenflo.com/docs/mcp/workflows/post-confirmation-reports) | Reporting-period comparison. Includes a filed report with quarterly and cumulative transfers. |
+| [Daily case brief](https://elevenflo.com/docs/mcp/workflows/daily-case-brief) | Material developments for an explicit review window, with filing citations. |
+| [First-day filings triage](https://elevenflo.com/docs/mcp/workflows/first-day-filings-triage) | Filing map that separates requested relief from entered orders. |
 
-[Safety and verification](https://elevenflo.com/docs/mcp/workflows/safety-and-verification)
-carries the rules every prompt encodes. Read it before you use an output in
-professional work.
+Connect ElevenFlo through [setup](https://elevenflo.com/docs/mcp/setup), then
+copy a prompt and supply the case or reporting period. Review the cited
+filings before using the result.
 
-## What your client owns
+## One case or several
 
-ElevenFlo MCP reads court materials. Scheduling, notifications, drafts, storage,
-account administration, and persistent memory belong to your client.
-[Automation](https://elevenflo.com/docs/mcp/workflows/automation) covers which
-clients can run these prompts on a schedule and how to package one as a skill
-file.
+Use structured datasets to locate records and compare available fields.
+Read the source filings for missing terms, qualifications and changes.
+Keep the scope and reporting unit visible when comparing cases.
 
-## One case or many
+The [tool catalog](https://elevenflo.com/docs/mcp/tool-catalog#structured-data)
+describes the available datasets. Empty results do not prove that an event
+did not occur.
 
-Each workflow starts from one case. For a comparison question, query the
-structured datasets instead of reading more filings.
-[Structured data](https://elevenflo.com/docs/mcp/tool-catalog#structured-data)
-in the tool catalog lists the datasets and their operations. An aggregate result
-is a snapshot of the cases in the dataset over a stated coverage window. Empty
-rows never prove an event did not occur.
+## Recurring work
+
+Your client owns scheduling, notifications and saved files. Confirm a manual
+run before setting up a recurring task. See
+[automation](https://elevenflo.com/docs/mcp/workflows/automation) and
+[safety and verification](https://elevenflo.com/docs/mcp/workflows/safety-and-verification).
