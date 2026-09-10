@@ -1,8 +1,5 @@
 # Chapter 11 workflows
 
-Start with a research task. Each workflow explains the output, provides a
-prompt and shows how to check the sources.
-
 | Workflow | Output |
 | --- | --- |
 | [DIP and cash-collateral terms](https://elevenflo.com/docs/mcp/workflows/dip-cash-collateral-terms) | Financing comparison and term table. Includes three entered orders and the passages behind the amounts. |

@@ -51,12 +51,16 @@ List filing categories and tags.
 
 ### `list_docket_entries`
 
-List recent documents for one case. For confirmation, emergence, or current
-status, filter for `confirmation_order` and `effective_date_notice`. The latest
-terminal notice controls over any projected date.
+List observed docket entries for one case, including full entry text, source
+evidence, and links to held documents. Entries can exist without a PDF or
+searchable filing text. For current case status, verify the relevant terminal
+notice rather than relying on a projected date.
 
-- Inputs: `case_id`, optional `limit` from 1 to 25 and `document_type_tags`.
-- Returns: document rows, including `has_primary_pdf` when known.
+- Inputs: `case_id`, optional `limit` from 1 to 25, `query`, and `document_type_tags`.
+- Returns: version 2 `entries`, evidence, and `has_more`; PDF/text flags describe
+  held artifacts. Only real document UUIDs receive document links. The inherited
+  `documents` projection remains at the public cached-schema boundary; new
+  integrations should read `entries`.
 
 ## Cross-document search
 
