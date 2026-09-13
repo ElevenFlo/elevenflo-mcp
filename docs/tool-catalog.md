@@ -16,7 +16,7 @@ document row carries `has_primary_pdf: true`, open the filing at
 ## The research loop
 
 1. `find_cases` to resolve a `case_id`.
-2. `list_docket_entries`, `search_filings`, or `find_case_document_hubs` to
+2. `list_docket_entries`, `search_filings`, or `find_key_documents` to
    select documents.
 3. `search_document_chunks` to find supporting text.
 4. `read_document_chunks` or `extract_document_passages` for exact language.
@@ -130,16 +130,17 @@ Extract passages answering a focused question from one document.
 
 ## Document relationships
 
-### `find_case_document_hubs`
+### `find_key_documents`
 
-Find the most connected documents in a case citation graph.
+Find key filings in a case, ranked by incoming citation count. Citation frequency
+is a starting point for research, not a judgment of legal importance.
 
 - Inputs: `case_id`, optional `limit` from 1 to 25.
 - Returns: document rows with citation counts.
 
-### `list_document_relationships`
+### `get_related_documents`
 
-List citation relationships for selected documents.
+Find filings that cite, or are cited by, selected documents.
 
 - Inputs: one to 25 `document_ids`, optional `direction`, and optional `limit`.
 - Returns: source and related document pairs.
@@ -231,7 +232,7 @@ are not canonical plan votes.
 | 1 | `find_cases`, `list_document_types`, `list_docket_entries`, `list_structured_datasets`, `describe_structured_dataset`, `suggest_structured_values` |
 | 2 | `search_filings`, `search_news`, `search_transcripts`, `search_structured_data` |
 | 3 | `search_document_chunks`, `aggregate_structured_data` |
-| 5 | `search_document_summaries`, `get_document_summary`, `read_document_chunks`, `extract_document_passages`, `find_case_document_hubs`, `list_document_relationships` |
+| 5 | `search_document_summaries`, `get_document_summary`, `read_document_chunks`, `extract_document_passages`, `find_key_documents`, `get_related_documents` |
 
 Free accounts include 500 credits a month and Pro includes 100,000. Each
 allowance resets at the start of the calendar month. ElevenFlo does not charge

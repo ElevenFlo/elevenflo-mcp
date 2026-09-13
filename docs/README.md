@@ -27,6 +27,9 @@ The tool catalog is the source of truth for what the connector exposes.
 part of the current customer tool set. Scheduling, notifications, email drafts,
 and client-side storage belong to your client, not to ElevenFlo MCP.
 
-ChatGPT users should start with the
+Claude users can connect from the
+[ElevenFlo listing in Claude's connector directory](https://claude.ai/directory/elevenflo);
+the [Claude Desktop page](client-claude-desktop.md) covers the custom-connector
+fallback. ChatGPT users should start with the
 [published Plugin Directory listing](https://chatgpt.com/plugins/elevenflo)
 unless using Developer Mode for a private or organization-managed connection.

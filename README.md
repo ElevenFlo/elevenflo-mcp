@@ -28,8 +28,10 @@ claude mcp login elevenflo
 claude mcp get elevenflo
 ```
 
-Other clients, including Claude Desktop, Codex CLI, and ChatGPT, are covered
-in the client setup pages linked below.
+Claude (web and desktop) can connect from the
+[ElevenFlo listing in Claude's connector directory](https://claude.ai/directory/elevenflo).
+Other clients, including Codex CLI and ChatGPT, are covered in the client setup
+pages linked below.
 
 ## Authentication
 
@@ -159,7 +161,9 @@ Client setup: [Claude Code](docs/client-claude-code.md) ·
 [ChatGPT](docs/client-chatgpt.md) ·
 [Other clients](docs/client-other.md)
 
-ChatGPT users should start with the
+Claude users can start from the
+[connector directory listing](https://claude.ai/directory/elevenflo). ChatGPT
+users should start with the
 [published app directory](https://chatgpt.com/apps/elevenflo/asdk_app_6a27946962bc819180664633b81cc507)
 unless using private/workspace Developer Mode.
 

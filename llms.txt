@@ -25,6 +25,7 @@ ElevenFlo MCP is a hosted remote MCP server over Streamable HTTP.
 - From PACER to a cited answer: https://elevenflo.com/docs/workflows/pacer-to-cited-answer
 - Markdown source mirror: https://github.com/ElevenFlo/elevenflo-mcp/tree/main/docs
 - Per-client setup anchors: https://elevenflo.com/docs/mcp/setup#claude-code (also #claude-desktop, #codex-cli, #chatgpt, #other)
+- Claude connector directory listing: https://claude.ai/directory/elevenflo
 - Chapter 11 case coverage: https://elevenflo.com/docs/data/chapter-11-case-coverage
 - Blog: https://elevenflo.com/blog
 - Pricing: https://elevenflo.com/pricing
