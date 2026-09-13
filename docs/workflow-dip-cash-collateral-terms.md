@@ -13,8 +13,9 @@ today.
 
 Your client runs `find_cases` for the debtor, `search_structured_data` on
 `dip-financing` with `case_id` 47, then `read_document_chunks` on the cited
-page. The dataset row points to the order and quotes the figures. The order
-supplies the language:
+page. The dataset row links the supporting filings. Read the source page to verify
+the figures; a filing link alone does not establish support for each field.
+The order supplies the language:
 
 > "an aggregate principal amount of $4.4 billion"
 
@@ -62,6 +63,51 @@ Filing links use your ElevenFlo account and document access.
   later amendment or termination can change them.
 - Filing text can be incomplete or still processing. Check
   `document_search_available` before quoting.
+
+## Reproduce a dated evidence packet
+
+Run `describe_structured_dataset` for `dip-financing`, then run
+`search_structured_data` with this input:
+
+```json
+{
+  "dataset": "dip-financing",
+  "where": [{"field": "case_id", "op": "eq", "value": 47}],
+  "select": ["case_id", "case_name", "current_docket_number", "date_filed",
+    "stage", "status", "completeness_status", "commitment_amount",
+    "commitment_status", "new_money_amount", "new_money_status",
+    "roll_up_amount", "roll_up_status", "source_filing_urls", "resolved_at"],
+  "page_size": 1
+}
+```
+
+Keep the response snapshot with the result. `date_filed` dates the controlling
+financing source. `resolved_at` dates the projection refresh. Neither establishes
+cash available today. Review later docket developments separately.
+
+A `partial` row can support a specific comparison after source verification.
+Qualify each requested field, including its conditions and status. Preserve
+`confirmed_absent`, `not_applicable`, `not_disclosed` and `unknown` separately.
+A population filtered to three `stated` monetary fields is not a denominator
+for roll-up incidence.
+
+## Refresh a comparison in your client
+
+Save the dated query response and verified filing/page references beside each
+material cell in your comparison. Keep private notes in your own workspace.
+Your client owns storage, scheduling and edits to the comparison.
+
+At the next review, rerun the same query and inspect later docket entries.
+Compare values, field statuses, controlling document and supporting sources.
+A changed refresh timestamp alone does not establish a substantive change.
+Present affected cells with their old value, new value and evidence for review.
+Identify source corrections and newly discovered older filings separately from
+new events. An unchanged row does not prove that no later event occurred.
+
+For the First Brands example, a September refresh still identifies a June
+financing amendment. Preserve the June source date in the comparison. Mark
+current borrowing availability as unverified until the relevant later record
+has been reviewed; do not replace it with the stated commitment.
 
 ## Price and access
 

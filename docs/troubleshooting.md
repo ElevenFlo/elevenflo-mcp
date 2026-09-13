@@ -32,13 +32,21 @@ that phrase is likely to appear in the filing.
 Run `search_document_chunks` first, then pass the selected chunk IDs to
 `read_document_chunks`.
 
-## Rate limit or usage error
+## Rate limit exceeded
 
-Every tool call draws on one monthly balance shared across your clients, and
-calls fail once it reaches zero. Free accounts include 500 credits a month and
+Wait for the retry interval stated in the error before your client calls the
+tool again. Reduce parallel calls and stop repeated retries while the limit is
+active. Reconnecting does not reset the rate limit.
+
+## Monthly credits exhausted
+
+Credit limits are separate from burst rate limits. Billable calls draw on one
+monthly balance shared across your clients. A call can fail when the remaining
+balance is lower than its credit cost. Free accounts include 500 credits a month and
 reset on the first of the month; [Pro](https://elevenflo.com/pricing) includes
 100,000. Account → MCP connections shows the allowance and the remaining
 balance.
 
-If credits remain and the client still reports a usage error, reconnect through
-OAuth and retry, then contact support.
+Wait for the monthly reset or upgrade your plan. Reconnecting does not add
+credits. If the error persists after the stated reset or retry interval, contact
+support with the tool name, error code and time of the failed call.
