@@ -79,9 +79,9 @@ one case, retrieve exact court-document text with offsets, extract passages
 answering a focused question, read stored filing summaries, and explore the
 citation graph between documents in a case.
 
-**Transcripts and news.** Search indexed hearing and court transcripts, and
-search bankruptcy news and source coverage. News results carry publisher
-metadata, links, and snippets; raw article text is not exposed.
+**Transcripts.** Search indexed hearing and court transcripts, then retrieve
+exact passages with document identifiers and source references. News search
+is not part of the public MCP tool catalog.
 
 **Structured data.** Query typed datasets when the question is about
 comparable records or a population rather than filing text: discover the

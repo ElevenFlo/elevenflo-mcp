@@ -33,9 +33,8 @@ ElevenFlo account and document access.
 - ElevenFlo reads the docket at run time. It does not remember an earlier run,
   schedule tasks or send notifications. Your client supplies the window and
   owns scheduling.
-- Docket entries arrive from court RSS feeds and claims agents. An entry can
-  appear before its PDF and text. Check `document_search_available` before
-  quoting.
+- A docket entry can appear before its PDF and text. Check
+  `document_search_available` before quoting.
 - One `list_docket_entries` call returns up to 25 entries, newest first. Narrow
   by query or page through a busy docket. A bounded result is not the complete
   docket.

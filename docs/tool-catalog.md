@@ -2,7 +2,8 @@
 
 The live `tools/list` response is the exact input and output contract. Inputs
 reject unknown fields, errors return `{code, message, retryable?, recovery?}`,
-and every list-returning tool returns bounded rows. ElevenFlo MCP
+and public TextContent is the JSON copy of the same `structuredContent` payload.
+Every list-returning tool returns bounded rows. ElevenFlo MCP
 exposes read-only bankruptcy research tools. This page is the complete list,
 and a tool absent here is not available. See
 [Permissions and data access](https://elevenflo.com/docs/mcp/permissions-and-data-access)
@@ -37,7 +38,9 @@ exact, apply on top of `query`, and also work without one.
 
 - Inputs: optional `query`, `case_type`, `petition_date_from`,
   `petition_date_to`, and `assets_over_usd`. `limit` is 1 to 50. At least one
-  search criterion is required.
+  search criterion is required. Dates must be real `YYYY-MM-DD` calendar dates,
+  and the from date cannot follow the to date. Use exact `case_type_tags` values
+  returned by this tool; unknown values return a typed error.
 - Returns: `case_id`, identifying metadata, petition date, disclosed petition
   asset range, coverage state, and case-type tags. Filter-only results are
   newest first.
@@ -56,11 +59,15 @@ evidence, and links to held documents. Entries can exist without a PDF or
 searchable filing text. For current case status, verify the relevant terminal
 notice rather than relying on a projected date.
 
-- Inputs: `case_id`, optional `limit` from 1 to 25, `query`, and `document_type_tags`.
-- Returns: version 2 `entries`, evidence, and `has_more`; PDF/text flags describe
-  held artifacts. Only real document UUIDs receive document links. The inherited
-  `documents` projection remains at the public cached-schema boundary; new
-  integrations should read `entries`.
+- Inputs: `case_id`; optional `limit` from 1 to 25, `query`,
+  `document_type_tags`, and an opaque `cursor` from the preceding page. A
+  cursor is valid only with the same filters.
+- Filters: `document_type_tags` accepts only category keys and canonical tags
+  returned by `list_document_types`; unknown values return a typed error.
+- Returns: version 2 `entries`, evidence, `has_more`, and `next_cursor` (null
+  when exhausted); PDF/text flags describe held artifacts. Every held document
+  with a public UUID appears once, inside its entry, and includes a `filing_url`
+  that opens the filing.
 
 ## Cross-document search
 
@@ -72,15 +79,8 @@ evidence. One common word cannot pull in unrelated results.
 Search filing evidence across all cases or within one case.
 
 - Inputs: `query`; optional `case_id`, `document_type_tags`, and `limit`.
-- Returns: document rows with matched excerpts when available.
-
-### `search_news`
-
-Search bankruptcy news and source coverage.
-
-- Inputs: `query`; optional `case_id` and `limit`.
-- Returns: source rows with publisher metadata and snippets, never raw article
-  text.
+- Returns: document rows with matched excerpts and a `filing_url` when available.
+  `document_type_tags` accepts only values returned by `list_document_types`.
 
 ### `search_transcripts`
 
@@ -96,14 +96,17 @@ Search hearing and court transcripts.
 Search stored document summaries within one case.
 
 - Inputs: `case_id`, `query`, optional `limit`.
-- Returns: summary rows and their document IDs.
+- Returns: summary rows, their document IDs, and a `filing_url` that opens each
+  filing.
 
 ### `get_document_summary`
 
 Read the stored summary for one document.
 
 - Input: `document_id`.
-- Returns: one summary or a typed not-found error.
+- Returns: one summary or a typed not-found error whose `missing_document_ids`
+  identifies the requested UUID. The summary and each related filing include a
+  `filing_url` that opens the filing.
 
 ## Exact text
 
@@ -112,21 +115,25 @@ Read the stored summary for one document.
 Find supporting chunks within selected documents.
 
 - Inputs: one to 25 `document_ids` and `query`.
-- Returns: matching chunk IDs, 1-based page numbers (0 when unavailable), exact text, and offsets grouped by document.
+- Returns: matching chunk IDs, 1-based page numbers (0 when unavailable), exact
+  text, and offsets grouped by document. `missing_document_ids` lists requested
+  UUIDs that were not found or were not public.
 
 ### `read_document_chunks`
 
 Read selected chunks from one document.
 
 - Inputs: `document_id` and one to eight `chunk_ids`.
-- Returns: exact chunk text, 1-based page numbers (0 when unavailable), and offsets.
+- Returns: exact chunk text, 1-based page numbers (0 when unavailable), and
+  offsets, or a typed not-found error that identifies the requested UUID.
 
 ### `extract_document_passages`
 
 Extract passages answering a focused question from one document.
 
 - Inputs: `document_id`, `query`, optional `max_chunks` from 1 to 10.
-- Returns: selected exact chunks and offsets.
+- Returns: selected exact chunks and offsets, or a typed not-found error that
+  identifies the requested UUID.
 
 ## Document relationships
 
@@ -136,14 +143,19 @@ Find key filings in a case, ranked by incoming citation count. Citation frequenc
 is a starting point for research, not a judgment of legal importance.
 
 - Inputs: `case_id`, optional `limit` from 1 to 25.
-- Returns: document rows with citation counts.
+- Returns: document rows with citation counts and a `filing_url` that opens each
+  filing.
 
 ### `get_related_documents`
 
 Find filings that cite, or are cited by, selected documents.
 
 - Inputs: one to 25 `document_ids`, optional `direction`, and optional `limit`.
-- Returns: source and related document pairs.
+- Returns: source and related document pairs. Each related filing includes its
+  `filing_url` and a `summary_state` of `available` or `unavailable`.
+  `missing_document_ids` lists requested UUIDs that were not found or were not
+  public; `omitted_without_public_id` continues to count related rows omitted
+  because no public UUID could be resolved.
 
 ## Structured data
 
@@ -230,7 +242,7 @@ are not canonical plan votes.
 | Credits | Tools |
 | --- | --- |
 | 1 | `find_cases`, `list_document_types`, `list_docket_entries`, `list_structured_datasets`, `describe_structured_dataset`, `suggest_structured_values` |
-| 2 | `search_filings`, `search_news`, `search_transcripts`, `search_structured_data` |
+| 2 | `search_filings`, `search_transcripts`, `search_structured_data` |
 | 3 | `search_document_chunks`, `aggregate_structured_data` |
 | 5 | `search_document_summaries`, `get_document_summary`, `read_document_chunks`, `extract_document_passages`, `find_key_documents`, `get_related_documents` |
 
