@@ -9,17 +9,24 @@ and retry.
 The same failure covers a grant that was revoked, a grant created against a
 different endpoint, and a client that never saved its refreshed token.
 
-Tokens refresh automatically for 30 days, so you will not sign in daily. Signing
-in again is only required when someone revoked the grant, a plan change removed
-access, or the grant reached its 30-day limit. Authorizing the same account from
-another client does not revoke this one.
+Clients that support and persist OAuth refresh tokens can refresh access
+without signing in again. The default refresh-token family expires 30 days
+after authorization. Revocation, expiry, changed access, or a client that fails
+to save refreshed credentials can require reauthorization. Authorizing the
+same account from another client does not revoke this connection.
 
 ## The tool list is missing a tool
 
 The [tool catalog](https://elevenflo.com/docs/mcp/tool-catalog) is the canonical
 list, and the same tools are available on every plan. If a catalog tool is
 missing, confirm your email address is verified and reconnect through OAuth in
-case the client cached an older `tools/list` response.
+case the client cached an older `tools/list` response. Published or
+organization-approved apps can retain a frozen tool snapshot; their owner may
+need to refresh or republish the actions. Reconnecting alone may not update it.
+
+The 18-tool catalog is shared across Free and Pro, but structured searches,
+aggregates, and value suggestions require Pro. Free can list and describe
+datasets. A `not_entitled` query error does not mean that a tool is missing.
 
 ## Search results are empty
 

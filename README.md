@@ -1,6 +1,6 @@
 # ElevenFlo MCP
 
-ElevenFlo MCP is a hosted remote MCP server for court-grounded Chapter 11
+ElevenFlo MCP is a hosted remote MCP server for court-grounded chapter 11
 bankruptcy and restructuring research.
 
 > [!NOTE]
@@ -40,8 +40,8 @@ call from your client and it opens the ElevenFlo sign-in and consent flow. Do
 not configure a static bearer token, API token, or custom `Authorization`
 header for ElevenFlo MCP.
 
-Access tokens refresh automatically; the default refresh-token family lifetime
-is 30 days from OAuth approval. Revoke unused client grants from
+Clients that support and persist OAuth refresh tokens can refresh access
+tokens; the default refresh-token family expires 30 days from OAuth approval. Revoke unused client grants from
 Account, then MCP connections.
 
 Unauthenticated browser requests to `https://elevenflo.com/mcp` may return
@@ -72,7 +72,8 @@ contract; the groups below are the shape of it.
 
 **Case research.** Resolve a Chapter 11 case by debtor identity or by
 structured case metadata, list the canonical filing categories and tags, and
-browse a case docket.
+browse a case docket, and read typed case updates for named cases or your
+saved tracked cases. No recent typed updates does not prove an inactive docket.
 
 **Documents and filings.** Search filing evidence across all cases or within
 one case, retrieve exact court-document text with offsets, extract passages
@@ -86,8 +87,9 @@ is not part of the public MCP tool catalog.
 **Structured data.** Query typed datasets when the question is about
 comparable records or a population rather than filing text: discover the
 datasets available to your account, describe one before querying it, then
-return typed rows, grouped aggregates, or normalized value suggestions. Seventeen
-datasets are on the public contract:
+return typed rows, grouped aggregates, or normalized value suggestions. Free
+can list and describe datasets; searches, aggregates, and suggestions require
+Pro. The public catalog includes:
 
 - `ballot-tabulation`
 - `ballot-class-results`
@@ -106,6 +108,9 @@ datasets are on the public contract:
 - `exclusivity-periods`
 - `case-outcomes`
 - `case-disclosure-solicitation`
+- `case-contract-treatment-events`
+- `hearing-sessions`
+- `monthly-operating-reports`
 
 That is an explicit allowlist, not every structured dataset ElevenFlo
 maintains. Other datasets resolve as `unknown_dataset`.
@@ -187,6 +192,4 @@ The official MCP Registry record for `com.elevenflo/mcp` is generated from
 This repository contains public setup docs, workflow recipes, tool catalog
 copy, `llms.txt`, and registry metadata.
 
-It does not contain ElevenFlo backend source, ingestion or ranking logic,
-private schemas, customer identifiers, secrets, billing internals, or provider
-integrations.
+Server implementation and account credentials are not part of this repository.

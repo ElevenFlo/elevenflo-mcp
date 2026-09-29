@@ -9,9 +9,8 @@ https://elevenflo.com/mcp
 
 Authentication uses ElevenFlo web-app sign-in, OAuth 2.1, PKCE, and explicit
 consent. The tool set is read-only: case lookup, docket research,
-court-document search and exact text, filing summaries, source discovery with
-metadata, snippets, and publisher links, document-graph exploration, and typed
-structured-dataset search and aggregation.
+court-document search and exact text, filing summaries, typed case updates,
+document relationships, and structured-dataset search and aggregation.
 
 - [Before you connect](quickstart.md)
 - [Verify the connection](verify.md)
@@ -23,13 +22,12 @@ structured-dataset search and aggregation.
 - [Support](support.md)
 
 The tool catalog is the source of truth for what the connector exposes.
-`build_case_context_pack`, `search_intel_events`, and `lookup_case_law` are not
-part of the current customer tool set. Scheduling, notifications, email drafts,
-and client-side storage belong to your client, not to ElevenFlo MCP.
+Scheduling, notifications, email drafts, and client-side storage belong to
+your client, not to ElevenFlo MCP.
 
 Claude users can connect from the
 [ElevenFlo listing in Claude's connector directory](https://claude.ai/directory/elevenflo);
 the [Claude Desktop page](client-claude-desktop.md) covers the custom-connector
 fallback. ChatGPT users should start with the
-[published Plugin Directory listing](https://chatgpt.com/plugins/elevenflo)
+[published ChatGPT listing](https://chatgpt.com/apps/elevenflo/asdk_app_6a27946962bc819180664633b81cc507)
 unless using Developer Mode for a private or organization-managed connection.

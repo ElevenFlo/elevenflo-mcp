@@ -1,10 +1,10 @@
 # Tool catalog
 
 The live `tools/list` response is the exact input and output contract. Inputs
-reject unknown fields, errors return `{code, message, retryable?, recovery?}`,
+reject unknown fields, errors return `{code, message, retryable, recovery?, details?}`,
 and public TextContent is the JSON copy of the same `structuredContent` payload.
 Every list-returning tool returns bounded rows. ElevenFlo MCP
-exposes read-only bankruptcy research tools. This page is the complete list,
+exposes 18 read-only bankruptcy research tools. This page is the complete list,
 and a tool absent here is not available. See
 [Permissions and data access](https://elevenflo.com/docs/mcp/permissions-and-data-access)
 for what ElevenFlo MCP cannot do.
@@ -42,8 +42,8 @@ exact, apply on top of `query`, and also work without one.
   and the from date cannot follow the to date. Use exact `case_type_tags` values
   returned by this tool; unknown values return a typed error.
 - Returns: `case_id`, identifying metadata, petition date, disclosed petition
-  asset range, coverage state, and case-type tags. Filter-only results are
-  newest first.
+  asset and liabilities ranges, coverage state, and case-type tags.
+  Filter-only results are newest first.
 
 ### `list_document_types`
 
@@ -54,20 +54,52 @@ List filing categories and tags.
 
 ### `list_docket_entries`
 
-List observed docket entries for one case, including full entry text, source
-evidence, and links to held documents. Entries can exist without a PDF or
-searchable filing text. For current case status, verify the relevant terminal
-notice rather than relying on a projected date.
+List observed docket entries for one case, including full entry text, docket
+evidence, court citations, and links to held documents. Entries can exist
+without a PDF or searchable filing text. For current case status, verify the
+relevant terminal notice rather than relying on a projected date.
 
 - Inputs: `case_id`; optional `limit` from 1 to 25, `query`,
-  `document_type_tags`, and an opaque `cursor` from the preceding page. A
-  cursor is valid only with the same filters.
+  `document_type_tags`, inclusive `date_filed_from`/`date_filed_to` dates, up to
+  25 positive `docket_numbers`, and an opaque `cursor` from the preceding page.
+  A cursor is valid only with the same filters. Dates describe filing dates,
+  not independently verified entry or signature dates.
+- Text search: `query` matches a literal case-insensitive substring. When a
+  date or docket number is known, start with those filters and omit `query`
+  and type filters. If needed, use one distinctive word or an exact phrase.
 - Filters: `document_type_tags` accepts only category keys and canonical tags
   returned by `list_document_types`; unknown values return a typed error.
 - Returns: version 2 `entries`, evidence, `has_more`, and `next_cursor` (null
   when exhausted); PDF/text flags describe held artifacts. Every held document
   with a public UUID appears once, inside its entry, and includes a `filing_url`
   that opens the filing.
+- Court locator: each entry and document can carry `court_locator`: the court
+  `citation` (`Bankr. D. Del., No. 22-11068, ECF No. 512`; adversary and
+  claim-register forms use `Adv. No.` and `Claim No.`), `court`, `case_number`,
+  `docket_number` or `claim_number`, `case_docket_url`, and an optional `pacer`
+  link whose `target` is `case`, `entry`, or `document`. It says where the filing
+  sits on the court's docket, not where ElevenFlo's copy came from. A PACER link
+  opens with the reader's own PACER login; PACER fees may apply. Document,
+  summary, chunk, hub, and relationship results carry the same object.
+
+## Case updates
+
+### `list_case_updates`
+
+List typed docket events, hearings, and milestones for named cases or the
+connected account's saved tracked cases. This tool reads updates; it cannot
+create or change tracked cases, schedule checks, or send notifications.
+
+- Inputs: either one to 25 `case_ids` or `watched=true`, never both. Resolve a
+  named case with `find_cases` first. Optional `since` is an ISO-8601 timestamp
+  within the last 90 days; it defaults to seven days ago. Optional `triggers`
+  filters event types. `limit` is 1 to 50.
+- Returns: resolved `case_ids`, newest-first `updates`, filing citations, and
+  any published narrative. `status` distinguishes `updates_available`,
+  `no_watched_cases`, `no_matching_triggers`, and `no_recent_updates`.
+- Limits: no recent typed updates does not establish that no filings occurred.
+  Continue with `list_docket_entries` for the returned case IDs and requested
+  filing-date window. Detection time and the event's occurrence date can differ.
 
 ## Cross-document search
 
@@ -164,6 +196,9 @@ Use them when the question is about typed fields, comparable records, or many
 cases at once rather than the text of one filing. Responses return only public
 fields and operations, never internal extraction metadata.
 
+Free accounts can list datasets and describe their fields and examples.
+Searches, aggregates and value suggestions require ElevenFlo Pro.
+
 ### `list_structured_datasets`
 
 List the datasets available to you.
@@ -213,6 +248,9 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `bar-dates`
 - `dip-financing`
 - `case-disclosure-solicitation`
+- `case-contract-treatment-events`
+- `hearing-sessions`
+- `monthly-operating-reports`
 - `case-outcomes`
 - `committee-appointments`
 - `exclusivity-periods`
@@ -226,10 +264,10 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `transfers-of-claim`
 - `voluntary-petitions`
 
-ElevenFlo maintains more datasets than this list. Monthly operating reports and
-fee timekeepers are two that ElevenFlo MCP does not serve, and naming one
-returns an `unknown_dataset` error. This page is a static copy. Call
-`list_structured_datasets` for the live list.
+This page is a static copy of the public catalog. Call
+`list_structured_datasets` for the live list and `describe_structured_dataset`
+for each dataset's fields, operations, and limits. Datasets outside the public
+catalog return `unknown_dataset`.
 
 `ballot-tabulation` is **Plan voting results**. It returns one current ballot
 declaration with projected class totals. Its operative flag is true only for
@@ -242,7 +280,7 @@ are not canonical plan votes.
 | Credits | Tools |
 | --- | --- |
 | 1 | `find_cases`, `list_document_types`, `list_docket_entries`, `list_structured_datasets`, `describe_structured_dataset`, `suggest_structured_values` |
-| 2 | `search_filings`, `search_transcripts`, `search_structured_data` |
+| 2 | `search_filings`, `search_transcripts`, `search_structured_data`, `list_case_updates` |
 | 3 | `search_document_chunks`, `aggregate_structured_data` |
 | 5 | `search_document_summaries`, `get_document_summary`, `read_document_chunks`, `extract_document_passages`, `find_key_documents`, `get_related_documents` |
 

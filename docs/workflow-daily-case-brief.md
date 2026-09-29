@@ -12,13 +12,13 @@ the First Amended Chapter 11 Plan, Dkt. 369, filed that day.
 
 A brief for September 8 through 10, 2026 could report:
 
-> - Dkt. 369, September 10, 2026: First Amended Chapter 11 Plan, filed as a
->   related document to the plan at Dkt. 117.
+> - Bankr. S.D. Tex., No. 26-90737, ECF No. 369, September 10, 2026: First
+>   Amended Chapter 11 Plan, filed as a related document to the plan at Dkt. 117.
 >   [Filing](https://elevenflo.com/api/search/open/e9c65d83-de9d-45cf-91dc-69d818545796/)
-> - Dkt. 366, September 9, 2026: the creditors' committee applied to employ FTI
+> - ECF No. 366, September 9, 2026: the creditors' committee applied to employ FTI
 >   Consulting as financial advisor. The entry sets objections due in 21 days.
 >   [Filing](https://elevenflo.com/api/search/open/c01a69d3-b745-45f4-a3ae-bd516a1fcc68/)
-> - Dkt. 362, September 8, 2026: agenda for the September 10, 2026 hearing.
+> - ECF No. 362, September 8, 2026: agenda for the September 10, 2026 hearing.
 >   [Filing](https://elevenflo.com/api/search/open/48bd6709-7e59-44bb-9c9d-a15115ac7d16/)
 
 Source: `list_docket_entries` for
@@ -35,6 +35,10 @@ ElevenFlo account and document access.
   owns scheduling.
 - A docket entry can appear before its PDF and text. Check
   `document_search_available` before quoting.
+- Each entry and filing carries a `court_locator` with its court citation
+  (`Bankr. S.D. Tex., No. 26-90737, ECF No. 369`). Where one is supported, it
+  also carries a PACER link to the docket entry or document. PACER login
+  required; PACER fees may apply.
 - One `list_docket_entries` call returns up to 25 entries, newest first. Narrow
   by query or page through a busy docket. A bounded result is not the complete
   docket.
@@ -67,7 +71,7 @@ Read the material filings. Use summaries for orientation and exact text for
 amounts, dates, deadlines, financing terms and operative language.
 
 Return:
-- Up to five material developments, each with a docket citation.
+- Up to five material developments, each with its court citation.
 - The relevant motions, orders, notices and objections, distinguished by type.
 - Sourced hearing or deadline changes, including any unresolved conditions.
 - Up to three filings to read next.

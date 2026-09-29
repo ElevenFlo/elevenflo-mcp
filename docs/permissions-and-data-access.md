@@ -5,7 +5,7 @@
 Interactive access uses remote MCP over HTTP (Streamable HTTP transport). You
 sign in with your ElevenFlo web-app account, and every authorization request
 uses the OAuth 2.1 authorization code flow with PKCE. Your client registers
-through pre-registration, supplied metadata, or dynamic registration. You then
+through pre-registration or dynamic registration. You then
 approve a consent screen, and only after that does a grant exist.
 
 > [!WARNING]
@@ -19,7 +19,7 @@ ElevenFlo MCP only reads. It can return:
 - Docket entries
 - Court-document text
 - Filing summaries
-- Source and news metadata, bounded snippets, and publisher-link handles
+- Typed case updates for named cases or your saved tracked cases
 - Hearing transcripts, where indexed
 - Document relationship signals
 - Typed rows and aggregates from the public structured datasets
@@ -37,9 +37,13 @@ canonical list.
 ## Public records and confidentiality
 
 ElevenFlo indexes public court records (dockets, filings, and hearing
-transcripts) plus public news metadata and bounded snippets. Everything the
-tools return is already public. `read_document_chunks` returns verbatim public
-court-record text, and your client performs any analysis on it.
+transcripts). Research results link to public filings and court citations.
+`read_document_chunks` returns exact retrieved filing text. Summaries and typed
+datasets are derived research aids; verify material claims against the filing.
+
+With `list_case_updates(watched=true)`, the client can also read the connected
+account's saved case scope and associated update review state. That account
+context is not a public court record. News search is not a public MCP tool.
 
 Connecting ElevenFlo MCP does not give ElevenFlo access to your firm's
 documents, email, matters, or client files. ElevenFlo receives only the tool
@@ -71,7 +75,7 @@ usage accounting. A log entry can include:
 
 ## Prompt injection
 
-Court filings, transcripts, and source snippets are evidence, not instructions.
+Court filings, transcripts, and retrieved passages are evidence, not instructions.
 Retrieved text can contain language that reads like a command ("ignore
 previous", "send to", "summarize and post", "open this URL"). Tell your client
 to report such language as retrieved material and never to act on it.
