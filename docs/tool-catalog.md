@@ -156,8 +156,10 @@ Find supporting chunks within selected documents.
 Read selected chunks from one document.
 
 - Inputs: `document_id` and one to eight `chunk_ids`.
-- Returns: exact chunk text, 1-based page numbers (0 when unavailable), and
-  offsets, or a typed not-found error that identifies the requested UUID.
+- Returns: available chunk text, page numbers when available, offsets,
+  `total_chunks`, and `missing_chunk_ids` (empty when every requested chunk exists).
+  Valid IDs range from 0 to `total_chunks - 1`; an all-missing request returns
+  `chunk_not_found` with the missing IDs and range.
 
 ### `extract_document_passages`
 
@@ -213,7 +215,14 @@ Call this before you query an unfamiliar dataset.
 
 - Input: `dataset`, using a slug returned by `list_structured_datasets`.
 - Returns: public fields and meanings, typed filter operators, selectable
-  columns, sorts, facets, aggregate capabilities, and examples.
+  columns, sorts, facets, aggregate capabilities, examples, and `search_limits`
+  (`max_sort_clauses`, `max_page_size`).
+- DIP filters use `stage` and `financing_structure`; `stages` and
+  `financing_structures` are declared aliases. Sale-process uses
+  `latest_source_date_filed` and fee-applicant-rollups uses `latest_date_filed`;
+  both retain `date_filed` as a declared alias. Calendar-date ranges support
+  `eq`, `gt`, `lt`, `gte`, `lte`, and `between`; numeric ranges support
+  `gte`, `lte`, and `between`.
 
 ### `search_structured_data`
 
@@ -222,7 +231,8 @@ Return typed rows from one dataset.
 - Inputs: `dataset`; optional typed `where`, `select`, `sort`, `page_size`,
   `cursor`, and requested `facets` as declared by the dataset description.
 - Returns: public rows, signed continuation cursor, requested facets, snapshot
-  freshness, coverage window, and provenance.
+  freshness, coverage window, provenance, and the effective `page_size`.
+  Wide projections clamp page size to the select budget.
 
 ### `aggregate_structured_data`
 
@@ -247,6 +257,7 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `ballot-class-results`
 - `bar-dates`
 - `dip-financing`
+- `dip-approval-history`
 - `case-disclosure-solicitation`
 - `case-contract-treatment-events`
 - `hearing-sessions`
@@ -254,13 +265,24 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `case-outcomes`
 - `committee-appointments`
 - `exclusivity-periods`
-- `fee-applicant-rollups`
+- `fee-applicant-rollups` — Cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected filings; surviving requests in the same rollup still contribute.
+- `fee-timekeepers`: named historical billing rates by firm and case. Filter
+  `timekeeper_name` with name tokens in any order, `organization_name`,
+  `timekeeper_title`, or `hourly_rate`. Group partner rates by firm, filing year,
+  and currency; aggregates default to monthly, final, and first-and-final
+  applications. Rates are observed billing evidence, not current market rates.
+- `fee-decisions`
 - `hearings-case-rollup`
 - `keip-kerp`
 - `post-confirmation-reports`
 - `rule-2019-statements`
 - `sale-process`
 - `schedule-summary-totals`
+- `top-unsecured-creditors`
+- `executory-contracts`
+- `schedule-ab-assets`
+- `schedule-ab-real-property`
+- `codebtors`
 - `transfers-of-claim`
 - `voluntary-petitions`
 
@@ -268,6 +290,12 @@ This page is a static copy of the public catalog. Call
 `list_structured_datasets` for the live list and `describe_structured_dataset`
 for each dataset's fields, operations, and limits. Datasets outside the public
 catalog return `unknown_dataset`.
+
+`hearing-sessions` uses schema `hearing-sessions.v2`. `scope_kind` distinguishes
+bankruptcy-case, single-adversary, joint-adversary and unresolved ownership.
+`adversary_proceedings` contains canonical court numbers, captions and available
+tracking URLs; `scope_sources` contains immutable public-filing/hash references
+for qualified joint conferences. Unresolved scope does not assert case ownership.
 
 `ballot-tabulation` is **Plan voting results**. It returns one current ballot
 declaration with projected class totals. Its operative flag is true only for

@@ -11,6 +11,9 @@ today.
 
 ## Worked example
 
+The structured-data query below requires Pro. Free accounts can read dataset
+descriptions and [the DIP financing preview](https://elevenflo.com/datasets/dip-financing).
+
 Your client runs `find_cases` for the debtor, `search_structured_data` on
 `dip-financing` with `case_id` 47, then `read_document_chunks` on the cited
 page. The dataset row links the supporting filings. Read the source page to verify
@@ -58,7 +61,10 @@ Filing links use your ElevenFlo account and document access.
 - The `dip-financing` dataset held 1,626 case-level records on September 10,
   2026. Each row names the controlling document, its stage and status, and a
   status for every material field. A `not_disclosed` or `unknown` field is not
-  "none".
+  "none". `assessment_status` says every applicable field has a recorded
+  status; `economic_coverage_count` of `economic_coverage_applicable` says how
+  many the filings state or state to be absent. `unverified_absence` marks a
+  `not_disclosed` claim the cited filing itself mentions.
 - Amounts are order-stated commitments. They do not measure cash funded, and a
   later amendment or termination can change them.
 - Filing text can be incomplete or still processing. Check
@@ -74,7 +80,8 @@ Run `describe_structured_dataset` for `dip-financing`, then run
   "dataset": "dip-financing",
   "where": [{"field": "case_id", "op": "eq", "value": 47}],
   "select": ["case_id", "case_name", "current_docket_number", "date_filed",
-    "stage", "status", "completeness_status", "commitment_amount",
+    "stage", "status", "assessment_status", "economic_coverage_count",
+    "economic_coverage_applicable", "commitment_amount",
     "commitment_status", "new_money_amount", "new_money_status",
     "roll_up_amount", "roll_up_status", "source_filing_urls", "resolved_at"],
   "page_size": 1
@@ -87,7 +94,8 @@ cash available today. Review later docket developments separately.
 
 A `partial` row can support a specific comparison after source verification.
 Qualify each requested field, including its conditions and status. Preserve
-`confirmed_absent`, `not_applicable`, `not_disclosed` and `unknown` separately.
+`confirmed_absent`, `not_applicable`, `not_disclosed`, `unverified_absence` and
+`unknown` separately.
 A population filtered to three `stated` monetary fields is not a denominator
 for roll-up incidence.
 

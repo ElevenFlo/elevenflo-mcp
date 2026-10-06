@@ -18,6 +18,62 @@ Availability depends on the client, account and organization settings. A
 working manual connection does not establish that a scheduled task can use it.
 Check the client's current documentation before configuring a schedule.
 
+## Use a ChatGPT Dot
+
+A [ChatGPT Dot](https://learn.chatgpt.com/docs/dots) can own a recurring case
+watch and work while your computer is off. Availability depends on your
+ChatGPT plan, region and workspace settings. It can use supported plugins
+already enabled for your account, within their existing permissions.
+
+Connect ElevenFlo using the [ChatGPT setup](https://elevenflo.com/docs/mcp/setup#chatgpt),
+then ask your Dot to run the daily case brief manually. Have it identify the
+tools it actually used and open its filing citations. If ElevenFlo is not
+available to the Dot, resolve that connection before scheduling; a successful
+ordinary ChatGPT conversation is not proof of Dot access.
+
+After verifying that run, adapt this prompt:
+
+```text
+Monitor [CASE NAME, COURT, CASE NUMBER AND ELEVENFLO CASE LINK] using the
+existing ElevenFlo connection. Run each weekday at [TIME AND TIMEZONE]
+until [END DATE]. Return results in this Dot conversation.
+
+Use the maintained daily case brief workflow:
+https://elevenflo.com/docs/mcp/workflows/daily-case-brief
+For the first run, review [EXPLICIT START] through the actual run time.
+For later runs, start at the last successfully reviewed window end.
+State the exact window, run time and case identity in every brief.
+
+Page through the docket entries in the window and read material filings.
+Keep filing dates separate from detected-update dates. Cite the filings
+for amounts, dates, deadlines and operative terms. Include missing text,
+pagination limits and source gaps. Do not treat an empty or failed tool
+response as evidence that nothing changed.
+
+Advance the saved window only after successfully reviewing its scope.
+If access, pagination or required text fails, report the unreviewed window
+and retain the checkpoint so the next run can recover it.
+If you cannot persist a checkpoint, say so before scheduling.
+
+Draft only: do not send messages, publish, or change account settings.
+Use included ChatGPT usage and existing ElevenFlo credits only; do not
+purchase credits or upgrades, or use paid APIs or paid external sources.
+Confirm the saved schedule, timezone, end date and output destination.
+```
+
+Check the saved task in your Dot's Scheduled view and inspect its first
+scheduled result. Review the case list and schedule when your priorities
+change. Start with one case before expanding to a portfolio.
+
+Dot conversations do not count toward ordinary ChatGPT usage limits.
+Deeper work has an included allowance; tasks delegated to Work or Codex
+use those products' normal limits. Work and Codex share usage. These are
+included allowances, not unlimited capacity. See OpenAI's
+[Dot access guidance](https://learn.chatgpt.com/docs/dots#access) and
+[usage and pricing](https://learn.chatgpt.com/docs/pricing).
+ElevenFlo tool calls still use your ElevenFlo account's access and MCP
+credits; a ChatGPT subscription does not replace them.
+
 ## Define each run
 
 Give the task a case or case list, timezone, review window and output

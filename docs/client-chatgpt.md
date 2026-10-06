@@ -8,6 +8,12 @@ developer mode on ChatGPT web, with Apps enabled for the organization. Create an
 app named `ElevenFlo MCP` pointing at `https://elevenflo.com/mcp`, keep OAuth
 enabled, and complete sign-in in the browser.
 
-Agent mode cannot use custom apps; use a normal chat. Published agents, Tasks,
-Deep Research, and company knowledge have separate availability and tool-access
-rules.
+For ordinary research, start in a normal chat and verify a cited filing.
+ChatGPT modes and background-task environments have separate availability
+and tool-access rules; verify the ElevenFlo connection in the environment
+where the work will run.
+
+For recurring research with a ChatGPT Dot, follow the
+[Dot case-watch recipe](https://elevenflo.com/docs/mcp/workflows/automation#use-a-chatgpt-dot).
+Dots can use supported plugins already enabled for your account, subject to
+their existing permissions. Verify a manual Dot run before saving a schedule.
