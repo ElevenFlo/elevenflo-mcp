@@ -1,7 +1,7 @@
 # Post-confirmation reports
 
 Find reports for a debtor and reporting period, then compare the amounts in
-the filings. Keep quarterly activity separate from cumulative totals.
+the filings. Keep quarterly activity separate from cumulative totals. Monetary fields are available for row comparison, but not aggregation across reports. Use report counts and distinct-case counts to describe the population.
 
 ## One report, two periods
 

@@ -93,10 +93,14 @@ create or change tracked cases, schedule checks, or send notifications.
 - Inputs: either one to 25 `case_ids` or `watched=true`, never both. Resolve a
   named case with `find_cases` first. Optional `since` is an ISO-8601 timestamp
   within the last 90 days; it defaults to seven days ago. Optional `triggers`
-  filters event types. `limit` is 1 to 50.
+  filters event types. `limit` is 1 to 50. Optional `cursor` continues a
+  previous page.
 - Returns: resolved `case_ids`, newest-first `updates`, filing citations, and
   any published narrative. `status` distinguishes `updates_available`,
   `no_watched_cases`, `no_matching_triggers`, and `no_recent_updates`.
+  `has_more` and `next_cursor` continue after the last returned event; the
+  cursor is bound to the same case scope, triggers, and `since` window, so
+  pass it with the same scope and triggers and omit `since`.
 - Limits: no recent typed updates does not establish that no filings occurred.
   Continue with `list_docket_entries` for the returned case IDs and requested
   filing-date window. Detection time and the event's occurrence date can differ.
@@ -265,7 +269,7 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `case-outcomes`
 - `committee-appointments`
 - `exclusivity-periods`
-- `fee-applicant-rollups` — Cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected filings; surviving requests in the same rollup still contribute.
+- `fee-applicant-rollups` — Cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected filings; surviving requests in the same rollup still contribute. Monetary sorts require `currency_code` with `eq`; the default sort is latest filing date. `sources` identifies contributors separately for each monetary field, with availability, counts and truncation. Null provenance awaits reprojection. Order-date filters select applicants without rebasing their lifetime totals to the selected month.
 - `fee-timekeepers`: named historical billing rates by firm and case. Filter
   `timekeeper_name` with name tokens in any order, `organization_name`,
   `timekeeper_title`, or `hourly_rate`. Group partner rates by firm, filing year,
@@ -319,7 +323,7 @@ ages past 24 hours. A result that exceeds remaining capacity is withheld and not
 charged. Narrow the request, retry after the stated time, or upgrade for a larger
 monthly allowance. See current balances on your account page.
 
-Website document access has a separate rolling-day budget: 20 distinct documents
-on Free and 75 on Pro, subject to the existing Free monthly download allowance.
+Website document access has a separate rolling-day budget of 75 distinct
+documents on Pro. Free accounts keep their monthly download allowance instead.
 Reopening the same document and PDF range requests do not consume additional
 rolling-day slots. Publicly published blog documents remain public.

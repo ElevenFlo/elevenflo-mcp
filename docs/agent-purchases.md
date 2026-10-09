@@ -20,6 +20,9 @@ does not guarantee a purchasable snapshot for every case.
 Before quoting, ElevenFlo checks the selected case for complete, current,
 source-linked data. Empty results, incomplete results, unavailable sources,
 and snapshots above 100 rows or 256 KiB are rejected without a charge.
+Fee rollups also require complete, available contributor evidence for every known
+requested or allowed measure; a truncated or not-yet-projected source list cannot
+qualify a purchase.
 The quote states the row count, data timestamp, snapshot digest, merchant,
 total price, expiry, and terms version.
 
