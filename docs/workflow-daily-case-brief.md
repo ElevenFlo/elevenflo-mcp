@@ -47,8 +47,8 @@ ElevenFlo account and document access.
 
 ## Price and access
 
-Free accounts include 500 MCP credits a month. Pro is $99 per seat per month
-and includes 100,000 credits. See [pricing](https://elevenflo.com/pricing).
+Free accounts include 200 research credits a month. Pro is $99 per seat per month
+and includes 10,000 credits. See [pricing](https://elevenflo.com/pricing).
 
 ## Connect your client
 

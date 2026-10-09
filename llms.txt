@@ -35,7 +35,7 @@ ElevenFlo MCP is a hosted remote MCP server over Streamable HTTP.
 
 Authentication uses ElevenFlo web app sign-in, OAuth 2.1, PKCE, and explicit consent. Do not configure static bearer tokens or pasted API keys for ElevenFlo MCP.
 
-ElevenFlo MCP is available on every plan. Free accounts include 500 credits per month; Pro includes 100,000. There is no separate access request. Free can list and describe structured datasets; structured searches, aggregates, and value suggestions require Pro.
+ElevenFlo MCP is available on every plan. Free accounts include 200 research credits per month and 100 per rolling 24 hours; Pro includes 10,000 per month and 2,000 per rolling 24 hours. Each successful call costs the greater of one credit, one per 10 returned records, or one per 10,000 bytes of structured output, rounded up. Limits are shared across account connections. There is no separate access request. Free can list and describe structured datasets; structured searches, aggregates, and value suggestions require Pro.
 
 The tool set is read-only, OAuth-only, and source-grounded. It supports chapter 11 case lookup, docket browsing, filing discovery, typed case updates for named or saved tracked cases, hearing transcript search where indexed, exact court-document text retrieval, filing summaries, targeted filing analysis, document relationship exploration, and typed structured-dataset search and aggregation.
 

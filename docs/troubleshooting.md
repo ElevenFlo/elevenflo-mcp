@@ -49,9 +49,9 @@ active. Reconnecting does not reset the rate limit.
 
 Credit limits are separate from burst rate limits. Billable calls draw on one
 monthly balance shared across your clients. A call can fail when the remaining
-balance is lower than its credit cost. Free accounts include 500 credits a month and
+balance is lower than its credit cost. Free accounts include 200 research credits a month and
 reset on the first of the month; [Pro](https://elevenflo.com/pricing) includes
-100,000. Account → MCP connections shows the allowance and the remaining
+10,000. Account → MCP connections shows the allowance and the remaining
 balance.
 
 Wait for the monthly reset or upgrade your plan. Reconnecting does not add

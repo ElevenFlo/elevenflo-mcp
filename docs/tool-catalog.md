@@ -305,14 +305,21 @@ are not canonical plan votes.
 
 ## Credits
 
-| Credits | Tools |
-| --- | --- |
-| 1 | `find_cases`, `list_document_types`, `list_docket_entries`, `list_structured_datasets`, `describe_structured_dataset`, `suggest_structured_values` |
-| 2 | `search_filings`, `search_transcripts`, `search_structured_data`, `list_case_updates` |
-| 3 | `search_document_chunks`, `aggregate_structured_data` |
-| 5 | `search_document_summaries`, `get_document_summary`, `read_document_chunks`, `extract_document_passages`, `find_key_documents`, `get_related_documents` |
+Research credits measure returned data. Each successful response costs the largest
+of 1 credit, returned records divided by 10 (rounded up), or canonical response
+bytes divided by 10,000 (rounded up). Protocol duplicates are counted only once.
+A 100-row response of 20 KB costs 10 credits; a 45 KB text response costs 5.
+Failed calls are not charged. Successful empty responses cost 1 credit.
 
-Free accounts include 500 credits a month and Pro includes 100,000. Each
-allowance resets at the start of the calendar month. ElevenFlo does not charge
-for failed calls. Current usage appears in your account settings under
-**MCP connections**.
+Free includes 200 research credits per calendar month and 100 per rolling 24 hours.
+Pro includes 10,000 per calendar month and 2,000 per rolling 24 hours. All clients
+share the account balance and its 120-request-per-minute limit. Monthly balances
+reset at 00:00 UTC on the first of the month; rolling capacity recovers as usage
+ages past 24 hours. A result that exceeds remaining capacity is withheld and not
+charged. Narrow the request, retry after the stated time, or upgrade for a larger
+monthly allowance. See current balances on your account page.
+
+Website document access has a separate rolling-day budget: 20 distinct documents
+on Free and 75 on Pro, subject to the existing Free monthly download allowance.
+Reopening the same document and PDF range requests do not consume additional
+rolling-day slots. Publicly published blog documents remain public.

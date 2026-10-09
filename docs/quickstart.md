@@ -1,8 +1,8 @@
 # Before you connect
 
 ElevenFlo MCP is on for every account with a verified email address, on every
-plan. There is no access request. Free accounts include 500 credits a month;
-Pro includes 100,000. Free can list and describe structured datasets;
+plan. There is no access request. Free accounts include 200 research credits a month;
+Pro includes 10,000. Free can list and describe structured datasets;
 structured searches, aggregates, and value suggestions require Pro.
 
 You need an MCP client and browser access for sign-in and consent.

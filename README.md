@@ -139,10 +139,11 @@ ElevenFlo MCP is available on every ElevenFlo plan and is provisioned
 automatically; there is no separate access request. You need an ElevenFlo
 account with a verified email address and an MCP-compatible client.
 
-Each tool call costs a fixed 1, 2, 3, or 5 credits. Free accounts include 500
-credits per month and Pro includes 100,000, resetting at the start of each
-calendar month. Failed tool calls are never charged. Current usage appears on
-your account page under MCP connections.
+Each successful tool response uses research credits based on returned records
+and content bytes. Free includes 200 per calendar month and 100 per rolling day;
+Pro includes 10,000 per month and 2,000 per rolling day. Clients share the account's
+120 requests per minute. See the [credit formula](https://elevenflo.com/docs/mcp/tool-catalog#credits)
+and current account balances. Failed calls are not charged.
 
 ## Documentation
 
