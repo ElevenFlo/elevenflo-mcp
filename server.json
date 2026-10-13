@@ -3,7 +3,7 @@
   "name": "com.elevenflo/mcp",
   "description": "Court-grounded Chapter 11 bankruptcy research over hosted remote MCP",
   "title": "ElevenFlo MCP",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "websiteUrl": "https://elevenflo.com/docs/mcp/overview",
   "remotes": [
     {

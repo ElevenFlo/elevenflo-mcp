@@ -278,6 +278,9 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `fee-decisions`
 - `hearings-case-rollup`
 - `keip-kerp`
+- `plans`: each case's current Chapter 11 plan with lifecycle status, type,
+  proponent, and filing, confirmation, and effective dates. A withheld date is
+  null, never zero; an empty result never proves a plan event did not occur.
 - `post-confirmation-reports`
 - `rule-2019-statements`
 - `sale-process`

@@ -4,9 +4,10 @@
 
 Interactive access uses remote MCP over HTTP (Streamable HTTP transport). You
 sign in with your ElevenFlo web-app account, and every authorization request
-uses the OAuth 2.1 authorization code flow with PKCE. Your client registers
-through pre-registration or dynamic registration. You then
-approve a consent screen, and only after that does a grant exist.
+uses the OAuth 2.1 authorization code flow with PKCE. Your client identifies
+itself with a Client ID Metadata Document URL, a pre-registered client ID, or
+dynamic registration. You then approve a consent screen, and only after that
+does a grant exist.
 
 > [!WARNING]
 > Use OAuth sign-in only. Do not paste a bearer token, API token, or custom `Authorization` header for ElevenFlo MCP. Your client manages the bearer tokens that the OAuth flow issues.

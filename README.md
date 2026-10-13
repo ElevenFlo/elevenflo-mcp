@@ -104,6 +104,7 @@ Pro. The public catalog includes:
 - `fee-applicant-rollups`
 - `fee-timekeepers`
 - `post-confirmation-reports`
+- `plans`
 - `schedule-summary-totals`
 - `executory-contracts`
 - `schedule-ab-assets`
