@@ -39,8 +39,10 @@ exact, apply on top of `query`, and also work without one.
 - Inputs: optional `query`, `case_type`, `petition_date_from`,
   `petition_date_to`, and `assets_over_usd`. `limit` is 1 to 50. At least one
   search criterion is required. Dates must be real `YYYY-MM-DD` calendar dates,
-  and the from date cannot follow the to date. Use exact `case_type_tags` values
-  returned by this tool; unknown values return a typed error.
+  and the from date cannot follow the to date. `case_type` accepts only
+  `Sale Process`, `Prepackaged`, `Prenegotiated`, `Subchapter V`, `Chapter 15`
+  and `Chapter 7`; a chapter such as `Chapter 11` or any other value returns
+  `invalid_input` naming the argument, never an empty result.
 - Returns: `case_id`, identifying metadata, petition date, disclosed petition
   asset and liabilities ranges, coverage state, and case-type tags.
   Filter-only results are newest first.
