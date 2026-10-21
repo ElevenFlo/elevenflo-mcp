@@ -42,8 +42,9 @@ ElevenFlo account and document access.
 - One `list_docket_entries` call returns up to 25 entries, newest first. Narrow
   by query or page through a busy docket. A bounded result is not the complete
   docket.
-- `list_case_updates` flags financing, sale, plan, claims, status, governance
-  and hearing events. Treat them as leads and read the filing.
+- `list_case_updates` returns source-backed updates on the cases you watch:
+  financing, sale, plan, claims, status, governance and hearing developments.
+  Treat them as leads and read the filing.
 
 ## Price and access
 

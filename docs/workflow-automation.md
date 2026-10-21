@@ -83,6 +83,40 @@ state. If it does not, supply the window explicitly.
 A failed run should report the problem. It should not present an empty brief
 as evidence that nothing changed.
 
+## Use email when your host cannot run the connection unattended
+
+Test the actual scheduled environment, not just an ordinary conversation.
+For a ChatGPT scheduled task or a Claude routine, confirm that it can call
+ElevenFlo through your customer connection more than an hour after sign-in.
+Check the returned citations, saved checkpoint and next run. A manual call or
+a separate script using the same account does not establish that host's access.
+
+If the scheduled environment cannot use the connection, use ElevenFlo's
+existing email delivery:
+
+1. Ask your connected client to save a monitor with the case or market filters
+   you want, then list your monitors to verify the saved scope.
+2. Open [Account](https://elevenflo.com/account-info), find **Tracked case
+   updates** under email preferences, and choose an available delivery cadence.
+   Delivery requires a verified email address and the account access needed
+   for the monitor. The control shows the available choices.
+3. Check the first delivered update and its filing citations. Monitor email
+   covers matching published changes; it does not run the broader research
+   prompt or certify that the court docket is complete.
+
+Use this instruction in either host when its unattended connection test fails:
+
+```text
+Keep the saved ElevenFlo monitor and use ElevenFlo email delivery for alerts.
+Record that this host's unattended ElevenFlo connection is unverified or
+unavailable, with the test time and actual error. Do not describe the schedule
+as working. Give me the monitor's saved scope and the Account email-preference
+link so I can choose delivery. Continue deeper research manually when asked.
+```
+
+Saving a monitor does not turn email delivery on. Choose delivery yourself;
+the MCP tools do not change email preferences or send a test message.
+
 ## Notifications and drafts
 
 Request a notification or draft through a client feature that supports it.

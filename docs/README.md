@@ -8,13 +8,14 @@ https://elevenflo.com/mcp
 ```
 
 Authentication uses ElevenFlo web-app sign-in, OAuth 2.1, PKCE, and explicit
-consent. The tool set is read-only: case lookup, docket research,
-court-document search and exact text, filing summaries, typed case updates,
-document relationships, and structured-dataset search and aggregation.
+consent. The tool set is research tools plus monitor management: case lookup,
+docket research, court-document search and exact text, filing summaries,
+document relationships, structured-dataset search and aggregation, and saved
+monitors whose changes `list_case_updates` reads.
 
 - [Before you connect](quickstart.md)
 - [Verify the connection](verify.md)
-- Client setup (per client): [Claude Code](client-claude-code.md) · [Claude Desktop](client-claude-desktop.md) · [Codex CLI](client-codex-cli.md) · [ChatGPT](client-chatgpt.md) · [Microsoft 365 Copilot](client-microsoft-365-copilot.md) · [Gemini](client-gemini.md) · [Other clients](client-other.md)
+- Client setup (per client): [Claude Code](client-claude-code.md) · [Claude Desktop](client-claude-desktop.md) · [Codex CLI](client-codex-cli.md) · [ChatGPT](client-chatgpt.md) · [Harvey](client-harvey.md) · [Microsoft 365 Copilot](client-microsoft-365-copilot.md) · [Gemini](client-gemini.md) · [Other clients](client-other.md)
 - Workflows: [Overview](workflows.md) · [Daily case brief](workflow-daily-case-brief.md) · [First-day filings triage](workflow-first-day-filings-triage.md) · [DIP and cash-collateral terms](workflow-dip-cash-collateral-terms.md) · [Post-confirmation reports](workflow-post-confirmation-reports.md) · [Automation](workflow-automation.md) · [Safety and verification](workflow-safety-and-verification.md)
 - [Tool catalog](tool-catalog.md)
 - [Pay as an agent](agent-purchases.md)

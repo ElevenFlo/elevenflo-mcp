@@ -4,7 +4,8 @@ The live `tools/list` response is the exact input and output contract. Inputs
 reject unknown fields, errors return `{code, message, retryable, recovery?, details?}`,
 and public TextContent is the JSON copy of the same `structuredContent` payload.
 Every list-returning tool returns bounded rows. ElevenFlo MCP
-exposes 18 read-only bankruptcy research tools. This page is the complete list,
+exposes 21 tools: research tools plus monitor management (18 bankruptcy research
+tools and three tools that manage the connected user's own monitors). This page is the complete list,
 and a tool absent here is not available. See
 [Permissions and data access](https://elevenflo.com/docs/mcp/permissions-and-data-access)
 for what ElevenFlo MCP cannot do.
@@ -19,33 +20,27 @@ document row carries `has_primary_pdf: true`, open the filing at
 1. `find_cases` to resolve a `case_id`.
 2. `list_docket_entries`, `search_filings`, or `find_key_documents` to
    select documents.
-3. `search_document_chunks` to find supporting text.
-4. `read_document_chunks` or `extract_document_passages` for exact language.
+3. `search_document_chunks` to preview where keywords appear across up to 25
+   filings.
+4. `extract_document_passages` for the full matching passages in one filing, or
+   `read_document_chunks` for exact passages by ID.
 5. `search_document_summaries` or `get_document_summary` for synthesis.
 
 ## Case and taxonomy
 
 ### `find_cases`
 
-Find cases by debtor identity or by structured case metadata. Case-type tags
-group cases by how ElevenFlo covers them. They do not name the bankruptcy
-chapter.
+Resolve a case by identity. `query` matches case name, case number,
+jurisdiction and judge with typo tolerance; it does not match counsel, docket
+text or filing content (use `search_filings` for those). Screening is not this
+tool: filter or count a population with the `cases` structured dataset.
 
-`query` matches case name, case number, jurisdiction, judge, and indexed
-industry and case-type tags. It does not match counsel, docket text, or filing
-content. Use `search_filings` for those. The other filters listed below are
-exact, apply on top of `query`, and also work without one.
-
-- Inputs: optional `query`, `case_type`, `petition_date_from`,
-  `petition_date_to`, and `assets_over_usd`. `limit` is 1 to 50. At least one
-  search criterion is required. Dates must be real `YYYY-MM-DD` calendar dates,
-  and the from date cannot follow the to date. `case_type` accepts only
-  `Sale Process`, `Prepackaged`, `Prenegotiated`, `Subchapter V`, `Chapter 15`
-  and `Chapter 7`; a chapter such as `Chapter 11` or any other value returns
-  `invalid_input` naming the argument, never an empty result.
-- Returns: `case_id`, identifying metadata, petition date, disclosed petition
-  asset and liabilities ranges, coverage state, and case-type tags.
-  Filter-only results are newest first.
+- Inputs: `query` (required) and `limit` (1 to 50). Any other argument is
+  rejected with `invalid_input` naming the argument, never an empty result.
+- Returns: `case_id`, identifying metadata, petition date, the petition asset
+  and liability brackets with `assets_basis_quality` and
+  `liabilities_basis_quality` (`evidenced` or `legacy_unverified`), document
+  coverage and case-type tags. Best match first.
 
 ### `list_document_types`
 
@@ -66,15 +61,21 @@ relevant terminal notice rather than relying on a projected date.
   25 positive `docket_numbers`, and an opaque `cursor` from the preceding page.
   A cursor is valid only with the same filters. Dates describe filing dates,
   not independently verified entry or signature dates.
-- Text search: `query` matches a literal case-insensitive substring. When a
-  date or docket number is known, start with those filters and omit `query`
-  and type filters. If needed, use one distinctive word or an exact phrase.
+- Text search: `query` matches an entry when every whitespace-separated term
+  appears, in any order and ignoring case. When a date or docket number is
+  known, start with those filters and omit `query` and type filters.
 - Filters: `document_type_tags` accepts only category keys and canonical tags
-  returned by `list_document_types`; unknown values return a typed error.
+  returned by `list_document_types`; unknown values return a typed error. Only
+  entries with classified documents carry tags; entries known only from court
+  RSS carry the court's short label and no tags, so tag and text filters can
+  exclude them.
 - Returns: version 2 `entries`, evidence, `has_more`, and `next_cursor` (null
   when exhausted); PDF/text flags describe held artifacts. Every held document
-  with a public UUID appears once, inside its entry, and includes a `filing_url`
-  that opens the filing.
+  with a public UUID appears once, inside its entry, with its
+  `document_type_tags` and a `filing_url` that opens the filing. An empty first
+  page carries `coverage_note`, which says whether the filters excluded recorded
+  entries or none are recorded in that window, the case's coverage source, and
+  whether the docket is known to be incomplete or its completeness is unknown.
 - Court locator: each entry and document can carry `court_locator`: the court
   `citation` (`Bankr. D. Del., No. 22-11068, ECF No. 512`; adversary and
   claim-register forms use `Adv. No.` and `Claim No.`), `court`, `case_number`,
@@ -84,28 +85,57 @@ relevant terminal notice rather than relying on a projected date.
   opens with the reader's own PACER login; PACER fees may apply. Document,
   summary, chunk, hub, and relationship results carry the same object.
 
-## Case updates
+## Monitors and case updates
 
 ### `list_case_updates`
 
-List typed docket events, hearings, and milestones for named cases or the
-connected account's saved tracked cases. This tool reads updates; it cannot
-create or change tracked cases, schedule checks, or send notifications.
+Read what changed for the connected user's saved monitors, or for named cases,
+as a resumable feed. It reads; it does not schedule checks or send
+notifications.
 
-- Inputs: either one to 25 `case_ids` or `watched=true`, never both. Resolve a
-  named case with `find_cases` first. Optional `since` is an ISO-8601 timestamp
-  within the last 90 days; it defaults to seven days ago. Optional `triggers`
-  filters event types. `limit` is 1 to 50. Optional `cursor` continues a
-  previous page.
-- Returns: resolved `case_ids`, newest-first `updates`, filing citations, and
-  any published narrative. `status` distinguishes `updates_available`,
-  `no_watched_cases`, `no_matching_triggers`, and `no_recent_updates`.
-  `has_more` and `next_cursor` continue after the last returned event; the
-  cursor is bound to the same case scope, triggers, and `since` window, so
-  pass it with the same scope and triggers and omit `since`.
-- Limits: no recent typed updates does not establish that no filings occurred.
-  Continue with `list_docket_entries` for the returned case IDs and requested
-  filing-date window. Detection time and the event's occurrence date can differ.
+- Inputs: optional `monitor_ids` (from `list_monitors`) or one to 25 `case_ids`,
+  never both; with neither it reads every saved monitor. Resolve a named case
+  with `find_cases` first. Optional `since` is an ISO-8601 timestamp within the
+  last 90 days for the first call; it defaults to seven days ago. `limit` is 1
+  to 50. Optional `cursor` continues or resumes; omit `since` with it.
+- Returns: `changes` in sequence order. An `upsert` carries the publication
+  (headline, body, case, sources and citation ranges), its record `status` and
+  the matching `monitor_ids`; a `remove` names a development that no longer
+  matches, such as a corrected asset scope or a withdrawal. The first call
+  pages a fixed `snapshot`; keep `next_cursor` and pass it later to get just
+  the `changes` since. `coverage` states the scope, what unknown facts left out,
+  and what the covered cases hold.
+- Limits: zero changes does not mean nothing was filed. After a monitor is
+  edited, added or deleted the cursor returns `monitor_changed`: call again
+  without `cursor` for a fresh snapshot. `watched` and `triggers` were removed:
+  omit `watched` to read all your monitors, and set `topics` on a monitor with
+  `save_monitor` instead of `triggers`. Monitor scopes need a signed-in user;
+  market monitors need Pro.
+
+### `save_monitor`
+
+Save a monitor for the connected user, or edit one by `monitor_id`.
+
+- Inputs: `filters`: either `case_id` alone (a case watch) or market filters
+  combined with AND: `chapters`, `subchapter_v`, `court_states`, `statuses`,
+  `event_kinds`, `asset_classes` (a class includes its subclasses), `min_units`
+  (requires `asset_classes`) and `keyword` (every word must appear). Optional
+  `name`, and `topics` to narrow publication topics such as `sale`.
+- Returns: the monitor and a 28-day dry run: publications it matches and those
+  left out because a fact a filter needs is unknown.
+- Limits: Free accounts hold five case watches; market monitors need Pro, up
+  to 20. An edit keeps the id and makes earlier cursors return `monitor_changed`.
+
+### `list_monitors`
+
+List the connected user's monitors, oldest first, with their ids, filters,
+topics and `filter_revision`. `limit` is 1 to 100 (default 50); `offset` pages
+on, and `total` and `has_more` say how many there are.
+
+### `delete_monitor`
+
+Delete one of the connected user's monitors by `monitor_id`. Its feed and email
+updates stop. This cannot be undone.
 
 ## Cross-document search
 
@@ -150,7 +180,8 @@ Read the stored summary for one document.
 
 ### `search_document_chunks`
 
-Find supporting chunks within selected documents.
+Preview where keywords appear across up to 25 selected filings before reading
+full text.
 
 - Inputs: one to 25 `document_ids` and `query`.
 - Returns: matching chunk IDs, 1-based page numbers (0 when unavailable), exact
@@ -159,7 +190,7 @@ Find supporting chunks within selected documents.
 
 ### `read_document_chunks`
 
-Read selected chunks from one document.
+Read selected passages from one document by passage ID.
 
 - Inputs: `document_id` and one to eight `chunk_ids`.
 - Returns: available chunk text, page numbers when available, offsets,
@@ -169,7 +200,8 @@ Read selected chunks from one document.
 
 ### `extract_document_passages`
 
-Extract passages answering a focused question from one document.
+Return the full text of the passages in one filing or transcript that match a
+few keywords. Every keyword must appear in a passage.
 
 - Inputs: `document_id`, `query`, optional `max_chunks` from 1 to 10.
 - Returns: selected exact chunks and offsets, or a typed not-found error that
@@ -225,7 +257,7 @@ Call this before you query an unfamiliar dataset.
   (`max_sort_clauses`, `max_page_size`).
 - DIP filters use `stage` and `financing_structure`; `stages` and
   `financing_structures` are declared aliases. Sale-process uses
-  `latest_source_date_filed` and fee-applicant-rollups uses `latest_date_filed`;
+  `latest_source_date_filed` and fees-by-professional uses `latest_date_filed`;
   both retain `date_filed` as a declared alias. Calendar-date ranges support
   `eq`, `gt`, `lt`, `gte`, `lte`, and `between`; numeric ranges support
   `gte`, `lte`, and `between`.
@@ -259,41 +291,48 @@ Suggest normalized values for a field the dataset marks suggestable.
 
 ### Available datasets
 
-- `ballot-tabulation`
+- `ballot-tabulations`
 - `ballot-class-results`
 - `bar-dates`
 - `dip-financing`
 - `dip-approval-history`
-- `case-disclosure-solicitation`
-- `case-contract-treatment-events`
+- `disclosure-solicitation-events`
+- `contract-treatment-events`
 - `hearing-sessions`
 - `monthly-operating-reports`
-- `case-outcomes`
+- `conversions-dismissals-closures`
 - `committee-appointments`
 - `exclusivity-periods`
-- `fee-applicant-rollups` — Cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected filings; surviving requests in the same rollup still contribute. Monetary sorts require `currency_code` with `eq`; the default sort is latest filing date. `sources` identifies contributors separately for each monetary field, with availability, counts and truncation. Null provenance awaits reprojection. Order-date filters select applicants without rebasing their lifetime totals to the selected month.
+- `fees-by-professional` — Cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected filings; surviving requests in the same rollup still contribute. Monetary sorts require `currency_code` with `eq`; the default sort is latest filing date. `sources` identifies contributors separately for each monetary field, with availability, counts and truncation. Null provenance awaits reprojection. Order-date filters select applicants without rebasing their lifetime totals to the selected month.
 - `fee-timekeepers`: named historical billing rates by firm and case. Filter
   `timekeeper_name` with name tokens in any order, `organization_name`,
   `timekeeper_title`, or `hourly_rate`. Group partner rates by firm, filing year,
   and currency; aggregates default to monthly, final, and first-and-final
   applications. Rates are observed billing evidence, not current market rates.
 - `fee-decisions`
-- `hearings-case-rollup`
+- `hearings-by-case`
 - `keip-kerp`
 - `plans`: each case's current Chapter 11 plan with lifecycle status, type,
   proponent, and filing, confirmation, and effective dates. A withheld date is
   null, never zero; an empty result never proves a plan event did not occur.
 - `post-confirmation-reports`
 - `rule-2019-statements`
-- `sale-process`
+- `asset-dispositions`
 - `schedule-summary-totals`
 - `top-unsecured-creditors`
 - `executory-contracts`
 - `schedule-ab-assets`
 - `schedule-ab-real-property`
 - `codebtors`
-- `transfers-of-claim`
+- `claim-transfers`
 - `voluntary-petitions`
+- `cases`: one row per canonical bankruptcy case for screening by chapter,
+  Subchapter V election, court and state, petition date, entity form and
+  NAICS code from the lead petition, industry and case-type tags, petition
+  creditor, asset and liability brackets with their evidence basis, latest
+  milestone, typed outcome and document coverage. Closed facts spell absence
+  as `unknown`, `missing` or `none`, so a group-by on them counts every case
+  once; tag group-bys count a case once per tag and overlap.
 
 This page is a static copy of the public catalog. Call
 `list_structured_datasets` for the live list and `describe_structured_dataset`
@@ -306,7 +345,7 @@ bankruptcy-case, single-adversary, joint-adversary and unresolved ownership.
 tracking URLs; `scope_sources` contains immutable public-filing/hash references
 for qualified joint conferences. Unresolved scope does not assert case ownership.
 
-`ballot-tabulation` is **Plan voting results**. It returns one current ballot
+`ballot-tabulations` is **Ballot tabulations**. It returns one current ballot
 declaration with projected class totals. Its operative flag is true only for
 the latest non-supplemental declaration for the case and plan. `ballot-class-results`
 returns immutable class-row evidence from those declarations. These class rows

@@ -42,9 +42,10 @@ transcripts). Research results link to public filings and court citations.
 `read_document_chunks` returns exact retrieved filing text. Summaries and typed
 datasets are derived research aids; verify material claims against the filing.
 
-With `list_case_updates(watched=true)`, the client can also read the connected
-account's saved case scope and associated update review state. That account
-context is not a public court record. News search is not a public MCP tool.
+With `save_monitor`, `list_monitors`, `delete_monitor` and `list_case_updates`,
+the client can read and change the connected user's own saved monitors; it
+cannot read or change anyone else's. That account context is not a public court
+record. News search is not a public MCP tool.
 
 Connecting ElevenFlo MCP does not give ElevenFlo access to your firm's
 documents, email, matters, or client files. ElevenFlo receives only the tool

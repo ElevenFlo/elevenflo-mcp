@@ -54,6 +54,12 @@ reset on the first of the month; [Pro](https://elevenflo.com/pricing) includes
 10,000. Account → MCP connections shows the allowance and the remaining
 balance.
 
-Wait for the monthly reset or upgrade your plan. Reconnecting does not add
+Free accounts also have a rolling 24-hour limit of 100 credits. When either
+limit is reached, the error says when more credits become available, in
+Eastern and UTC time, for example "More become available at 2:38 PM ET on
+Oct 15 (18:38 UTC)." Your AI client should pass this on rather than retry; repeated
+retries before that time fail the same way.
+
+Wait for the stated time or upgrade your plan. Reconnecting does not add
 credits. If the error persists after the stated reset or retry interval, contact
 support with the tool name, error code and time of the failed call.

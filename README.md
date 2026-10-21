@@ -66,14 +66,17 @@ it in follow-up MCP calls.
 
 ## What it covers
 
-ElevenFlo MCP exposes 18 read-only research tools. The live `tools/list`
+ElevenFlo MCP provides research tools plus monitor management: 18 research
+tools and three tools that manage the signed-in user's own monitors. The live `tools/list`
 response and the [tool catalog](docs/tool-catalog.md) are the canonical
 contract; the groups below are the shape of it.
 
 **Case research.** Resolve a Chapter 11 case by debtor identity or by
 structured case metadata, list the canonical filing categories and tags, and
-browse a case docket, and read typed case updates for named cases or your
-saved tracked cases. No recent typed updates does not prove an inactive docket.
+browse a case docket. Save monitors (a watched case, or market filters such as
+chapter, state, status and asset class) and read what changed for them, or for
+named cases, from a resumable cursor that also delivers corrections and
+removals. Zero updates does not prove an inactive docket.
 
 **Documents and filings.** Search filing evidence across all cases or within
 one case, retrieve exact court-document text with offsets, extract passages
@@ -91,17 +94,17 @@ return typed rows, grouped aggregates, or normalized value suggestions. Free
 can list and describe datasets; searches, aggregates, and suggestions require
 Pro. The public catalog includes:
 
-- `ballot-tabulation`
+- `ballot-tabulations`
 - `ballot-class-results`
 - `committee-appointments`
-- `hearings-case-rollup`
-- `sale-process`
+- `hearings-by-case`
+- `asset-dispositions`
 - `top-unsecured-creditors`
-- `transfers-of-claim`
+- `claim-transfers`
 - `voluntary-petitions`
 - `keip-kerp`
 - `rule-2019-statements`
-- `fee-applicant-rollups`
+- `fees-by-professional`
 - `fee-timekeepers`
 - `post-confirmation-reports`
 - `plans`
@@ -113,18 +116,19 @@ Pro. The public catalog includes:
 - `bar-dates`
 - `dip-financing`
 - `exclusivity-periods`
-- `case-outcomes`
-- `case-disclosure-solicitation`
-- `case-contract-treatment-events`
+- `conversions-dismissals-closures`
+- `disclosure-solicitation-events`
+- `contract-treatment-events`
 - `hearing-sessions`
 - `monthly-operating-reports`
 
 That is an explicit allowlist, not every structured dataset ElevenFlo
 maintains. Other datasets resolve as `unknown_dataset`.
 
-## Read-only boundary
+## Boundary
 
-The public MCP cannot write data, file documents, send messages, modify
+Apart from saving, editing and deleting the signed-in user's own monitors, the
+public MCP cannot write data, file documents, send messages, modify
 dockets, manage accounts or billing, grant access to other users, expose
 internal operating tools, or return raw publisher article text. Structured-data
 responses expose only public fields and capabilities for the caller's tier.
@@ -172,6 +176,7 @@ Client setup: [Claude Code](docs/client-claude-code.md) ·
 [Claude Desktop](docs/client-claude-desktop.md) ·
 [Codex CLI](docs/client-codex-cli.md) ·
 [ChatGPT](docs/client-chatgpt.md) ·
+[Harvey](docs/client-harvey.md) ·
 [Other clients](docs/client-other.md)
 
 Claude users can start from the
