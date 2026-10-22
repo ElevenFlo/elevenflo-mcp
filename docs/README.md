@@ -28,7 +28,7 @@ Scheduling, notifications, email drafts, and client-side storage belong to
 your client, not to ElevenFlo MCP.
 
 Claude users can connect from the
-[ElevenFlo listing in Claude's connector directory](https://claude.ai/directory/elevenflo);
+[ElevenFlo listing in Claude's connector directory](https://claude.ai/directory/connectors/elevenflo);
 the [Claude Desktop page](client-claude-desktop.md) covers the custom-connector
 fallback. ChatGPT users should start with the
 [published ChatGPT listing](https://chatgpt.com/apps/elevenflo/asdk_app_6a27946962bc819180664633b81cc507)

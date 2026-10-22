@@ -144,11 +144,16 @@ evidence. One common word cannot pull in unrelated results.
 
 ### `search_filings`
 
-Search filing evidence across all cases or within one case.
+Search whole filings across all cases or within one case. Every term must
+appear somewhere in the filing, not necessarily in one passage. Quoted text is
+an exact phrase; uppercase `OR`, `NOT` and parentheses combine terms, for
+example `"cash collateral" AND (objection OR NOT interim)`. A malformed query
+returns `invalid_query` naming the position to fix.
 
 - Inputs: `query`; optional `case_id`, `document_type_tags`, and `limit`.
-- Returns: document rows with matched excerpts and a `filing_url` when available.
-  `document_type_tags` accepts only values returned by `list_document_types`.
+- Returns: document rows, newest first, with matched excerpts and a
+  `filing_url` when available. `document_type_tags` accepts only values
+  returned by `list_document_types`.
 
 ### `search_transcripts`
 

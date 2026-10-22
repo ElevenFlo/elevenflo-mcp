@@ -1,17 +1,11 @@
 # Claude Desktop
 
-ElevenFlo is listed in Claude's connector directory. Open
-[the ElevenFlo listing](https://claude.ai/directory/elevenflo), or find
-**ElevenFlo** under **Customize → Connectors → Browse connectors**, and choose
-**Connect**. Claude opens ElevenFlo sign-in and consent on the next screen.
+[Open ElevenFlo in Claude](https://claude.ai/directory/connectors/elevenflo),
+choose **Connect**, and sign in to ElevenFlo. This works in Claude on the web
+and in the desktop app.
 
-If the listing is not available in your account, add it as a custom connector:
-open **Customize → Connectors → Add custom connector** and paste
-`https://elevenflo.com/mcp`. Use `elevenflo` for the server label.
+On Team and Enterprise plans, an owner adds ElevenFlo once under
+**Admin Settings → Connectors**. Members then connect their own accounts.
 
-Custom connectors are available on every Claude plan. Free accounts can add one.
-
-> [!TIP]
-> On Team and Enterprise, an owner adds the connector once under
-> **Admin Settings → Connectors**, from the directory or as a custom
-> connector. Members then connect it from **Customize → Connectors**.
+If the listing isn't available in your account,
+[add ElevenFlo as a custom connector](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=ElevenFlo&connectorUrl=https%3A%2F%2Felevenflo.com%2Fmcp).
