@@ -3,12 +3,16 @@
   "name": "com.elevenflo/mcp",
   "description": "Court-grounded Chapter 11 bankruptcy research over hosted remote MCP",
   "title": "ElevenFlo MCP",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "websiteUrl": "https://elevenflo.com/docs/mcp/overview",
   "remotes": [
     {
       "type": "streamable-http",
       "url": "https://elevenflo.com/mcp"
     }
-  ]
+  ],
+  "repository": {
+    "url": "https://github.com/ElevenFlo/elevenflo-mcp",
+    "source": "github"
+  }
 }

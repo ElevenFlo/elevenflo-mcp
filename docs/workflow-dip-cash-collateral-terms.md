@@ -65,8 +65,16 @@ Filing links use your ElevenFlo account and document access.
   status; `economic_coverage_count` of `economic_coverage_applicable` says how
   many the filings state or state to be absent. `unverified_absence` marks a
   `not_disclosed` claim the cited filing itself mentions.
-- Amounts are order-stated commitments. They do not measure cash funded, and a
-  later amendment or termination can change them.
+- Case amounts and terms are source-stated for the facilities that
+  `terms_basis` names: `order_approved`, `approved_amendment_pending` (an
+  approved loan with a pending amendment or later motion), `approved_subtotal` (approved loans
+  beside an unresolved rival), `authority_unresolved` or `proposed`. Filter or
+  group by `terms_basis` before comparing approved terms. `facility_terms`
+  lists every facility, including proposals, with its authority, lenders and
+  per-facility amounts. Unapproved amounts from separate filings are not
+  totaled, because they can be alternatives; compare them in `facility_terms`.
+  Amounts do not measure cash funded, and a later amendment or termination can
+  change them.
 - Filing text can be incomplete or still processing. Check
   `document_search_available` before quoting.
 
@@ -80,7 +88,7 @@ Run `describe_structured_dataset` for `dip-financing`, then run
   "dataset": "dip-financing",
   "where": [{"field": "case_id", "op": "eq", "value": 47}],
   "select": ["case_id", "case_name", "current_docket_number", "date_filed",
-    "stage", "status", "assessment_status", "economic_coverage_count",
+    "stage", "status", "terms_basis", "assessment_status", "economic_coverage_count",
     "economic_coverage_applicable", "commitment_amount",
     "commitment_status", "new_money_amount", "new_money_status",
     "roll_up_amount", "roll_up_status", "source_filing_urls", "resolved_at"],
