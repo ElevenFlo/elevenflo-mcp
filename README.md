@@ -104,6 +104,8 @@ Pro. The public catalog includes:
 - `voluntary-petitions`
 - `keip-kerp`
 - `rule-2019-statements`
+- `rule-2019-memberships`
+- `rule-2019-positions`
 - `fees-by-professional`
 - `fee-timekeepers`
 - `post-confirmation-reports`
@@ -144,7 +146,7 @@ ElevenFlo MCP is available on every ElevenFlo plan and is provisioned
 automatically; there is no separate access request. You need an ElevenFlo
 account with a verified email address and an MCP-compatible client.
 
-Each successful tool response uses research credits based on returned records
+Each successful tool response uses MCP credits based on returned records
 and content bytes. Free includes 200 per calendar month and 100 per rolling day;
 Pro includes 10,000 per month and 2,000 per rolling day. Clients share the account's
 120 requests per minute. See the [credit formula](https://elevenflo.com/docs/mcp/tool-catalog#credits)

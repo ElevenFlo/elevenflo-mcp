@@ -12,7 +12,7 @@ no ElevenFlo account.
 
 ## Offer
 
-One purchase is **USD 5.00 for 100 research credits**. A credit measures
+One purchase is **USD 5.00 for 100 MCP credits**. A credit measures
 returned data: each successful call costs
 `max(1, ceil(records / 10), ceil(bytes / 10000))`, the same formula as
 subscribed accounts (see [credits](tool-catalog.md#credits)). Credits do not
@@ -74,7 +74,7 @@ link-cli mpp pay https://elevenflo.com/api/agent/v1/tab/purchases \
   --method POST --data '{}' \
   --header "Idempotency-Key: $(uuidgen | tr A-Z a-z)" \
   --header "X-Purchase-Token: $TOKEN" \
-  --context "Buying 100 ElevenFlo research credits (USD 5.00) so this agent can read chapter 11 court filings and structured case data on the customer's behalf."
+  --context "Buying 100 ElevenFlo MCP credits (USD 5.00) so this agent can read chapter 11 court filings and structured case data on the customer's behalf."
 ```
 
 ## Use the credential

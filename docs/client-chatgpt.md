@@ -14,6 +14,6 @@ and tool-access rules; verify the ElevenFlo connection in the environment
 where the work will run.
 
 For recurring research with a ChatGPT Dot, follow the
-[Dot case-watch recipe](https://elevenflo.com/docs/mcp/workflows/automation#use-a-chatgpt-dot).
+[Dot case-monitoring recipe](https://elevenflo.com/docs/mcp/workflows/automation#use-a-chatgpt-dot).
 Dots can use supported plugins already enabled for your account, subject to
 their existing permissions. Verify a manual Dot run before saving a schedule.

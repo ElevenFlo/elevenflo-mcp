@@ -209,8 +209,9 @@ Return the full text of the passages in one filing or transcript that match a
 few keywords. Every keyword must appear in a passage.
 
 - Inputs: `document_id`, `query`, optional `max_chunks` from 1 to 10.
-- Returns: selected exact chunks and offsets, or a typed not-found error that
-  identifies the requested UUID.
+- Returns: selected exact chunks and offsets. A searchable filing with no matching
+  passage returns an empty `chunks` list, `matched_chunks: 0`, and advice on how
+  to refine the search. An unknown document ID returns a typed not-found error.
 
 ## Document relationships
 
@@ -300,6 +301,9 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `ballot-class-results`
 - `bar-dates`
 - `dip-financing`
+- `dip-facilities`
+- `dip-milestones`
+- `dip-cash-flow-budgets`
 - `dip-approval-history`
 - `disclosure-solicitation-events`
 - `contract-treatment-events`
@@ -308,13 +312,21 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `conversions-dismissals-closures`
 - `committee-appointments`
 - `exclusivity-periods`
-- `fees-by-professional` — Cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected filings; surviving requests in the same rollup still contribute. Monetary sorts require `currency_code` with `eq`; the default sort is latest filing date. `sources` identifies contributors separately for each monetary field, with availability, counts and truncation. Null provenance awaits reprojection. Order-date filters select applicants without rebasing their lifetime totals to the selected month.
+- `fees-by-professional` — Cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected filings; surviving requests in the same rollup still contribute. `allowance_note` states in plain words when allowed totals are blank, when a final basis also counts interim awards, or when combined or undated awards are left out or added unchecked. Monetary sorts require `currency_code` with `eq`; the default sort is latest filing date. `sources` identifies contributors separately for each monetary field, with availability, counts and truncation. Null provenance awaits reprojection. Order-date filters select applicants without rebasing their lifetime totals to the selected month.
 - `fee-timekeepers`: named historical billing rates by firm and case. Filter
   `timekeeper_name` with name tokens in any order, `organization_name`,
   `timekeeper_title`, or `hourly_rate`. Group partner rates by firm, filing year,
   and currency; aggregates default to monthly, final, and first-and-final
   applications. Rates are observed billing evidence, not current market rates.
 - `fee-decisions`
+- `professional-retentions`: one row per professional engagement (counsel,
+  financial advisers, bankers, claims agents and others) for a retaining party
+  in a case, with its lifecycle status, the application and order it rests on,
+  each objection, withdrawal and order in `lifecycle_events`, and stated rate
+  tiers. Proposed is not approved; a status comes from an entered order.
+- `professional-retention-rates`: one row per stated rate tier. Compare like
+  with like: filter `band`, `period=hour` and `currency_code`, and filter
+  `basis`, because a requested rate is not an approved one.
 - `hearings-by-case`
 - `keip-kerp`
 - `plans`: each case's current Chapter 11 plan with lifecycle status, type,
@@ -322,6 +334,8 @@ Suggest normalized values for a field the dataset marks suggestable.
   null, never zero; an empty result never proves a plan event did not occur.
 - `post-confirmation-reports`
 - `rule-2019-statements`
+- `rule-2019-memberships`
+- `rule-2019-positions`
 - `asset-dispositions`
 - `schedule-summary-totals`
 - `top-unsecured-creditors`
@@ -334,8 +348,8 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `cases`: one row per canonical bankruptcy case for screening by chapter,
   Subchapter V election, court and state, petition date, entity form and
   NAICS code from the lead petition, industry and case-type tags, petition
-  creditor, asset and liability brackets with their evidence basis, latest
-  milestone, typed outcome and document coverage. Closed facts spell absence
+  creditor, asset and liability brackets with their evidence basis, stage,
+  typed outcome and document coverage. Closed facts spell absence
   as `unknown`, `missing` or `none`, so a group-by on them counts every case
   once; tag group-bys count a case once per tag and overlap.
 
@@ -352,19 +366,20 @@ for qualified joint conferences. Unresolved scope does not assert case ownership
 
 `ballot-tabulations` is **Ballot tabulations**. It returns one current ballot
 declaration with projected class totals. Its operative flag is true only for
-the latest non-supplemental declaration for the case and plan. `ballot-class-results`
+the latest non-supplemental declaration for the case and plan, or the latest
+supplemental one when the plan has no other. `ballot-class-results`
 returns immutable class-row evidence from those declarations. These class rows
 are not canonical plan votes.
 
 ## Credits
 
-Research credits measure returned data. Each successful response costs the largest
+MCP credits measure returned data. Each successful response costs the largest
 of 1 credit, returned records divided by 10 (rounded up), or canonical response
 bytes divided by 10,000 (rounded up). Protocol duplicates are counted only once.
 A 100-row response of 20 KB costs 10 credits; a 45 KB text response costs 5.
 Failed calls are not charged. Successful empty responses cost 1 credit.
 
-Free includes 200 research credits per calendar month and 100 per rolling 24 hours.
+Free includes 200 MCP credits per calendar month and 100 per rolling 24 hours.
 Pro includes 10,000 per calendar month and 2,000 per rolling 24 hours. Agents
 without an account buy prepaid tabs of 100 credits for USD 5.00; see
 [Pay as an agent](agent-purchases.md). All clients

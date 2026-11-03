@@ -59,12 +59,11 @@ Filing links use your ElevenFlo account and document access.
 ## Coverage and limits
 
 - The `dip-financing` dataset held 1,626 case-level records on September 10,
-  2026. Each row names the controlling document, its stage and status, and a
-  status for every material field. A `not_disclosed` or `unknown` field is not
-  "none". `assessment_status` says every applicable field has a recorded
-  status; `economic_coverage_count` of `economic_coverage_applicable` says how
-  many the filings state or state to be absent. `unverified_absence` marks a
-  `not_disclosed` claim the cited filing itself mentions.
+  2026. Each row names the controlling document and its `instrument`, the court's
+  `dip_outcome` and `cash_collateral_outcome`, and a `<term>_answer_basis` for every
+  material term: `stated`, `silent_full_read` (the filing was read and does not
+  say), `by_reference` (the filing points to another document) or `unread`. Neither
+  of the last three means "none".
 - Case amounts and terms are source-stated for the facilities that
   `terms_basis` names: `order_approved`, `approved_amendment_pending` (an
   approved loan with a pending amendment or later motion), `approved_subtotal` (approved loans
@@ -88,10 +87,10 @@ Run `describe_structured_dataset` for `dip-financing`, then run
   "dataset": "dip-financing",
   "where": [{"field": "case_id", "op": "eq", "value": 47}],
   "select": ["case_id", "case_name", "current_docket_number", "date_filed",
-    "stage", "status", "terms_basis", "assessment_status", "economic_coverage_count",
-    "economic_coverage_applicable", "commitment_amount",
-    "commitment_status", "new_money_amount", "new_money_status",
-    "roll_up_amount", "roll_up_status", "source_filing_urls", "resolved_at"],
+    "instrument", "dip_outcome", "terms_basis", "commitment_amount_usd",
+    "commitment_answer_basis", "new_money_amount_usd", "new_money_answer_basis",
+    "roll_up_state", "roll_up_amount_usd", "roll_up_answer_basis",
+    "source_filing_urls", "resolved_at"],
   "page_size": 1
 }
 ```
@@ -100,10 +99,12 @@ Keep the response snapshot with the result. `date_filed` dates the controlling
 financing source. `resolved_at` dates the projection refresh. Neither establishes
 cash available today. Review later docket developments separately.
 
-A `partial` row can support a specific comparison after source verification.
-Qualify each requested field, including its conditions and status. Preserve
-`confirmed_absent`, `not_applicable`, `not_disclosed`, `unverified_absence` and
-`unknown` separately.
+A row can support a specific comparison after source verification. Qualify each
+requested field, including its conditions and answer basis, and keep `stated`,
+`silent_full_read`, `by_reference` and `unread` separate. `roll_up_state` answers
+whether a roll-up exists (`effective`, `on_final_order`, `requested_only`,
+`refinancing_not_roll_up`, `none`, `undetermined`); `roll_up_amount_usd` sizes it, so an
+`effective` row with no amount is a roll-up whose dollars are not stated.
 A population filtered to three `stated` monetary fields is not a denominator
 for roll-up incidence.
 
@@ -127,7 +128,7 @@ has been reviewed; do not replace it with the stated commitment.
 
 ## Price and access
 
-Free accounts include 200 research credits a month. Pro is $99 per seat per month
+Free accounts include 200 MCP credits a month. Pro is $99 per seat per month
 and includes 10,000 credits. See [pricing](https://elevenflo.com/pricing).
 
 ## Connect your client

@@ -96,8 +96,8 @@ existing email delivery:
 
 1. Ask your connected client to save a monitor with the case or market filters
    you want, then list your monitors to verify the saved scope.
-2. Open [Account](https://elevenflo.com/account-info), find **Tracked case
-   updates** under email preferences, and choose an available delivery cadence.
+2. Open [Settings › Notifications](https://elevenflo.com/account-info/notifications),
+   find **Tracked case updates**, and choose an available delivery cadence.
    Delivery requires a verified email address and the account access needed
    for the monitor. The control shows the available choices.
 3. Check the first delivered update and its filing citations. Monitor email
