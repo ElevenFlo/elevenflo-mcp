@@ -7,7 +7,12 @@ sign in with your ElevenFlo web-app account, and every authorization request
 uses the OAuth 2.1 authorization code flow with PKCE. Your client identifies
 itself with a Client ID Metadata Document URL, a pre-registered client ID, or
 dynamic registration. You then approve a consent screen, and only after that
-does a grant exist.
+does an interactive grant exist. Teams can also enable
+[Claude-issued managed authorization](https://elevenflo.com/docs/mcp/setup#enterprise-managed-auth):
+an administrator registers the team's trusted issuer, and Claude exchanges a
+signed identity assertion for a member's access token without individual
+consent. Existing verified team membership and the member's normal ElevenFlo
+permissions remain required.
 
 > [!WARNING]
 > Use OAuth sign-in only. Do not paste a bearer token, API token, or custom `Authorization` header for ElevenFlo MCP. Your client manages the bearer tokens that the OAuth flow issues.
