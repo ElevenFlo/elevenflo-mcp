@@ -41,8 +41,8 @@ not configure a static bearer token, API token, or custom `Authorization`
 header for ElevenFlo MCP.
 
 Clients that support and persist OAuth refresh tokens can refresh access
-tokens; the default refresh-token family expires 30 days from OAuth approval. Revoke unused client grants from
-Account, then MCP connections.
+tokens. Each successful refresh renews the default 30-day refresh-token lifetime.
+Revoke unused client grants from Account, then MCP connections.
 
 Unauthenticated browser requests to `https://elevenflo.com/mcp` may return
 `401`. That path is the protected MCP protocol endpoint, not a browser

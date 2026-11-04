@@ -43,7 +43,8 @@ disabling the setting revokes that team's managed connections; removing an
 ElevenFlo team member also revokes their managed connections. These changes
 reach MCP workers within 30 seconds. Removing someone only from Claude stops
 new assertions; an already-issued ElevenFlo access token can remain valid
-until it expires (normally one hour).
+until it expires (at most one hour). Claude renews it automatically using a new
+identity assertion, without asking the member to sign in again.
 
 Claude-issued identity establishes Claude organization membership. It does not
 establish corporate SSO, MFA, or group membership. Regular interactive OAuth

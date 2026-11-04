@@ -10,8 +10,9 @@ The same failure covers a grant that was revoked, a grant created against a
 different endpoint, and a client that never saved its refreshed token.
 
 Clients that support and persist OAuth refresh tokens can refresh access
-without signing in again. The default refresh-token family expires 30 days
-after authorization. Revocation, expiry, changed access, or a client that fails
+without signing in again. Each successful refresh renews the default 30-day
+refresh-token lifetime. Connections that go 30 days without refreshing require
+sign-in again. Revocation, expiry, changed access, or a client that fails
 to save refreshed credentials can require reauthorization. Authorizing the
 same account from another client does not revoke this connection.
 
