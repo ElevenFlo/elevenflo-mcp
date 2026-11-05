@@ -31,14 +31,16 @@ document row carries `has_primary_pdf: true`, open the filing at
 ### `find_cases`
 
 Resolve a case by identity. `query` matches case name, case number,
-jurisdiction and judge with typo tolerance; it does not match counsel, docket
-text or filing content (use `search_filings` for those). Screening is not this
-tool: filter or count a population with the `cases` structured dataset.
+jurisdiction and judge with typo tolerance; legal-form words such as Inc.,
+LLC, Holdings and Group do not count toward a name match. It does not match
+counsel, docket text or filing content (use `search_filings` for those).
+Screening is not this tool: filter or count a population with the `cases`
+structured dataset.
 
 - Inputs: `query` (required) and `limit` (1 to 50). Any other argument is
   rejected with `invalid_input` naming the argument, never an empty result.
-- Returns: `case_id`, identifying metadata, petition date, the petition asset
-  and liability brackets with `assets_basis_quality` and
+- Returns: `case_id`, identifying metadata, petition date, chapter, the
+  petition asset and liability brackets with `assets_basis_quality` and
   `liabilities_basis_quality` (`evidenced` or `legacy_unverified`), document
   coverage and case-type tags. Best match first.
 

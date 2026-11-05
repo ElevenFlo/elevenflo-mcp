@@ -178,7 +178,6 @@ Client setup: [Claude Code](docs/client-claude-code.md) ·
 [Claude Desktop](docs/client-claude-desktop.md) ·
 [Codex CLI](docs/client-codex-cli.md) ·
 [ChatGPT](docs/client-chatgpt.md) ·
-[Harvey](docs/client-harvey.md) ·
 [Other clients](docs/client-other.md)
 
 Claude users can start from the
