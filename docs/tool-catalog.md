@@ -279,6 +279,11 @@ Return typed rows from one dataset.
 - Returns: public rows, signed continuation cursor, requested facets, snapshot
   freshness, coverage window, provenance, and the effective `page_size`.
   Wide projections clamp page size to the select budget.
+- Limits: a `cases` screen on `assets_range` or `liabilities_range` cannot
+  match a case whose petition reports no bracket. Such a search or aggregate
+  also returns `coverage.unknown_excluded`, the number of cases that match
+  every other filter but were left out for that reason, and its statement says
+  how many of them are index-only (listed from a court feed, no petition on file).
 
 ### `aggregate_structured_data`
 
