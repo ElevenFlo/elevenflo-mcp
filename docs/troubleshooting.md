@@ -55,7 +55,7 @@ reset on the first of the month; [Pro](https://elevenflo.com/pricing) includes
 10,000. Account → MCP connections shows the allowance and the remaining
 balance.
 
-Free accounts also have a rolling 24-hour limit of 100 credits. When either
+Pro accounts also have a rolling 24-hour limit of 2,000 credits. When a
 limit is reached, the error says when more credits become available, in
 Eastern and UTC time, for example "More become available at 2:38 PM ET on
 Oct 15 (18:38 UTC)." Your AI client should pass this on rather than retry; repeated

@@ -147,7 +147,7 @@ automatically; there is no separate access request. You need an ElevenFlo
 account with a verified email address and an MCP-compatible client.
 
 Each successful tool response uses MCP credits based on returned records
-and content bytes. Free includes 200 per calendar month and 100 per rolling day;
+and content bytes. Free includes 200 per calendar month with no daily limit;
 Pro includes 10,000 per month and 2,000 per rolling day. Clients share the account's
 120 requests per minute. See the [credit formula](https://elevenflo.com/docs/mcp/tool-catalog#credits)
 and current account balances. Failed calls are not charged.

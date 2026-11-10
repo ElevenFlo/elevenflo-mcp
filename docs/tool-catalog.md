@@ -390,13 +390,13 @@ bytes divided by 10,000 (rounded up). Protocol duplicates are counted only once.
 A 100-row response of 20 KB costs 10 credits; a 45 KB text response costs 5.
 Failed calls are not charged. Successful empty responses cost 1 credit.
 
-Free includes 200 MCP credits per calendar month and 100 per rolling 24 hours.
+Free includes 200 MCP credits per calendar month, with no daily limit.
 Pro includes 10,000 per calendar month and 2,000 per rolling 24 hours. Agents
 without an account buy prepaid tabs of 100 credits for USD 5.00; see
 [Pay as an agent](agent-purchases.md). All clients
 share the account balance and its 120-request-per-minute limit. Monthly balances
-reset at 00:00 UTC on the first of the month; rolling capacity recovers as usage
-ages past 24 hours. A result that exceeds remaining capacity, or the caller's
+reset at 00:00 UTC on the first of the month; Pro's rolling capacity recovers as
+usage ages past 24 hours. A result that exceeds remaining capacity, or the caller's
 `elevenflo/max_credits` request budget, is withheld and not charged. Every
 successful result reports its cost and the remaining balance in `_meta`. See
 current balances on your account page.
