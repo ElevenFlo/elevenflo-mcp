@@ -304,7 +304,6 @@ Suggest normalized values for a field the dataset marks suggestable.
 
 ### Available datasets
 
-- `ballot-tabulations`
 - `ballot-class-results`
 - `bar-dates`
 - `dip-financing`
@@ -378,12 +377,16 @@ bankruptcy-case, single-adversary, joint-adversary and unresolved ownership.
 tracking URLs; `scope_sources` contains immutable public-filing/hash references
 for qualified joint conferences. Unresolved scope does not assert case ownership.
 
-`ballot-tabulations` is **Ballot tabulations**. It returns one current ballot
-declaration with projected class totals. Its operative flag is true only for
-the latest non-supplemental declaration for the case and plan, or the latest
-supplemental one when the plan has no other. `ballot-class-results`
-returns immutable class-row evidence from those declarations. These class rows
-are not canonical plan votes.
+`ballot-class-results` uses schema `ballot-class-results.v3`. It returns one
+row per plan class on each current ballot tabulation declaration, with the
+declaration's filing date, tabulation date, voting deadline and plan on every
+row. For one declaration's class counts, group by `tabulation_id` and
+`reported_result` and count rows. `is_operative` is true only for the latest
+non-supplemental declaration for the case and plan, or the latest supplemental
+one when the plan has no other. `classes_complete` is false when the
+declaration reports classes that are not rows. A declaration with no class row
+does not appear. These class rows are what the declaration reports; they are
+not canonical plan votes.
 
 ## Credits
 

@@ -94,7 +94,6 @@ return typed rows, grouped aggregates, or normalized value suggestions. Free
 can list and describe datasets; searches, aggregates, and suggestions require
 Pro. The public catalog includes:
 
-- `ballot-tabulations`
 - `ballot-class-results`
 - `committee-appointments`
 - `asset-dispositions`
