@@ -314,7 +314,11 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `dip-approval-history`
 - `disclosure-solicitation-events`
 - `contract-treatment-events`
-- `hearing-sessions`
+- `hearing-sessions`: one row per current hearing session. A `hearing_date`
+  sort is calendar order: one day's sessions follow the clock. For per-case
+  totals group by `case_id`: the count is sessions, the sum of `matter_count`
+  is agenda matters, and the minimum and maximum `hearing_date` are the first
+  and last hearing.
 - `monthly-operating-reports`
 - `conversions-dismissals-closures`: court orders converting, dismissing or
   closing a case, newest-filed first. Rows default to rulings on the case
@@ -338,7 +342,6 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `professional-retention-rates`: one row per stated rate tier. Compare like
   with like: filter `band`, `period=hour` and `currency_code`, and filter
   `basis`, because a requested rate is not an approved one.
-- `hearings-by-case`
 - `keip-kerp`
 - `plans`: each case's current Chapter 11 plan with lifecycle status, type,
   proponent, and filing, confirmation, and effective dates. A withheld date is
@@ -351,8 +354,8 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `schedule-summary-totals`
 - `top-unsecured-creditors`
 - `executory-contracts`
-- `schedule-ab-assets`
-- `schedule-ab-real-property`
+- `schedule-assets`: one disclosed asset item on a Schedule A/B filing; filter
+  `asset_category` to `real_property` for real estate.
 - `codebtors`
 - `claim-transfers`
 - `voluntary-petitions`
@@ -369,7 +372,7 @@ This page is a static copy of the public catalog. Call
 for each dataset's fields, operations, and limits. Datasets outside the public
 catalog return `unknown_dataset`.
 
-`hearing-sessions` uses schema `hearing-sessions.v2`. `scope_kind` distinguishes
+`hearing-sessions` uses schema `hearing-sessions.v4`. `scope_kind` distinguishes
 bankruptcy-case, single-adversary, joint-adversary and unresolved ownership.
 `adversary_proceedings` contains canonical court numbers, captions and available
 tracking URLs; `scope_sources` contains immutable public-filing/hash references

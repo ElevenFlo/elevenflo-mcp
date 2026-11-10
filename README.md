@@ -97,7 +97,6 @@ Pro. The public catalog includes:
 - `ballot-tabulations`
 - `ballot-class-results`
 - `committee-appointments`
-- `hearings-by-case`
 - `asset-dispositions`
 - `top-unsecured-creditors`
 - `claim-transfers`
@@ -112,8 +111,7 @@ Pro. The public catalog includes:
 - `plans`
 - `schedule-summary-totals`
 - `executory-contracts`
-- `schedule-ab-assets`
-- `schedule-ab-real-property`
+- `schedule-assets`
 - `codebtors`
 - `bar-dates`
 - `dip-financing`
