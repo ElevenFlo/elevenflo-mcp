@@ -316,7 +316,11 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `contract-treatment-events`
 - `hearing-sessions`
 - `monthly-operating-reports`
-- `conversions-dismissals-closures`
+- `conversions-dismissals-closures`: court orders converting, dismissing or
+  closing a case, newest-filed first. Rows default to rulings on the case
+  itself; filter `applies_to_tracked_case` to `no` or `unresolved` for orders
+  that end only other jointly administered cases or leave the scope open.
+  `affected_case_numbers` lists the case numbers the order prints.
 - `committee-appointments`
 - `exclusivity-periods`
 - `fees-by-professional` — Cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected filings; surviving requests in the same rollup still contribute. `allowance_note` states in plain words when allowed totals are blank, when a final basis also counts interim awards, or when combined or undated awards are left out or added unchecked. Monetary sorts require `currency_code` with `eq`; the default sort is latest filing date. `sources` identifies contributors separately for each monetary field, with availability, counts and truncation. Null provenance awaits reprojection. Order-date filters select applicants without rebasing their lifetime totals to the selected month.
