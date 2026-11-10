@@ -59,7 +59,8 @@ Pro accounts also have a rolling 24-hour limit of 2,000 credits. When a
 limit is reached, the error says when more credits become available, in
 Eastern and UTC time, for example "More become available at 2:38 PM ET on
 Oct 15 (18:38 UTC)." Your AI client should pass this on rather than retry; repeated
-retries before that time fail the same way.
+retries before that time fail the same way. On a Free account the error also
+says what Pro includes and links to the pricing page.
 
 Wait for the stated time or upgrade your plan. Reconnecting does not add
 credits. If the error persists after the stated reset or retry interval, contact
