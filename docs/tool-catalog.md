@@ -360,8 +360,10 @@ Suggest normalized values for a field the dataset marks suggestable.
   open proceeding.
 - `bankruptcy-appeals`: one row per notice of appeal, with appellants, the
   docket numbers of the orders appealed, the court the appeal was first
-  directed to, its case number there and the ruling once the bankruptcy docket
-  records one. A null disposition does not establish a pending appeal.
+  directed to, its case number there, the district judge where the district
+  court's own docket is on file, and the ruling once the bankruptcy docket or
+  that district docket records one. A null disposition does not establish a
+  pending appeal; a panel's or court of appeals' docket is not collected.
 - `rule-2019-statements`
 - `rule-2019-memberships`
 - `rule-2019-positions`
