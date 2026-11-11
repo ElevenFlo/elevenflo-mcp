@@ -354,6 +354,15 @@ Suggest normalized values for a field the dataset marks suggestable.
   proponent, and filing, confirmation, and effective dates. A withheld date is
   null, never zero; an empty result never proves a plan event did not occur.
 - `post-confirmation-reports`
+- `adversary-proceedings`: one row per adversary proceeding under a court
+  number, with the parties and nature of suit the clerk announces on the
+  bankruptcy docket and the dates of judgment, dismissal, closing and appeal
+  entries read since. There is no status: a null date does not establish an
+  open proceeding.
+- `bankruptcy-appeals`: one row per notice of appeal, with appellants, the
+  docket numbers of the orders appealed, the court the appeal was first
+  directed to, its case number there and the ruling once the bankruptcy docket
+  records one. A null disposition does not establish a pending appeal.
 - `rule-2019-statements`
 - `rule-2019-memberships`
 - `rule-2019-positions`

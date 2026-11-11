@@ -43,7 +43,8 @@ ElevenFlo account and document access.
   by query or page through a busy docket. A bounded result is not the complete
   docket.
 - `list_case_updates` returns source-backed updates on the cases you watch:
-  financing, sale, plan, claims, status, governance and hearing developments.
+  financing, sale, plan, claims, status, governance, hearing, and adversary
+  proceeding and appeal developments.
   Treat them as leads and read the filing.
 
 ## Price and access

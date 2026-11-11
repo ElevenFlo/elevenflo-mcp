@@ -102,6 +102,8 @@ Pro. The public catalog includes:
 - `claim-transfers`
 - `voluntary-petitions`
 - `keip-kerp`
+- `adversary-proceedings`
+- `bankruptcy-appeals`
 - `rule-2019-statements`
 - `rule-2019-memberships`
 - `rule-2019-positions`
