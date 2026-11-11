@@ -289,7 +289,9 @@ Return typed rows from one dataset.
 Count and summarize records across one dataset.
 
 - Inputs: `dataset`; optional typed `where`, `group_by`, metrics, ordering, and
-  bounded result limit as declared by the dataset description.
+  a result limit of up to 1,000 groups. A date field groups by a time bucket
+  and a number field by a fixed `width`. A metric's own `where` counts only
+  the rows it matches, so two metrics in one call give a rate.
 - Returns: aggregate-safe grouped values and metrics with snapshot freshness,
   coverage window, and provenance.
 
