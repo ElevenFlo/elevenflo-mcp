@@ -324,7 +324,15 @@ Suggest normalized values for a field the dataset marks suggestable.
   itself; filter `applies_to_tracked_case` to `no` or `unresolved` for orders
   that end only other jointly administered cases or leave the scope open.
   `affected_case_numbers` lists the case numbers the order prints.
-- `committee-appointments`
+- `committee-current`: one row per official committee with its current roster.
+  `notices` lists every appointment notice with the roster that notice states,
+  oldest first.
+- `committee-members`: one row per member's time on a committee. Filter
+  `is_current` to `true` for today's roster. For the members on a date, filter
+  `joined_date` with `lte` that date and `on_committee_until` with `gt` it.
+  `joined_date_basis` and `left_date_basis` say whether a notice states the
+  date or a filing date bounds it; count departures with `end_transition`
+  equal to `actual_departure`.
 - `exclusivity-periods`
 - `fees-by-professional` — Cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected filings; surviving requests in the same rollup still contribute. `allowance_note` states in plain words when allowed totals are blank, when a final basis also counts interim awards, or when combined or undated awards are left out or added unchecked. Monetary sorts require `currency_code` with `eq`; the default sort is latest filing date. `sources` identifies contributors separately for each monetary field, with availability, counts and truncation. Null provenance awaits reprojection. Order-date filters select applicants without rebasing their lifetime totals to the selected month.
 - `fee-timekeepers`: named historical billing rates by firm and case. Filter

@@ -95,7 +95,8 @@ can list and describe datasets; searches, aggregates, and suggestions require
 Pro. The public catalog includes:
 
 - `ballot-class-results`
-- `committee-appointments`
+- `committee-current`
+- `committee-members`
 - `asset-dispositions`
 - `top-unsecured-creditors`
 - `claim-transfers`
