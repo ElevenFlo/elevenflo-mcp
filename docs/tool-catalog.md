@@ -263,12 +263,11 @@ Call this before you query an unfamiliar dataset.
 - Returns: public fields and meanings, typed filter operators, selectable
   columns, sorts, facets, aggregate capabilities, examples, and `search_limits`
   (`max_sort_clauses`, `max_page_size`).
-- DIP filters use `stage` and `financing_structure`; `stages` and
-  `financing_structures` are declared aliases. Sale-process uses
-  `latest_source_date_filed` and fees-by-professional uses `latest_date_filed`;
-  both retain `date_filed` as a declared alias. Calendar-date ranges support
+- A filter has one name, the one `describe_structured_dataset` lists; there
+  are no aliases. Sale-process dates filter on `latest_source_date_filed` and
+  fees-by-professional on `latest_date_filed`. Calendar-date ranges support
   `eq`, `gt`, `lt`, `gte`, `lte`, and `between`; numeric ranges support
-  `gte`, `lte`, and `between`.
+  `gte`, `lte`, and `between`. `exists` tests whether a value is stated.
 
 ### `search_structured_data`
 
