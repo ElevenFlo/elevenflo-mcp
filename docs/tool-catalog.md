@@ -310,7 +310,7 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `dip-facilities`
 - `dip-milestones`
 - `dip-cash-flow-budgets`
-- `dip-approval-history`
+- `dip-orders`
 - `disclosure-solicitation-events`
 - `contract-treatment-events`
 - `hearing-sessions`: one row per current hearing session. A `hearing_date`
@@ -324,7 +324,7 @@ Suggest normalized values for a field the dataset marks suggestable.
   itself; filter `applies_to_tracked_case` to `no` or `unresolved` for orders
   that end only other jointly administered cases or leave the scope open.
   `affected_case_numbers` lists the case numbers the order prints.
-- `committee-current`: one row per official committee with its current roster.
+- `committees`: one row per official committee with its current roster.
   `notices` lists every appointment notice with the roster that notice states,
   oldest first.
 - `committee-members`: one row per member's time on a committee. Filter
@@ -357,7 +357,7 @@ Suggest normalized values for a field the dataset marks suggestable.
 - `rule-2019-statements`
 - `rule-2019-memberships`
 - `rule-2019-positions`
-- `asset-dispositions`
+- `asset-sales`
 - `schedule-summary-totals`
 - `top-unsecured-creditors`
 - `executory-contracts`
