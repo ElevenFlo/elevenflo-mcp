@@ -12,7 +12,7 @@ today.
 ## Worked example
 
 The row search below requires Pro. Free accounts can read dataset
-descriptions, run aggregates that do not group by case, and read [the DIP financing preview](https://elevenflo.com/datasets/dip-financing).
+descriptions, run aggregates that do not group by a case, firm or party name, and read [the DIP financing preview](https://elevenflo.com/datasets/dip-financing).
 
 Your client runs `find_cases` for the debtor, `search_dataset` on
 `dip-financing` with `case_id` 47, then `read_document_pages` on the cited

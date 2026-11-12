@@ -91,7 +91,7 @@ is not part of the public MCP tool catalog.
 comparable records or a population rather than filing text: discover the
 datasets available to your account, describe one before querying it, then
 return typed rows or grouped aggregates. Free can list and describe datasets
-and run aggregates that do not group by case; reading rows requires Pro. The public catalog includes:
+and run aggregates that do not group by a case, firm or party name; reading rows requires Pro. The public catalog includes:
 
 - `ballot-class-results`
 - `committees`

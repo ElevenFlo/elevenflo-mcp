@@ -26,7 +26,7 @@ organization-approved apps can retain a frozen tool snapshot; their owner may
 need to refresh or republish the actions. Reconnecting alone may not update it.
 
 The 16-tool catalog is shared across Free and Pro, but reading dataset rows
-and grouping an aggregate by case require Pro. Free can list and describe
+and grouping an aggregate by a case, firm or party name require Pro. Free can list and describe
 datasets and run other aggregates. A `not_entitled` query error does not mean that a tool is missing.
 
 ## Search results are empty

@@ -3,7 +3,7 @@
 ElevenFlo MCP is on for every account with a verified email address, on every
 plan. There is no access request. Free accounts include 200 MCP credits a month;
 Pro includes 10,000. Free can list and describe datasets and run
-aggregates that do not group by case; reading dataset rows requires Pro.
+aggregates that do not group by a case, firm or party name; reading dataset rows requires Pro.
 
 You need an MCP client and browser access for sign-in and consent.
 
