@@ -349,6 +349,17 @@ Count and summarize records across one dataset.
   court's own docket is on file, and the ruling once the bankruptcy docket or
   that district docket records one. A null disposition does not establish a
   pending appeal; a panel's or court of appeals' docket is not collected.
+- `counsel-appearances`: one row per notice of appearance, pro hac vice motion
+  or request for notice that names a client, a firm or an attorney: who
+  represents whom, including creditors, lenders and ad hoc groups no retention
+  order covers. A firm is recognized only when a retention, a fee application
+  or the firm directory already names it. An appearance is not a court-approved
+  retention, and a missing row does not show that a party is unrepresented.
+- `case-people`: one row per person, firm and case, for the people a case's
+  filings name as working on it: what their firm does on the case, whom it acts
+  for, the person's title, the latest filing naming them and links to the
+  person's and the firm's ElevenFlo pages. The firm is the one on that case,
+  not current employment; count people with `count_distinct` on `person_name`.
 - `rule-2019-statements`
 - `rule-2019-memberships`
 - `rule-2019-positions`

@@ -103,6 +103,8 @@ and run aggregates that do not group by a case, firm or party name; reading rows
 - `keip-kerp`
 - `adversary-proceedings`
 - `bankruptcy-appeals`
+- `counsel-appearances`
+- `case-people`
 - `rule-2019-statements`
 - `rule-2019-memberships`
 - `rule-2019-positions`
