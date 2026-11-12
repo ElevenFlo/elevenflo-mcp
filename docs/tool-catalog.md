@@ -252,8 +252,8 @@ Searches, aggregates and value suggestions require ElevenFlo Pro.
 List the datasets available to you.
 
 - Inputs: optional `limit` and signed `cursor`.
-- Returns: dataset slugs, grain, freshness, coverage window, available
-  operations, and provenance.
+- Returns: dataset slugs, grain, `as_of`, `complete_since`, `grade`,
+  `cases_covered`, and available operations.
 
 ### `describe_structured_dataset`
 
@@ -275,14 +275,12 @@ Return typed rows from one dataset.
 
 - Inputs: `dataset`; optional typed `where`, `select`, `sort`, `page_size`,
   `cursor`, and requested `facets` as declared by the dataset description.
-- Returns: public rows, signed continuation cursor, requested facets, snapshot
-  freshness, coverage window, provenance, and the effective `page_size`.
-  Wide projections clamp page size to the select budget.
+- Returns: public rows, signed continuation cursor, requested facets, the
+  dataset name, the snapshot (`as_of`, `complete_since`, `grade`,
+  `cases_covered`), and the effective `page_size`. Wide projections clamp page
+  size to the select budget.
 - Limits: a `cases` screen on `assets_range` or `liabilities_range` cannot
-  match a case whose petition reports no bracket. Such a search or aggregate
-  also returns `coverage.unknown_excluded`, the number of cases that match
-  every other filter but were left out for that reason, and its statement says
-  how many of them are index-only (listed from a court feed, no petition on file).
+  match a case whose petition reports no bracket.
 
 ### `aggregate_structured_data`
 
@@ -292,8 +290,9 @@ Count and summarize records across one dataset.
   a result limit of up to 1,000 groups. A date field groups by a time bucket
   and a number field by a fixed `width`. A metric's own `where` counts only
   the rows it matches, so two metrics in one call give a rate.
-- Returns: aggregate-safe grouped values and metrics with snapshot freshness,
-  coverage window, and provenance.
+- Returns: aggregate-safe grouped values and metrics, the dataset name and
+  the snapshot. A time bucket that starts before `complete_since` is marked
+  `partial`.
 
 ### `suggest_structured_values`
 
