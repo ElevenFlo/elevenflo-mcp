@@ -90,9 +90,8 @@ is not part of the public MCP tool catalog.
 **Structured data.** Query typed datasets when the question is about
 comparable records or a population rather than filing text: discover the
 datasets available to your account, describe one before querying it, then
-return typed rows, grouped aggregates, or normalized value suggestions. Free
-can list and describe datasets; searches, aggregates, and suggestions require
-Pro. The public catalog includes:
+return typed rows or grouped aggregates. Free can list and describe datasets
+and run aggregates that do not group by case; reading rows requires Pro. The public catalog includes:
 
 - `ballot-class-results`
 - `committees`

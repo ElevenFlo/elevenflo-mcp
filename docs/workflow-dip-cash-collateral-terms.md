@@ -11,11 +11,11 @@ today.
 
 ## Worked example
 
-The structured-data query below requires Pro. Free accounts can read dataset
-descriptions and [the DIP financing preview](https://elevenflo.com/datasets/dip-financing).
+The row search below requires Pro. Free accounts can read dataset
+descriptions, run aggregates that do not group by case, and read [the DIP financing preview](https://elevenflo.com/datasets/dip-financing).
 
-Your client runs `find_cases` for the debtor, `search_structured_data` on
-`dip-financing` with `case_id` 47, then `read_document_chunks` on the cited
+Your client runs `find_cases` for the debtor, `search_dataset` on
+`dip-financing` with `case_id` 47, then `read_document_pages` on the cited
 page. The dataset row links the supporting filings. Read the source page to verify
 the figures; a filing link alone does not establish support for each field.
 The order supplies the language:
@@ -79,8 +79,8 @@ Filing links use your ElevenFlo account and document access.
 
 ## Reproduce a dated evidence packet
 
-Run `describe_structured_dataset` for `dip-financing`, then run
-`search_structured_data` with this input:
+Run `describe_dataset` for `dip-financing`, then run
+`search_dataset` with this input:
 
 ```json
 {

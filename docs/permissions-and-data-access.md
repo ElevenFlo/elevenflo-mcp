@@ -44,7 +44,7 @@ canonical list.
 
 ElevenFlo indexes public court records (dockets, filings, and hearing
 transcripts). Research results link to public filings and court citations.
-`read_document_chunks` returns exact retrieved filing text. Summaries and typed
+`read_document_pages` returns exact retrieved filing text. Summaries and typed
 datasets are derived research aids; verify material claims against the filing.
 
 With `save_monitor`, `list_monitors`, `delete_monitor` and `list_case_updates`,
@@ -91,7 +91,7 @@ ElevenFlo returns retrieved text and does not judge it. As a result:
 
 - Cite the filing or source for every factual claim (case, docket number,
   document, source URL).
-- Call `read_document_chunks` before relying on legal language, dates, amounts,
+- Call `read_document_pages` before relying on legal language, dates, amounts,
   deadlines, vote percentages, releases, injunctions, or defined terms. Logs
   are not a substitute for source review.
 

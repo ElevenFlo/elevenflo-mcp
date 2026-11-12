@@ -25,9 +25,9 @@ case the client cached an older `tools/list` response. Published or
 organization-approved apps can retain a frozen tool snapshot; their owner may
 need to refresh or republish the actions. Reconnecting alone may not update it.
 
-The 18-tool catalog is shared across Free and Pro, but structured searches,
-aggregates, and value suggestions require Pro. Free can list and describe
-datasets. A `not_entitled` query error does not mean that a tool is missing.
+The 16-tool catalog is shared across Free and Pro, but reading dataset rows
+and grouping an aggregate by case require Pro. Free can list and describe
+datasets and run other aggregates. A `not_entitled` query error does not mean that a tool is missing.
 
 ## Search results are empty
 
@@ -37,8 +37,8 @@ that phrase is likely to appear in the filing.
 
 ## Analysis fails on a long document
 
-Run `search_document_chunks` first, then pass the selected chunk IDs to
-`read_document_chunks`.
+Run `search_document_pages` first, then pass the selected chunk IDs to
+`read_document_pages`.
 
 ## Rate limit exceeded
 

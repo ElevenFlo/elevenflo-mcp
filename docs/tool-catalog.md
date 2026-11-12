@@ -4,8 +4,8 @@ The live `tools/list` response is the exact input and output contract. Inputs
 reject unknown fields, errors return `{code, message, retryable, recovery?, details?}`,
 and public TextContent is the JSON copy of the same `structuredContent` payload.
 Every list-returning tool returns bounded rows. ElevenFlo MCP
-exposes 21 tools: research tools plus monitor management (18 bankruptcy research
-tools and three tools that manage the connected user's own monitors). This page is the complete list,
+exposes 16 tools: 13 bankruptcy research tools and three tools that manage
+the connected user's own monitors. This page is the complete list,
 and a tool absent here is not available. See
 [Permissions and data access](https://elevenflo.com/docs/mcp/permissions-and-data-access)
 for what ElevenFlo MCP cannot do.
@@ -18,12 +18,12 @@ document row carries `has_primary_pdf: true`, open the filing at
 ## The research loop
 
 1. `find_cases` to resolve a `case_id`.
-2. `list_docket_entries`, `search_filings`, or `find_key_documents` to
+2. `list_docket_entries`, `search_documents`, or `find_key_documents` to
    select documents.
-3. `search_document_chunks` to preview where keywords appear across up to 25
-   filings.
-4. `extract_document_passages` for the full matching passages in one filing, or
-   `read_document_chunks` for exact passages by ID.
+3. `search_document_pages` to see which pages hold the keywords across up to
+   25 filings.
+4. `read_document_pages` for the text of those pages, or of the pages in one
+   filing that match a query.
 5. `search_document_summaries` or `get_document_summary` for synthesis.
 
 ## Case and taxonomy
@@ -33,7 +33,7 @@ document row carries `has_primary_pdf: true`, open the filing at
 Resolve a case by identity. `query` matches case name, case number,
 jurisdiction and judge with typo tolerance; legal-form words such as Inc.,
 LLC, Holdings and Group do not count toward a name match. It does not match
-counsel, docket text or filing content (use `search_filings` for those).
+counsel, docket text or filing content (use `search_documents` for those).
 Screening is not this tool: filter or count a population with the `cases`
 structured dataset.
 
@@ -43,13 +43,6 @@ structured dataset.
   petition asset and liability brackets with `assets_basis_quality` and
   `liabilities_basis_quality` (`evidenced` or `legacy_unverified`), document
   coverage and case-type tags. Best match first.
-
-### `list_document_types`
-
-List filing categories and tags.
-
-- Inputs: optional `query`.
-- Returns: category keys, labels, and canonical tags.
 
 ### `list_docket_entries`
 
@@ -66,8 +59,8 @@ relevant terminal notice rather than relying on a projected date.
 - Text search: `query` matches an entry when every whitespace-separated term
   appears, in any order and ignoring case. When a date or docket number is
   known, start with those filters and omit `query` and type filters.
-- Filters: `document_type_tags` accepts only category keys and canonical tags
-  returned by `list_document_types`; unknown values return a typed error. Only
+- Filters: `document_type_tags` accepts only category keys and canonical
+  tags; an unknown value returns a typed error listing the allowed values. Only
   entries with classified documents carry tags; entries known only from court
   RSS carry the court's short label and no tags, so tag and text filters can
   exclude them.
@@ -85,7 +78,7 @@ relevant terminal notice rather than relying on a projected date.
   link whose `target` is `case`, `entry`, or `document`. It says where the filing
   sits on the court's docket, not where ElevenFlo's copy came from. A PACER link
   opens with the reader's own PACER login; PACER fees may apply. Document,
-  summary, chunk, hub, and relationship results carry the same object.
+  summary, page and key-document results carry the same object.
 
 ## Monitors and case updates
 
@@ -144,25 +137,23 @@ updates stop. This cannot be undone.
 These tools require every substantive query term to appear in the matching
 evidence. One common word cannot pull in unrelated results.
 
-### `search_filings`
+### `search_documents`
 
-Search whole filings across all cases or within one case. Every term must
+Search whole filings or hearing transcripts across all cases or within one
+case. Every term must
 appear somewhere in the filing, not necessarily in one passage. Quoted text is
 an exact phrase; uppercase `OR`, `NOT` and parentheses combine terms, for
 example `"cash collateral" AND (objection OR NOT interim)`. A malformed query
 returns `invalid_query` naming the position to fix.
 
-- Inputs: `query`; optional `case_id`, `document_type_tags`, and `limit`.
-- Returns: document rows, newest first, with matched excerpts and a
-  `filing_url` when available. `document_type_tags` accepts only values
-  returned by `list_document_types`.
-
-### `search_transcripts`
-
-Search hearing and court transcripts.
-
-- Inputs: `query`; optional `case_id` and `limit`.
-- Returns: transcript document rows.
+- Inputs: `query`; optional `content_type` (`filing`, the default, or
+  `transcript` for machine hearing transcripts), `case_id`,
+  `document_type_tags` (filings only), and `limit` from 1 to 25.
+- Returns: document rows, newest first, with `document_id`, `filing_url`,
+  case, name, docket number and date; filings add type tags and a matching
+  excerpt. An unknown `document_type_tags` value returns the allowed values.
+- Transcripts are machine transcriptions of court audio, not court-reporter
+  transcripts, and can misstate names and figures.
 
 ## Summaries
 
@@ -180,40 +171,42 @@ Read the stored summary for one document.
 
 - Input: `document_id`.
 - Returns: one summary or a typed not-found error whose `missing_document_ids`
-  identifies the requested UUID. The summary and each related filing include a
-  `filing_url` that opens the filing.
+  identifies the requested UUID. The summary lists the filings it relates to,
+  and the summary and each related filing include a `filing_url` that opens
+  the filing.
 
 ## Exact text
 
-### `search_document_chunks`
+### `search_document_pages`
 
-Preview where keywords appear across up to 25 selected filings before reading
-full text.
+See which pages hold a few keywords across up to 25 selected filings or
+transcripts before reading full text.
 
 - Inputs: one to 25 `document_ids` and `query`.
-- Returns: matching chunk IDs, 1-based page numbers (0 when unavailable), exact
-  text, and offsets grouped by document. `missing_document_ids` lists requested
-  UUIDs that were not found or were not public.
+- Returns: `hits`, each a `document_id`, 1-based `page` and short snippet, for
+  the pages that hold every keyword, in relevance order within a document.
+  When a document has no such page, its closest pages come back with
+  `matched_terms`. `no_text_document_ids` lists documents with no extracted
+  text and `missing_document_ids` those not found or not public.
+- Limits: a document with no hit has no entry; that does not establish the
+  topic is absent.
 
-### `read_document_chunks`
+### `read_document_pages`
 
-Read selected passages from one document by passage ID.
+Read pages of one filing or transcript.
 
-- Inputs: `document_id` and one to eight `chunk_ids`.
-- Returns: available chunk text, page numbers when available, offsets,
-  `total_chunks`, and `missing_chunk_ids` (empty when every requested chunk exists).
-  Valid IDs range from 0 to `total_chunks - 1`; an all-missing request returns
-  `chunk_not_found` with the missing IDs and range.
-
-### `extract_document_passages`
-
-Return the full text of the passages in one filing or transcript that match a
-few keywords. Every keyword must appear in a passage.
-
-- Inputs: `document_id`, `query`, optional `max_chunks` from 1 to 10.
-- Returns: selected exact chunks and offsets. A searchable filing with no matching
-  passage returns an empty `chunks` list, `matched_chunks: 0`, and advice on how
-  to refine the search. An unknown document ID returns a typed not-found error.
+- Inputs: `document_id` and exactly one of `pages` (numbers and ranges such
+  as `3-5,9`), `query` (a few keywords) or, for a hearing transcript, `time`
+  (such as `12:30`); optional `max_pages` from 1 to 10 (default 3).
+- Returns: each page's text and number, `page_count` and the `filing_url`.
+  With `query`, the pages holding every keyword come back in relevance order,
+  all of them listed in `matched_pages`, with `has_more_matches` when more
+  matched than were returned; if no page holds every keyword, the closest
+  pages carry `matched_terms`. A transcript reads as numbered blocks of
+  speaker turns with `start_time` and `end_time`.
+- Limits: a filing without page numbers reads by `query` only
+  (`source_not_searchable` otherwise). A page outside the document returns
+  `page_not_found`; an unknown document returns a typed not-found error.
 
 ## Document relationships
 
@@ -226,17 +219,6 @@ is a starting point for research, not a judgment of legal importance.
 - Returns: document rows with citation counts and a `filing_url` that opens each
   filing.
 
-### `get_related_documents`
-
-Find filings that cite, or are cited by, selected documents.
-
-- Inputs: one to 25 `document_ids`, optional `direction`, and optional `limit`.
-- Returns: source and related document pairs. Each related filing includes its
-  `filing_url` and a `summary_state` of `available` or `unavailable`.
-  `missing_document_ids` lists requested UUIDs that were not found or were not
-  public; `omitted_without_public_id` continues to count related rows omitted
-  because no public UUID could be resolved.
-
 ## Structured data
 
 Structured datasets carry typed, source-linked fields extracted from filings.
@@ -244,63 +226,65 @@ Use them when the question is about typed fields, comparable records, or many
 cases at once rather than the text of one filing. Responses return only public
 fields and operations, never internal extraction metadata.
 
-Free accounts can list datasets and describe their fields and examples.
-Searches, aggregates and value suggestions require ElevenFlo Pro.
+Free accounts can list and describe datasets and run aggregates that do not
+name a case. Reading rows with `search_dataset`, and grouping by a field that
+names a case (`case_id`, `id`, `case_name`, `case_number`,
+`lead_case_number`, `case_url`), require ElevenFlo Pro.
 
-### `list_structured_datasets`
+### `list_datasets`
 
-List the datasets available to you.
+List every dataset.
 
-- Inputs: optional `limit` and signed `cursor`.
-- Returns: dataset slugs, grain, `as_of`, `complete_since`, `grade`,
-  `cases_covered`, and available operations.
+- Inputs: none.
+- Returns: `families` in the order a case runs, each with its `stage` and
+  `datasets`; a dataset gives its `dataset` name (the value the other dataset
+  tools take), `title`, what one `row` is and `complete_since`.
 
-### `describe_structured_dataset`
+### `describe_dataset`
 
 Call this before you query an unfamiliar dataset.
 
-- Input: `dataset`, using a slug returned by `list_structured_datasets`.
-- Returns: public fields and meanings, typed filter operators, selectable
-  columns, sorts, facets, aggregate capabilities, examples, and `search_limits`
-  (`max_sort_clauses`, `max_page_size`).
-- A filter has one name, the one `describe_structured_dataset` lists; there
+- Input: `dataset`, a name returned by `list_datasets`.
+- Returns: what one row is, `as_of`, `complete_since`, `grade`,
+  `cases_covered`, caveats, one `fields` table and example calls. Each field
+  row gives its name, type, unit, `fill` (the share of rows that hold a
+  value), allowed values, the filter operators it accepts and its meaning.
+  `extra_filters` lists filters that are not fields; `sort` and `facets` list
+  the fields that sort and facet.
+- A filter has one name, the one `describe_dataset` lists; there
   are no aliases. Sale-process dates filter on `latest_source_date_filed` and
   fees-by-professional on `latest_date_filed`. Calendar-date ranges support
   `eq`, `gt`, `lt`, `gte`, `lte`, and `between`; numeric ranges support
   `gte`, `lte`, and `between`. `exists` tests whether a value is stated.
 
-### `search_structured_data`
+### `search_dataset`
 
 Return typed rows from one dataset.
 
 - Inputs: `dataset`; optional typed `where`, `select`, `sort`, `page_size`,
-  `cursor`, and requested `facets` as declared by the dataset description.
-- Returns: public rows, signed continuation cursor, requested facets, the
-  dataset name, the snapshot (`as_of`, `complete_since`, `grade`,
-  `cases_covered`), and the effective `page_size`. Wide projections clamp page
-  size to the select budget.
+  `cursor`, and requested `facets` as listed by the dataset description.
+- Returns: `columns` once, then one array per record in that order, with
+  `total`, facet counts when asked, `next_cursor` when more records match,
+  `as_of` and `complete_since`. Wide projections clamp page size to the
+  select budget.
+- Stored spellings: to find how a name is stored, filter the field with
+  `contains` and request it as a facet.
 - Limits: a `cases` screen on `assets_range` or `liabilities_range` cannot
   match a case whose petition reports no bracket.
 
-### `aggregate_structured_data`
+### `aggregate_dataset`
 
 Count and summarize records across one dataset.
 
-- Inputs: `dataset`; optional typed `where`, `group_by`, metrics, ordering, and
-  a result limit of up to 1,000 groups. A date field groups by a time bucket
-  and a number field by a fixed `width`. A metric's own `where` counts only
-  the rows it matches, so two metrics in one call give a rate.
-- Returns: aggregate-safe grouped values and metrics, the dataset name and
-  the snapshot. A time bucket that starts before `complete_since` is marked
-  `partial`.
-
-### `suggest_structured_values`
-
-Suggest normalized values for a field the dataset marks suggestable.
-
-- Inputs: `dataset`, `field`, optional query text, typed `where`, and bounded
-  limit.
-- Returns: normalized public values matching the declared field contract.
+- Inputs: `dataset` and `metrics`; optional typed `where`, `group_by`,
+  `order_by`, and a `limit` of up to 1,000 groups. A date field groups by a
+  time bucket and a number field by a fixed `width`. A metric's own `where`
+  counts only the rows it matches, so two metrics in one call give a rate.
+- Returns: `columns` once, then one array per group: the group fields, each
+  metric and, for a field metric, `<metric>_n`, the rows that held a value.
+  `<metric>_is_floor` marks a sum that leaves out amounts the filings do not
+  state, `partial` marks a time bucket that starts before `complete_since`,
+  and `totals` gives each metric over every group.
 
 ### Available datasets
 
@@ -386,7 +370,7 @@ Suggest normalized values for a field the dataset marks suggestable.
   once; tag group-bys count a case once per tag and overlap.
 
 This page is a static copy of the public catalog. Call
-`list_structured_datasets` for the live list and `describe_structured_dataset`
+`list_datasets` for the live list and `describe_dataset`
 for each dataset's fields, operations, and limits. Datasets outside the public
 catalog return `unknown_dataset`.
 
