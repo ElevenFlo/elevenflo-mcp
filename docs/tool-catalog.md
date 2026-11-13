@@ -26,7 +26,7 @@ document row carries `has_primary_pdf: true`, open the document at
    document that match a query.
 5. `search_document_summaries` or `get_document_summary` for synthesis.
 
-## Case and taxonomy
+## Cases and dockets
 
 ### `find_cases`
 
