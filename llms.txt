@@ -13,6 +13,7 @@ ElevenFlo MCP is a hosted remote MCP server over Streamable HTTP.
 - Bankruptcy docket MCP server: https://elevenflo.com/docs/mcp/bankruptcy-docket-mcp-server
 - Tool catalog: https://elevenflo.com/docs/mcp/tool-catalog
 - Permissions and data access: https://elevenflo.com/docs/mcp/permissions-and-data-access
+- Pay as an agent (prepaid credits, no account): https://elevenflo.com/docs/mcp/agent-purchases
 - Research workflows: https://elevenflo.com/docs/mcp/workflows
 - Daily case brief: https://elevenflo.com/docs/mcp/workflows/daily-case-brief
 - First-day motions triage: https://elevenflo.com/docs/mcp/workflows/first-day-filings-triage
@@ -24,7 +25,7 @@ ElevenFlo MCP is a hosted remote MCP server over Streamable HTTP.
 - Track a Chapter 11 case with an AI assistant: https://elevenflo.com/docs/workflows/track-a-chapter-11-case
 - From a court citation to a cited answer: https://elevenflo.com/docs/workflows/pacer-to-cited-answer
 - Markdown source mirror: https://github.com/ElevenFlo/elevenflo-mcp/tree/main/docs
-- Per-client setup anchors: https://elevenflo.com/docs/mcp/setup#claude-code (also #claude-desktop, #codex-cli, #chatgpt, #other)
+- Per-client setup anchors: https://elevenflo.com/docs/mcp/setup#claude-code (also #claude-desktop, #codex-cli, #chatgpt, #microsoft-365-copilot, #gemini, #other)
 - Claude connector directory listing: https://claude.ai/directory/connectors/elevenflo
 - Chapter 11 case coverage: https://elevenflo.com/docs/data/chapter-11-case-coverage
 - Blog: https://elevenflo.com/blog
@@ -33,11 +34,11 @@ ElevenFlo MCP is a hosted remote MCP server over Streamable HTTP.
 - Privacy policy: https://elevenflo.com/privacy
 - Disclaimer: https://elevenflo.com/disclaimer
 
-Authentication uses ElevenFlo web app sign-in, OAuth 2.1, PKCE, and explicit consent. Do not configure static bearer tokens or pasted API keys for ElevenFlo MCP.
+People authenticate with ElevenFlo web app sign-in, OAuth 2.1, PKCE, and explicit consent; do not configure static bearer tokens or pasted API keys for a person's account. An agent with no account can instead buy a prepaid tab of 100 MCP credits for USD 5.00 over HTTP 402 and send its purchase credential as `Authorization: Bearer eft_<purchase token>`; see https://elevenflo.com/docs/mcp/agent-purchases.
 
 ElevenFlo MCP is available on every plan. Free accounts include 200 MCP credits per month with no daily limit; Pro includes 10,000 per month and 2,000 per rolling 24 hours. Each successful call costs the greater of one credit, one per 10 returned records, or one per 10,000 bytes of structured output, rounded up. Limits are shared across account connections. There is no separate access request. Free can list and describe datasets and run aggregates that do not group by a case, firm or party name; reading dataset rows requires Pro.
 
-The tool set is OAuth-only and source-grounded, and it is read-only apart from saving, editing and deleting the signed-in user's own monitors. It supports chapter 11 case lookup, docket browsing, document discovery, typed case updates for named cases or saved monitors, hearing transcript search where indexed, exact court-document text retrieval, document summaries, document relationship exploration, and typed structured-dataset search and aggregation.
+The tool set is source-grounded and read-only apart from saving, editing and deleting the signed-in user's own monitors. It supports chapter 11 case lookup, docket browsing, document discovery, typed case updates for named cases or saved monitors, hearing transcript search where indexed, exact court-document text retrieval, document summaries, document relationship exploration, and typed structured-dataset search and aggregation.
 
 Structured datasets answer typed-field, comparable-record, and population questions that document text cannot: use `list_datasets` to discover the datasets, `describe_dataset` before querying one, then `search_dataset` for typed rows or `aggregate_dataset` for grouped totals.
 

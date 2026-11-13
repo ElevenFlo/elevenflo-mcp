@@ -24,10 +24,10 @@ excluded by the order.
 
 ## Check a document in the browser
 
-Open the document link and sign in to your ElevenFlo account. Select
-**Document text** to read one PDF page at a time. Use **Link to page** to cite
-the document and page. Open the original PDF to check quoted wording, tables and
-reading order. Scanned pages may have no selectable text.
+A document link opens the court's PDF once you sign in to your ElevenFlo
+account; add `#page=N` to open a cited page. Check quoted wording, tables and
+reading order against the PDF: extracted text is OCR output, and scanned pages
+may have no selectable text.
 
 Document access follows your account permissions and document allowance. If a
 document cannot be opened, record that gap before relying on the comparison.
