@@ -3,31 +3,26 @@
 ## Sign-in never opens, or the client reports 401
 
 Confirm the server URL is `https://elevenflo.com/mcp`, remove any manual
-`Authorization` header or static bearer-token setting, reconnect through OAuth,
-and retry.
+`Authorization` header or static bearer-token setting, then reconnect through
+OAuth. The same steps fix a revoked grant, a grant made for another endpoint
+and a client that never saved its refreshed token.
 
-The same failure covers a grant that was revoked, a grant created against a
-different endpoint, and a client that never saved its refreshed token.
-
-Clients that support and persist OAuth refresh tokens can refresh access
-without signing in again. Each successful refresh renews the default 30-day
-refresh-token lifetime. Connections that go 30 days without refreshing require
-sign-in again. Revocation, expiry, changed access, or a client that fails
-to save refreshed credentials can require reauthorization. Authorizing the
-same account from another client does not revoke this connection.
+A connection stays signed in while the client keeps refreshing it: each refresh
+renews the 30-day refresh-token lifetime. After 30 days without one, sign in
+again. Authorizing the same account from another client does not revoke this
+connection.
 
 ## The tool list is missing a tool
 
 The [tool catalog](https://elevenflo.com/docs/mcp/tool-catalog) is the canonical
-list, and the same tools are available on every plan. If a catalog tool is
-missing, confirm your email address is verified and reconnect through OAuth in
-case the client cached an older `tools/list` response. Published or
-organization-approved apps can retain a frozen tool snapshot; their owner may
-need to refresh or republish the actions. Reconnecting alone may not update it.
+list, and every plan gets the same 16 tools. If one is missing, confirm your
+email address is verified and reconnect through OAuth; the client may have
+cached an older `tools/list` response. A published or organization-approved app
+can keep a frozen tool snapshot until its owner refreshes or republishes it.
 
-The 16-tool catalog is shared across Free and Pro, but reading dataset rows
-and grouping an aggregate by a case, firm or party name require Pro. Free can list and describe
-datasets and run other aggregates. A `not_entitled` query error does not mean that a tool is missing.
+A `not_entitled` error means the query needs Pro, not that a tool is missing.
+Reading dataset rows and grouping an aggregate by a case, firm or party name
+require Pro.
 
 ## Search results are empty
 
@@ -48,19 +43,14 @@ active. Reconnecting does not reset the rate limit.
 
 ## Monthly credits exhausted
 
-Credit limits are separate from burst rate limits. Billable calls draw on one
-monthly balance shared across your clients. A call can fail when the remaining
-balance is lower than its credit cost. Free accounts include 200 MCP credits a month and
-reset on the first of the month; [Pro](https://elevenflo.com/pricing) includes
-10,000. **Settings → Usage** shows the allowance and the remaining balance.
+Billable calls draw on one monthly balance shared across your clients, separate
+from the rate limit. A call fails when its cost exceeds the remaining balance.
+Free includes 200 credits a month, reset on the first of the month;
+[Pro](https://elevenflo.com/pricing) includes 10,000, with a rolling 24-hour
+limit of 2,000. **Settings → Usage** shows the remaining balance.
 
-Pro accounts also have a rolling 24-hour limit of 2,000 credits. When a
-limit is reached, the error says when more credits become available, in
-Eastern and UTC time, for example "More become available at 2:38 PM ET on
-Oct 15 (18:38 UTC)." Your AI client should pass this on rather than retry; repeated
-retries before that time fail the same way. On a Free account the error also
-says what Pro includes and links to the pricing page.
-
-Wait for the stated time or upgrade your plan. Reconnecting does not add
-credits. If the error persists after the stated reset or retry interval, contact
-support with the tool name, error code and time of the failed call.
+When a limit is reached, the error says when more credits become available, for
+example "More become available at 2:38 PM ET on Oct 15 (18:38 UTC)." Your client
+should pass this on rather than retry. Reconnecting does not add credits. If the
+error persists after that time, contact support with the tool name, error code
+and time of the failed call.

@@ -19,13 +19,14 @@ permissions remain required.
 
 ## What the tools can access
 
-ElevenFlo MCP only reads. It can return:
+Apart from saving and deleting your own monitors, ElevenFlo MCP only reads. It
+can return:
 
 - Bankruptcy case metadata
 - Docket entries
 - Court-document text
 - Document summaries
-- Typed case updates for named cases or your saved tracked cases
+- Typed case updates for named cases or your saved monitors
 - Hearing transcripts, where indexed
 - Document relationship signals
 - Typed rows and aggregates from the public structured datasets
