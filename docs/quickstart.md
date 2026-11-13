@@ -1,13 +1,10 @@
 # Before you connect
 
-ElevenFlo MCP is on for every account with a verified email address, on every
-plan. There is no access request. Free accounts include 200 MCP credits a month;
-Pro includes 10,000. Free can list and describe datasets and run
-aggregates that do not group by a case, firm or party name; reading dataset rows requires Pro.
+Any ElevenFlo account with a verified email can connect. Free includes 200 MCP
+credits a month and Pro 10,000. Reading dataset rows, or aggregates grouped by
+case, firm or party name, requires Pro.
 
-You need an MCP client and browser access for sign-in and consent.
-
-Add this server URL in your client:
+Add this server URL in your client, then sign in through the browser:
 
 ```text
 https://elevenflo.com/mcp
@@ -15,9 +12,8 @@ https://elevenflo.com/mcp
 
 Use `elevenflo` if the client asks for a server label.
 
-The transport is remote MCP over HTTP. Clients name it differently: Claude Code
-uses `--transport http`, ChatGPT developer mode calls it "streaming HTTP", and
-some clients label it "Streamable HTTP".
+The transport is remote HTTP: `--transport http` in Claude Code, "streaming
+HTTP" in ChatGPT developer mode, "Streamable HTTP" elsewhere.
 
-Sign in through OAuth. Do not paste a bearer token, API token, or manual
-`Authorization` header for ElevenFlo MCP.
+Sign-in is OAuth. ElevenFlo MCP takes no bearer token, API key or manual
+`Authorization` header.
