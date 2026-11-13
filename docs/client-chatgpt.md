@@ -8,7 +8,7 @@ developer mode on ChatGPT web, with Apps enabled for the organization. Create an
 app named `ElevenFlo MCP` pointing at `https://elevenflo.com/mcp`, keep OAuth
 enabled, and complete sign-in in the browser.
 
-For ordinary research, start in a normal chat and verify a cited filing.
+For ordinary research, start in a normal chat and verify a cited document.
 ChatGPT modes and background-task environments have separate availability
 and tool-access rules; verify the ElevenFlo connection in the environment
 where the work will run.

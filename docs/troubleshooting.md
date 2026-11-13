@@ -33,7 +33,7 @@ datasets and run other aggregates. A `not_entitled` query error does not mean th
 
 Resolve the case with `find_cases` first and narrow by `case_id`. Broaden date
 filters, and search summaries before full text. Use an exact phrase only when
-that phrase is likely to appear in the filing.
+that phrase is likely to appear in the document.
 
 ## Analysis fails on a long document
 

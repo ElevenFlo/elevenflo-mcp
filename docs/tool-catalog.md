@@ -12,7 +12,7 @@ for what ElevenFlo MCP cannot do.
 
 Cases are addressed by `case_id`, documents by UUID `document_id`. Use
 identifiers exactly as returned. ElevenFlo MCP accepts no aliases. When a
-document row carries `has_primary_pdf: true`, open the filing at
+document row carries `has_primary_pdf: true`, open the document at
 `/api/search/open/<uuid>/` using that same UUID.
 
 ## The research loop
@@ -21,9 +21,9 @@ document row carries `has_primary_pdf: true`, open the filing at
 2. `list_docket_entries`, `search_documents`, or `find_key_documents` to
    select documents.
 3. `search_document_pages` to see which pages hold the keywords across up to
-   25 filings.
+   25 documents.
 4. `read_document_pages` for the text of those pages, or of the pages in one
-   filing that match a query.
+   document that match a query.
 5. `search_document_summaries` or `get_document_summary` for synthesis.
 
 ## Case and taxonomy
@@ -33,7 +33,7 @@ document row carries `has_primary_pdf: true`, open the filing at
 Resolve a case by identity. `query` matches case name, case number,
 jurisdiction and judge with typo tolerance; legal-form words such as Inc.,
 LLC, Holdings and Group do not count toward a name match. It does not match
-counsel, docket text or filing content (use `search_documents` for those).
+counsel, docket text or document text (use `search_documents` for those).
 Screening is not this tool: filter or count a population with the `cases`
 structured dataset.
 
@@ -48,7 +48,7 @@ structured dataset.
 
 List observed docket entries for one case, including full entry text, docket
 evidence, court citations, and links to held documents. Entries can exist
-without a PDF or searchable filing text. For current case status, verify the
+without a PDF or searchable document text. For current case status, verify the
 relevant terminal notice rather than relying on a projected date.
 
 - Inputs: `case_id`; optional `limit` from 1 to 25, `query`,
@@ -67,7 +67,7 @@ relevant terminal notice rather than relying on a projected date.
 - Returns: version 2 `entries`, evidence, `has_more`, and `next_cursor` (null
   when exhausted); PDF/text flags describe held artifacts. Every held document
   with a public UUID appears once, inside its entry, with its
-  `document_type_tags` and a `filing_url` that opens the filing. An empty first
+  `document_type_tags` and a `filing_url` that opens the document. An empty first
   page carries `coverage_note`, which says whether the filters excluded recorded
   entries or none are recorded in that window, the case's coverage source, and
   whether the docket is known to be incomplete or its completeness is unknown.
@@ -75,7 +75,7 @@ relevant terminal notice rather than relying on a projected date.
   `citation` (`Bankr. D. Del., No. 22-11068, ECF No. 512`; adversary and
   claim-register forms use `Adv. No.` and `Claim No.`), `court`, `case_number`,
   `docket_number` or `claim_number`, `case_docket_url`, and an optional `pacer`
-  link whose `target` is `case`, `entry`, or `document`. It says where the filing
+  link whose `target` is `case`, `entry`, or `document`. It says where the document
   sits on the court's docket, not where ElevenFlo's copy came from. A PACER link
   opens with the reader's own PACER login; PACER fees may apply. Document,
   summary, page and key-document results carry the same object.
@@ -139,18 +139,18 @@ evidence. One common word cannot pull in unrelated results.
 
 ### `search_documents`
 
-Search whole filings or hearing transcripts across all cases or within one
+Search whole court documents or hearing transcripts across all cases or within one
 case. Every term must
-appear somewhere in the filing, not necessarily in one passage. Quoted text is
+appear somewhere in the document, not necessarily in one passage. Quoted text is
 an exact phrase; uppercase `OR`, `NOT` and parentheses combine terms, for
 example `"cash collateral" AND (objection OR NOT interim)`. A malformed query
 returns `invalid_query` naming the position to fix.
 
 - Inputs: `query`; optional `content_type` (`filing`, the default, or
   `transcript` for machine hearing transcripts), `case_id`,
-  `document_type_tags` (filings only), and `limit` from 1 to 25.
+  `document_type_tags` (not transcripts), and `limit` from 1 to 25.
 - Returns: document rows, newest first, with `document_id`, `filing_url`,
-  case, name, docket number and date; filings add type tags and a matching
+  case, name, docket number and date; court documents add type tags and a matching
   excerpt. An unknown `document_type_tags` value returns the allowed values.
 - Transcripts are machine transcriptions of court audio, not court-reporter
   transcripts, and can misstate names and figures.
@@ -163,7 +163,7 @@ Search stored document summaries within one case.
 
 - Inputs: `case_id`, `query`, optional `limit`.
 - Returns: summary rows, their document IDs, and a `filing_url` that opens each
-  filing.
+  document.
 
 ### `get_document_summary`
 
@@ -171,15 +171,15 @@ Read the stored summary for one document.
 
 - Input: `document_id`.
 - Returns: one summary or a typed not-found error whose `missing_document_ids`
-  identifies the requested UUID. The summary lists the filings it relates to,
-  and the summary and each related filing include a `filing_url` that opens
-  the filing.
+  identifies the requested UUID. The summary lists the documents it relates to,
+  and the summary and each related document include a `filing_url` that opens
+  the document.
 
 ## Exact text
 
 ### `search_document_pages`
 
-See which pages hold a few keywords across up to 25 selected filings or
+See which pages hold a few keywords across up to 25 selected documents or
 transcripts before reading full text.
 
 - Inputs: one to 25 `document_ids` and `query`.
@@ -193,7 +193,7 @@ transcripts before reading full text.
 
 ### `read_document_pages`
 
-Read pages of one filing or transcript.
+Read pages of one document or transcript.
 
 - Inputs: `document_id` and exactly one of `pages` (numbers and ranges such
   as `3-5,9`), `query` (a few keywords) or, for a hearing transcript, `time`
@@ -204,7 +204,7 @@ Read pages of one filing or transcript.
   matched than were returned; if no page holds every keyword, the closest
   pages carry `matched_terms`. A transcript reads as numbered blocks of
   speaker turns with `start_time` and `end_time`.
-- Limits: a filing without page numbers reads by `query` only
+- Limits: a document without page numbers reads by `query` only
   (`source_not_searchable` otherwise). A page outside the document returns
   `page_not_found`; an unknown document returns a typed not-found error.
 
@@ -212,18 +212,18 @@ Read pages of one filing or transcript.
 
 ### `find_key_documents`
 
-Find key filings in a case, ranked by incoming citation count. Citation frequency
+Find key documents in a case, ranked by incoming citation count. Citation frequency
 is a starting point for research, not a judgment of legal importance.
 
 - Inputs: `case_id`, optional `limit` from 1 to 25.
 - Returns: document rows with citation counts and a `filing_url` that opens each
-  filing.
+  document.
 
 ## Structured data
 
-Structured datasets carry typed, source-linked fields extracted from filings.
+Structured datasets carry typed, source-linked fields extracted from documents.
 Use them when the question is about typed fields, comparable records, or many
-cases at once rather than the text of one filing. Responses return only public
+cases at once rather than the text of one document. Responses return only public
 fields and operations, never internal extraction metadata.
 
 Free accounts can list and describe datasets and run aggregates that do not
@@ -282,7 +282,7 @@ Count and summarize records across one dataset.
   counts only the rows it matches, so two metrics in one call give a rate.
 - Returns: `columns` once, then one array per group: the group fields, each
   metric and, for a field metric, `<metric>_n`, the rows that held a value.
-  `<metric>_is_floor` marks a sum that leaves out amounts the filings do not
+  `<metric>_is_floor` marks a sum that leaves out amounts the documents do not
   state, `partial` marks a time bucket that starts before `complete_since`,
   and `totals` gives each metric over every group.
 
@@ -318,7 +318,7 @@ Count and summarize records across one dataset.
   date or a filing date bounds it; count departures with `end_transition`
   equal to `actual_departure`.
 - `exclusivity-periods`
-- `fees-by-professional` — Cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected filings; surviving requests in the same rollup still contribute. `allowance_note` states in plain words when allowed totals are blank, when a final basis also counts interim awards, or when combined or undated awards are left out or added unchecked. Monetary sorts require `currency_code` with `eq`; the default sort is latest filing date. `sources` identifies contributors separately for each monetary field, with availability, counts and truncation. Null provenance awaits reprojection. Order-date filters select applicants without rebasing their lifetime totals to the selected month.
+- `fees-by-professional` — Cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected documents; surviving requests in the same rollup still contribute. `allowance_note` states in plain words when allowed totals are blank, when a final basis also counts interim awards, or when combined or undated awards are left out or added unchecked. Monetary sorts require `currency_code` with `eq`; the default sort is latest filing date. `sources` identifies contributors separately for each monetary field, with availability, counts and truncation. Null provenance awaits reprojection. Order-date filters select applicants without rebasing their lifetime totals to the selected month.
 - `fee-timekeepers`: named historical billing rates by firm and case. Filter
   `timekeeper_name` with name tokens in any order, `organization_name`,
   `timekeeper_title`, or `hourly_rate`. Group partner rates by firm, filing year,
@@ -356,8 +356,8 @@ Count and summarize records across one dataset.
   or the firm directory already names it. An appearance is not a court-approved
   retention, and a missing row does not show that a party is unrepresented.
 - `case-people`: one row per person, firm and case, for the people a case's
-  filings name as working on it: what their firm does on the case, whom it acts
-  for, the person's title, the latest filing naming them and links to the
+  documents name as working on it: what their firm does on the case, whom it acts
+  for, the person's title, the latest document naming them and links to the
   person's and the firm's ElevenFlo pages. The firm is the one on that case,
   not current employment; count people with `count_distinct` on `person_name`.
 - `rule-2019-statements`
@@ -367,7 +367,7 @@ Count and summarize records across one dataset.
 - `schedule-summary-totals`
 - `top-unsecured-creditors`
 - `executory-contracts`
-- `schedule-assets`: one disclosed asset item on a Schedule A/B filing; filter
+- `schedule-assets`: one disclosed asset item on a Schedule A/B; filter
   `asset_category` to `real_property` for real estate.
 - `codebtors`
 - `claim-transfers`
@@ -388,7 +388,7 @@ catalog return `unknown_dataset`.
 `hearing-sessions` uses schema `hearing-sessions.v4`. `scope_kind` distinguishes
 bankruptcy-case, single-adversary, joint-adversary and unresolved ownership.
 `adversary_proceedings` contains canonical court numbers, captions and available
-tracking URLs; `scope_sources` contains immutable public-filing/hash references
+tracking URLs; `scope_sources` contains immutable public-document/hash references
 for qualified joint conferences. Unresolved scope does not assert case ownership.
 
 `ballot-class-results` uses schema `ballot-class-results.v3`. It returns one

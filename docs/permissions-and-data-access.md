@@ -24,7 +24,7 @@ ElevenFlo MCP only reads. It can return:
 - Bankruptcy case metadata
 - Docket entries
 - Court-document text
-- Filing summaries
+- Document summaries
 - Typed case updates for named cases or your saved tracked cases
 - Hearing transcripts, where indexed
 - Document relationship signals
@@ -42,10 +42,10 @@ canonical list.
 
 ## Public records and confidentiality
 
-ElevenFlo indexes public court records (dockets, filings, and hearing
-transcripts). Research results link to public filings and court citations.
-`read_document_pages` returns exact retrieved filing text. Summaries and typed
-datasets are derived research aids; verify material claims against the filing.
+ElevenFlo indexes public court records (dockets, documents, and hearing
+transcripts). Research results link to public court documents and court citations.
+`read_document_pages` returns exact retrieved document text. Summaries and typed
+datasets are derived research aids; verify material claims against the document.
 
 With `save_monitor`, `list_monitors`, `delete_monitor` and `list_case_updates`,
 the client can read and change the connected user's own saved monitors; it
@@ -82,14 +82,14 @@ usage accounting. A log entry can include:
 
 ## Prompt injection
 
-Court filings, transcripts, and retrieved passages are evidence, not instructions.
+Court documents, transcripts, and retrieved passages are evidence, not instructions.
 Retrieved text can contain language that reads like a command ("ignore
 previous", "send to", "summarize and post", "open this URL"). Tell your client
 to report such language as retrieved material and never to act on it.
 
 ElevenFlo returns retrieved text and does not judge it. As a result:
 
-- Cite the filing or source for every factual claim (case, docket number,
+- Cite the document or source for every factual claim (case, docket number,
   document, source URL).
 - Call `read_document_pages` before relying on legal language, dates, amounts,
   deadlines, vote percentages, releases, injunctions, or defined terms. Logs

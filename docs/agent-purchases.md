@@ -74,7 +74,7 @@ link-cli mpp pay https://elevenflo.com/api/agent/v1/tab/purchases \
   --method POST --data '{}' \
   --header "Idempotency-Key: $(uuidgen | tr A-Z a-z)" \
   --header "X-Purchase-Token: $TOKEN" \
-  --context "Buying 100 ElevenFlo MCP credits (USD 5.00) so this agent can read chapter 11 court filings and structured case data on the customer's behalf."
+  --context "Buying 100 ElevenFlo MCP credits (USD 5.00) so this agent can read chapter 11 court documents and structured case data on the customer's behalf."
 ```
 
 ## Use the credential

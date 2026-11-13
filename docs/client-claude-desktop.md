@@ -36,7 +36,7 @@ Okta sign-in. IdP-managed assertions are not supported by ElevenFlo.
 4. Copy the **Tenant ID** shown in ElevenFlo into Claude's **Tenant ID** field.
    This is the ElevenFlo team ID, not a Claude organization ID.
 5. In Claude, select **Run test**. Then ask ElevenFlo for a case's recent
-   filings to verify the connector.
+   documents to verify the connector.
 
 Only the issuer registered for that team is trusted. Changing the issuer or
 disabling the setting revokes that team's managed connections; removing an

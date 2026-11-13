@@ -7,7 +7,7 @@ Organization:
 Account email:
 MCP client and version:
 Endpoint URL:
-Case or filing involved:
+Case or document involved:
 Tool or prompt attempted:
 Approximate time:
 Error message:

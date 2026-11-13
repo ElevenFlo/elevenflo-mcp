@@ -9,7 +9,7 @@ tools. Your client controls the schedule, saved files and notifications.
 1. Connect ElevenFlo using the [setup instructions](https://elevenflo.com/docs/mcp/setup).
 2. Run the [daily case brief](https://elevenflo.com/docs/mcp/workflows/daily-case-brief)
    with a named case and explicit start and end times.
-3. Open the cited filings and check the material claims.
+3. Open the cited documents and check the material claims.
 4. Confirm that the client can use the same ElevenFlo connection in its
    scheduled-task environment.
 5. Test the scheduled run, including its review window and failure reporting.
@@ -27,7 +27,7 @@ already enabled for your account, within their existing permissions.
 
 Connect ElevenFlo using the [ChatGPT setup](https://elevenflo.com/docs/mcp/setup#chatgpt),
 then ask your Dot to run the daily case brief manually. Have it identify the
-tools it actually used and open its filing citations. If ElevenFlo is not
+tools it actually used and open its citations. If ElevenFlo is not
 available to the Dot, resolve that connection before scheduling; a successful
 ordinary ChatGPT conversation is not proof of Dot access.
 
@@ -44,8 +44,8 @@ For the first run, review [EXPLICIT START] through the actual run time.
 For later runs, start at the last successfully reviewed window end.
 State the exact window, run time and case identity in every brief.
 
-Page through the docket entries in the window and read material filings.
-Keep filing dates separate from detected-update dates. Cite the filings
+Page through the docket entries in the window and read material documents.
+Keep filing dates separate from detected-update dates. Cite the documents
 for amounts, dates, deadlines and operative terms. Include missing text,
 pagination limits and source gaps. Do not treat an empty or failed tool
 response as evidence that nothing changed.
@@ -100,7 +100,7 @@ existing email delivery:
    find **Tracked case updates**, and choose an available delivery cadence.
    Delivery requires a verified email address and the account access needed
    for the monitor. The control shows the available choices.
-3. Check the first delivered update and its filing citations. Monitor email
+3. Check the first delivered update and its citations. Monitor email
    covers matching published changes; it does not run the broader research
    prompt or certify that the court docket is complete.
 

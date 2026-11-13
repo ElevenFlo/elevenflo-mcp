@@ -20,7 +20,7 @@ After your administrator validates and installs the configured package:
 1. Open the assigned agent in Microsoft 365 Copilot.
 2. Request a case lookup and follow the ElevenFlo sign-in prompts.
 3. Approve the `mcp:access` scope with your own ElevenFlo account.
-4. Follow [Verify the connection](verify.md) and check the cited filing.
+4. Follow [Verify the connection](verify.md) and check the cited document.
 
 Available tools come from authenticated discovery. Your administrator must
 verify which tools Microsoft enables for the agent.

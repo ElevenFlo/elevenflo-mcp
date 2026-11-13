@@ -66,67 +66,30 @@ it in follow-up MCP calls.
 
 ## What it covers
 
-ElevenFlo MCP provides research tools plus monitor management: 18 research
-tools and three tools that manage the signed-in user's own monitors. The live `tools/list`
-response and the [tool catalog](docs/tool-catalog.md) are the canonical
-contract; the groups below are the shape of it.
+ElevenFlo MCP has 16 tools: 13 for research and three that manage the
+signed-in user's own monitors. The live `tools/list` response and the
+[tool catalog](docs/tool-catalog.md) are the canonical contract; the groups
+below are the shape of it.
 
-**Case research.** Resolve a Chapter 11 case by debtor identity or by
-structured case metadata, list the canonical filing categories and tags, and
-browse a case docket. Save monitors (a watched case, or market filters such as
-chapter, state, status and asset class) and read what changed for them, or for
-named cases, from a resumable cursor that also delivers corrections and
-removals. Zero updates does not prove an inactive docket.
+**Cases and dockets.** Resolve a chapter 11 case by debtor identity and browse
+its docket. Save monitors (a watched case, or market filters such as chapter,
+state, status and asset class) and read what changed for them, or for named
+cases, from a resumable cursor that also delivers corrections and removals.
+Zero updates does not prove an inactive docket.
 
-**Documents and filings.** Search filing evidence across all cases or within
-one case, retrieve exact court-document text with offsets, extract passages
-answering a focused question, read stored filing summaries, and explore the
-citation graph between documents in a case.
+**Documents and transcripts.** Search court documents and machine hearing
+transcripts across all cases or within one case, see which pages hold a few
+keywords, then read exact pages, the pages matching a query, or a transcript at
+a time. Read stored document summaries, and find the most-cited documents in a
+case.
 
-**Transcripts.** Search indexed hearing and court transcripts, then retrieve
-exact passages with document identifiers and source references. News search
-is not part of the public MCP tool catalog.
-
-**Structured data.** Query typed datasets when the question is about
-comparable records or a population rather than filing text: discover the
-datasets available to your account, describe one before querying it, then
-return typed rows or grouped aggregates. Free can list and describe datasets
-and run aggregates that do not group by a case, firm or party name; reading rows requires Pro. The public catalog includes:
-
-- `ballot-class-results`
-- `committees`
-- `committee-members`
-- `asset-sales`
-- `top-unsecured-creditors`
-- `claim-transfers`
-- `voluntary-petitions`
-- `keip-kerp`
-- `adversary-proceedings`
-- `bankruptcy-appeals`
-- `counsel-appearances`
-- `case-people`
-- `rule-2019-statements`
-- `rule-2019-memberships`
-- `rule-2019-positions`
-- `fees-by-professional`
-- `fee-timekeepers`
-- `post-confirmation-reports`
-- `plans`
-- `schedule-summary-totals`
-- `executory-contracts`
-- `schedule-assets`
-- `codebtors`
-- `bar-dates`
-- `dip-financing`
-- `exclusivity-periods`
-- `conversions-dismissals-closures`
-- `disclosure-solicitation-events`
-- `contract-treatment-events`
-- `hearing-sessions`
-- `monthly-operating-reports`
-
-That is an explicit allowlist, not every structured dataset ElevenFlo
-maintains. Other datasets resolve as `unknown_dataset`.
+**Datasets.** Query typed datasets when the question is about comparable
+records or a population rather than document text: list the datasets, describe
+one before querying it, then search typed rows or aggregate them. Free can list
+and describe datasets and run aggregates that do not group by a case, firm or
+party name; reading rows requires Pro. The
+[tool catalog](docs/tool-catalog.md#structured-data) lists the public datasets;
+any other slug resolves as `unknown_dataset`.
 
 ## Boundary
 
@@ -190,7 +153,7 @@ unless using private/workspace Developer Mode.
 ## Support
 
 Email support@elevenflo.com. Run the smoke test above first and include its
-output, plus your MCP client and version, the endpoint URL, the case or filing
+output, plus your MCP client and version, the endpoint URL, the case or document
 involved, the tool or prompt attempted, the approximate time, the error
 message, and whether it affects one user or several.
 [docs/support.md](docs/support.md) has the full template and severity
