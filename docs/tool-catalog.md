@@ -288,26 +288,23 @@ Count and summarize records across one dataset.
 
 ### Available datasets
 
-- `ballot-class-results`
-- `bar-dates`
+- `cases`: one row per canonical bankruptcy case for screening by chapter,
+  Subchapter V election, court and state, petition date, entity form and
+  NAICS code from the lead petition, industry and case-type tags, petition
+  creditor, asset and liability brackets with their evidence basis, stage,
+  typed outcome and document coverage. Closed facts spell absence
+  as `unknown`, `missing` or `none`, so a group-by on them counts every case
+  once; tag group-bys count a case once per tag and overlap.
+- `voluntary-petitions`
+- `top-unsecured-creditors`
+- `capital-instruments`
+- `capital-parties`
+- `capital-links`
 - `dip-financing`
 - `dip-facilities`
-- `dip-milestones`
-- `dip-cash-flow-budgets`
 - `dip-orders`
-- `disclosure-solicitation-events`
-- `contract-treatment-events`
-- `hearing-sessions`: one row per current hearing session. A `hearing_date`
-  sort is calendar order: one day's sessions follow the clock. For per-case
-  totals group by `case_id`: the count is sessions, the sum of `matter_count`
-  is agenda matters, and the minimum and maximum `hearing_date` are the first
-  and last hearing.
-- `monthly-operating-reports`
-- `conversions-dismissals-closures`: court orders converting, dismissing or
-  closing a case, newest-filed first. Rows default to rulings on the case
-  itself; filter `applies_to_tracked_case` to `no` or `unresolved` for orders
-  that end only other jointly administered cases or leave the scope open.
-  `affected_case_numbers` lists the case numbers the order prints.
+- `dip-cash-flow-budgets`
+- `dip-milestones`
 - `committees`: one row per official committee with its current roster.
   `notices` lists every appointment notice with the roster that notice states,
   oldest first.
@@ -317,27 +314,46 @@ Count and summarize records across one dataset.
   `joined_date_basis` and `left_date_basis` say whether a notice states the
   date or a filing date bounds it; count departures with `end_transition`
   equal to `actual_departure`.
-- `exclusivity-periods`
-- `fees-by-professional` — Cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected documents; surviving requests in the same rollup still contribute. `allowance_note` states in plain words when allowed totals are blank, when a final basis also counts interim awards, or when combined or undated awards are left out or added unchecked. Monetary sorts require `currency_code` with `eq`; the default sort is latest filing date. `sources` identifies contributors separately for each monetary field, with availability, counts and truncation. Null provenance awaits reprojection. Order-date filters select applicants without rebasing their lifetime totals to the selected month.
-- `fee-timekeepers`: named historical billing rates by firm and case. Filter
-  `timekeeper_name` with name tokens in any order, `organization_name`,
-  `timekeeper_title`, or `hourly_rate`. Group partner rates by firm, filing year,
-  and currency; aggregates default to monthly, final, and first-and-final
-  applications. Rates are observed billing evidence, not current market rates.
-- `fee-decisions`
-- `professional-retentions`: one row per professional engagement (counsel,
-  financial advisers, bankers, claims agents and others) for a retaining party
-  in a case, with its lifecycle status, the application and order it rests on,
-  each objection, withdrawal and order in `lifecycle_events`, and stated rate
-  tiers. Proposed is not approved; a status comes from an entered order.
-- `professional-retention-rates`: one row per stated rate tier. Compare like
-  with like: filter `band`, `period=hour` and `currency_code`, and filter
-  `basis`, because a requested rate is not an approved one.
+- `schedule-summary-totals`
+- `schedule-assets`: one disclosed asset item on a Schedule A/B; filter
+  `asset_category` to `real_property` for real estate.
+- `codebtors`
+- `bar-dates`
+- `claim-transfers`
+- `rule-2019-statements`
+- `rule-2019-memberships`
+- `rule-2019-positions`
+- `monthly-operating-reports`
+- `monthly-operating-report-periods`
+- `monthly-operating-report-case-periods`
+- `monthly-operating-report-coverage`
 - `keip-kerp`
+- `asset-sales`
+- `case-assets`
+- `contract-treatment-events`
+- `executory-contracts`
+- `exclusivity-periods`
 - `plans`: each case's current Chapter 11 plan with lifecycle status, type,
   proponent, and filing, confirmation, and effective dates. A withheld date is
   null, never zero; an empty result never proves a plan event did not occur.
+- `plan-classes`
+- `disclosure-solicitation-events`
+- `ballot-class-results`
 - `post-confirmation-reports`
+- `post-confirmation-report-quarters`
+- `post-confirmation-report-case-quarters`
+- `post-confirmation-report-coverage`
+- `post-confirmation-plan-comparison`
+- `conversions-dismissals-closures`: court orders converting, dismissing or
+  closing a case, newest-filed first. Rows default to rulings on the case
+  itself; filter `applies_to_tracked_case` to `no` or `unresolved` for orders
+  that end only other jointly administered cases or leave the scope open.
+  `affected_case_numbers` lists the case numbers the order prints.
+- `hearing-sessions`: one row per current hearing session. A `hearing_date`
+  sort is calendar order: one day's sessions follow the clock. For per-case
+  totals group by `case_id`: the count is sessions, the sum of `matter_count`
+  is agenda matters, and the minimum and maximum `hearing_date` are the first
+  and last hearing.
 - `adversary-proceedings`: one row per adversary proceeding under a court
   number, with the parties and nature of suit the clerk announces on the
   bankruptcy docket and the dates of judgment, dismissal, closing and appeal
@@ -360,25 +376,23 @@ Count and summarize records across one dataset.
   for, the person's title, the latest document naming them and links to the
   person's and the firm's ElevenFlo pages. The firm is the one on that case,
   not current employment; count people with `count_distinct` on `person_name`.
-- `rule-2019-statements`
-- `rule-2019-memberships`
-- `rule-2019-positions`
-- `asset-sales`
-- `schedule-summary-totals`
-- `top-unsecured-creditors`
-- `executory-contracts`
-- `schedule-assets`: one disclosed asset item on a Schedule A/B; filter
-  `asset_category` to `real_property` for real estate.
-- `codebtors`
-- `claim-transfers`
-- `voluntary-petitions`
-- `cases`: one row per canonical bankruptcy case for screening by chapter,
-  Subchapter V election, court and state, petition date, entity form and
-  NAICS code from the lead petition, industry and case-type tags, petition
-  creditor, asset and liability brackets with their evidence basis, stage,
-  typed outcome and document coverage. Closed facts spell absence
-  as `unknown`, `missing` or `none`, so a group-by on them counts every case
-  once; tag group-bys count a case once per tag and overlap.
+- `professional-retentions`: one row per professional engagement (counsel,
+  financial advisers, bankers, claims agents and others) for a retaining party
+  in a case, with its lifecycle status, the application and order it rests on,
+  each objection, withdrawal and order in `lifecycle_events`, and stated rate
+  tiers. Proposed is not approved; a status comes from an entered order.
+- `professional-retention-rates`: one row per stated rate tier. Compare like
+  with like: filter `band`, `period=hour` and `currency_code`, and filter
+  `basis`, because a requested rate is not an approved one.
+- `fee-applications`
+- `fee-decisions`
+- `fees-by-professional`: cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected documents; surviving requests in the same rollup still contribute. `allowance_note` states in plain words when allowed totals are blank, when a final basis also counts interim awards, or when combined or undated awards are left out or added unchecked. Monetary sorts require `currency_code` with `eq`; the default sort is latest filing date. `sources` identifies contributors separately for each monetary field, with availability, counts and truncation. Null provenance awaits reprojection. Order-date filters select applicants without rebasing their lifetime totals to the selected month.
+- `fee-timekeepers`: named historical billing rates by firm and case. Filter
+  `timekeeper_name` with name tokens in any order, `organization_name`,
+  `timekeeper_title`, or `hourly_rate`. Group partner rates by firm, filing year,
+  and currency; aggregates default to monthly, final, and first-and-final
+  applications. Rates are observed billing evidence, not current market rates.
+- `fee-time-entries`
 
 This page is a static copy of the public catalog. Call
 `list_datasets` for the live list and `describe_dataset`

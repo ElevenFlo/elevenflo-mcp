@@ -29,11 +29,12 @@ The order supplies the language:
 All three passages are on page 2 of
 [Dkt. 608](https://elevenflo.com/api/search/open/f2078d6c-5f5b-49bb-92f1-e6d5bb48c1f8/)
 for [First Brands Group](https://elevenflo.com/cases/first-brands-group-llc-47),
-checked September 10, 2026. The $1.1 billion new-money component is not the
+checked November 13, 2026. The $1.1 billion new-money component is not the
 total facility. The same page separates the $175 million available on entry of
 the interim order from the $325 million funded into escrow; together they form
 the $500 million initial draw. The dataset's controlling document for this case
-is now an amendment, Dkt. 3073, June 26, 2026. Read later documents before
+is now Dkt. 3506, a July 29, 2026 agreed order on forbearance after the DIP
+credit agreement reached its maturity date. Read later documents before
 treating the November terms as current.
 
 ## Three financing orders
@@ -58,8 +59,8 @@ Document links use your ElevenFlo account and document access.
 
 ## Coverage and limits
 
-- The `dip-financing` dataset held 1,626 case-level records on September 10,
-  2026. Each row names the controlling document and its `instrument`, the court's
+- `describe_dataset` reports current coverage. Each `dip-financing` row names
+  the controlling document and its `instrument`, the court's
   `dip_outcome` and `cash_collateral_outcome`, and a `<term>_answer_basis` for every
   material term: `stated`, `silent_full_read` (the document was read and does not
   say), `by_reference` (the document points to another document) or `unread`. Neither
@@ -121,10 +122,10 @@ Present affected cells with their old value, new value and evidence for review.
 Identify source corrections and newly discovered older documents separately from
 new events. An unchanged row does not prove that no later event occurred.
 
-For the First Brands example, a September refresh still identifies a June
-financing amendment. Preserve the June source date in the comparison. Mark
-current borrowing availability as unverified until the relevant later record
-has been reviewed; do not replace it with the stated commitment.
+For the First Brands example, a November refresh identifies the July 29, 2026
+forbearance order after the DIP maturity date. Preserve that source date in the
+comparison. Mark current borrowing availability as unverified until the relevant
+later record has been reviewed; do not replace it with the stated commitment.
 
 ## Price and access
 
