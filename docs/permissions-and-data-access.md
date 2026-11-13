@@ -15,7 +15,7 @@ consent. Existing verified team membership and the member's normal ElevenFlo
 permissions remain required.
 
 > [!WARNING]
-> Use OAuth sign-in only. Do not paste a bearer token, API token, or custom `Authorization` header for ElevenFlo MCP. Your client manages the bearer tokens that the OAuth flow issues.
+> People sign in with OAuth only. Do not paste an API token or custom `Authorization` header for ElevenFlo MCP; your client manages the bearer tokens that the OAuth flow issues. An agent without an account uses its purchased credential instead: see [Pay as an agent](agent-purchases.md).
 
 ## What the tools can access
 
@@ -65,7 +65,7 @@ prompt and response history outside ElevenFlo.
 ## Consent and revocation
 
 Each client connection is a separate OAuth grant. Review and revoke grants in
-ElevenFlo account settings under **MCP connections**. Revoke a grant when its
+ElevenFlo under **Settings → Connections**. Revoke a grant when its
 client is out of use or no longer trusted, when a user leaves the organization,
 or when a review period ends.
 

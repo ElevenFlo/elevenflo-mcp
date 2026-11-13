@@ -37,7 +37,7 @@ that phrase is likely to appear in the document.
 
 ## Analysis fails on a long document
 
-Run `search_document_pages` first, then pass the selected chunk IDs to
+Run `search_document_pages` first, then read only the pages it returns with
 `read_document_pages`.
 
 ## Rate limit exceeded
@@ -52,8 +52,7 @@ Credit limits are separate from burst rate limits. Billable calls draw on one
 monthly balance shared across your clients. A call can fail when the remaining
 balance is lower than its credit cost. Free accounts include 200 MCP credits a month and
 reset on the first of the month; [Pro](https://elevenflo.com/pricing) includes
-10,000. Account → MCP connections shows the allowance and the remaining
-balance.
+10,000. **Settings → Usage** shows the allowance and the remaining balance.
 
 Pro accounts also have a rolling 24-hour limit of 2,000 credits. When a
 limit is reached, the error says when more credits become available, in
