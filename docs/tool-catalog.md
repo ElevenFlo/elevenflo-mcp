@@ -300,7 +300,6 @@ Count and summarize records across one dataset.
 - `capital-instruments`
 - `capital-parties`
 - `capital-links`
-- `dip-financing`
 - `dip-facilities`
 - `dip-orders`
 - `dip-cash-flow-budgets`
