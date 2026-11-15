@@ -53,7 +53,10 @@ relevant terminal notice rather than relying on a projected date.
 
 - Inputs: `case_id`; optional `limit` from 1 to 25, `query`,
   `document_type_tags`, inclusive `date_filed_from`/`date_filed_to` dates, up to
-  25 positive `docket_numbers`, and an opaque `cursor` from the preceding page.
+  25 positive `docket_entry_numbers` or an inclusive
+  `docket_entry_number_from`/`docket_entry_number_to` range (one bound alone is
+  open-ended; the list and the range cannot be combined), and an opaque
+  `cursor` from the preceding page.
   A cursor is valid only with the same filters. Dates describe filing dates,
   not independently verified entry or signature dates.
 - Text search: `query` matches an entry when every whitespace-separated term
@@ -64,17 +67,21 @@ relevant terminal notice rather than relying on a projected date.
   entries with classified documents carry tags; entries known only from court
   RSS carry the court's short label and no tags, so tag and text filters can
   exclude them.
-- Returns: version 2 `entries`, evidence, `has_more`, and `next_cursor` (null
-  when exhausted); PDF/text flags describe held artifacts. Every held document
-  with a public UUID appears once, inside its entry, with its
-  `document_type_tags` and a `filing_url` that opens the document. An empty first
+- Returns: the `case_id`, `entries`, evidence, `has_more`, and `next_cursor`
+  (null when exhausted); PDF/text flags describe held artifacts. Each entry
+  carries its `docket_entry_number`, `date_filed` and `docket_text`, the court's
+  own docket text in full. Every held document with a public UUID appears once,
+  inside its entry, with its `document_type_tags` and a `document_url` that
+  opens the document. A document repeats `docket_text`, `date_filed`,
+  `docket_entry_number` or `court_locator` only where its own value differs
+  from the entry's; a field it omits is the entry's. An empty first
   page carries `coverage_note`, which says whether the filters excluded recorded
   entries or none are recorded in that window, the case's coverage source, and
   whether the docket is known to be incomplete or its completeness is unknown.
 - Court locator: each entry and document can carry `court_locator`: the court
   `citation` (`Bankr. D. Del., No. 22-11068, ECF No. 512`; adversary and
   claim-register forms use `Adv. No.` and `Claim No.`), `court`, `case_number`,
-  `docket_number` or `claim_number`, `case_docket_url`, and an optional `pacer`
+  `docket_entry_number` or `claim_number`, `case_docket_url`, and an optional `pacer`
   link whose `target` is `case`, `entry`, or `document`. It says where the document
   sits on the court's docket, not where ElevenFlo's copy came from. A PACER link
   opens with the reader's own PACER login; PACER fees may apply. Document,
@@ -149,9 +156,9 @@ returns `invalid_query` naming the position to fix.
 - Inputs: `query`; optional `content_type` (`filing`, the default, or
   `transcript` for machine hearing transcripts), `case_id`,
   `document_type_tags` (not transcripts), and `limit` from 1 to 25.
-- Returns: document rows, newest first, with `document_id`, `filing_url`,
-  case, name, docket number and date; court documents add type tags and a matching
-  excerpt. An unknown `document_type_tags` value returns the allowed values.
+- Returns: document rows, newest first, with `document_id`, `document_url`,
+  case, `docket_text` (the court's docket text in full), `docket_entry_number`
+  and date; court documents add type tags and a matching excerpt. An unknown `document_type_tags` value returns the allowed values.
 - Transcripts are machine transcriptions of court audio, not court-reporter
   transcripts, and can misstate names and figures.
 
@@ -162,8 +169,8 @@ returns `invalid_query` naming the position to fix.
 Search stored document summaries within one case.
 
 - Inputs: `case_id`, `query`, optional `limit`.
-- Returns: summary rows, their document IDs, and a `filing_url` that opens each
-  document.
+- Returns: summary rows, their document IDs, each document's `docket_text` and
+  a `document_url` that opens it.
 
 ### `get_document_summary`
 
@@ -172,8 +179,8 @@ Read the stored summary for one document.
 - Input: `document_id`.
 - Returns: one summary or a typed not-found error whose `missing_document_ids`
   identifies the requested UUID. The summary lists the documents it relates to,
-  and the summary and each related document include a `filing_url` that opens
-  the document.
+  and the summary and each related document include the court's `docket_text`
+  and a `document_url` that opens the document.
 
 ## Exact text
 
@@ -198,7 +205,7 @@ Read pages of one document or transcript.
 - Inputs: `document_id` and exactly one of `pages` (numbers and ranges such
   as `3-5,9`), `query` (a few keywords) or, for a hearing transcript, `time`
   (such as `12:30`); optional `max_pages` from 1 to 10 (default 3).
-- Returns: each page's text and number, `page_count` and the `filing_url`.
+- Returns: each page's text and number, `page_count` and the `document_url`.
   With `query`, the pages holding every keyword come back in relevance order,
   all of them listed in `matched_pages`, with `has_more_matches` when more
   matched than were returned; if no page holds every keyword, the closest
@@ -216,8 +223,8 @@ Find key documents in a case, ranked by incoming citation count. Citation freque
 is a starting point for research, not a judgment of legal importance.
 
 - Inputs: `case_id`, optional `limit` from 1 to 25.
-- Returns: document rows with citation counts and a `filing_url` that opens each
-  document.
+- Returns: document rows with citation counts, each document's `docket_text`
+  and `docket_entry_number`, and a `document_url` that opens it.
 
 ## Structured data
 
