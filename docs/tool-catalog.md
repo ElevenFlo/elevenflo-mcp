@@ -60,7 +60,7 @@ relevant terminal notice rather than relying on a projected date.
   A cursor is valid only with the same filters. Dates describe filing dates,
   not independently verified entry or signature dates.
 - Text search: `query` matches an entry when every whitespace-separated term
-  appears, in any order and ignoring case. When a date or docket number is
+  appears, in any order and ignoring case. When a date or docket entry number is
   known, start with those filters and omit `query` and type filters.
 - Filters: `document_type_tags` accepts only category keys and canonical
   tags; an unknown value returns a typed error listing the allowed values. Only
@@ -366,7 +366,7 @@ Count and summarize records across one dataset.
   entries read since. There is no status: a null date does not establish an
   open proceeding.
 - `bankruptcy-appeals`: one row per notice of appeal, with appellants, the
-  docket numbers of the orders appealed, the court the appeal was first
+  docket entry numbers of the orders appealed, the court the appeal was first
   directed to, its case number there, the district judge where the district
   court's own docket is on file, and the ruling once the bankruptcy docket or
   that district docket records one. A null disposition does not establish a

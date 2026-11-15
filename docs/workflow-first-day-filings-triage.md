@@ -34,7 +34,7 @@ Include relevant hearing notices, proposed orders and entered orders.
 Use summaries for orientation, then read exact text for material terms.
 
 Return:
-- A document map with docket number, title, filing date and source.
+- A document map with docket entry number, docket text, filing date and source.
 - The reasons for filing stated in the declaration.
 - Relief requested by motion and relief authorized by an entered order.
 - Financing amounts and conditions, with supporting passages.
