@@ -4,7 +4,7 @@ The live `tools/list` response is the exact input and output contract. Inputs
 reject unknown fields, errors return `{code, message, retryable, recovery?, details?}`,
 and public TextContent is the JSON copy of the same `structuredContent` payload.
 Every list-returning tool returns bounded rows. ElevenFlo MCP
-exposes 16 tools: 13 bankruptcy research tools and three tools that manage
+exposes 15 tools: 12 bankruptcy research tools and three tools that manage
 the connected user's own monitors. This page is the complete list,
 and a tool absent here is not available. See
 [Permissions and data access](https://elevenflo.com/docs/mcp/permissions-and-data-access)
@@ -19,12 +19,12 @@ document row carries `has_primary_pdf: true`, open the document at
 
 1. `find_cases` to resolve a `case_id`.
 2. `list_docket_entries`, `search_documents`, or `find_key_documents` to
-   select documents.
+   select documents, and `list_related_documents` to follow one document to
+   the motion, order, objections or replies linked to it.
 3. `search_document_pages` to see which pages hold the keywords across up to
    25 documents.
 4. `read_document_pages` for the text of those pages, or of the pages in one
    document that match a query.
-5. `search_document_summaries` or `get_document_summary` for synthesis.
 
 ## Cases and dockets
 
@@ -162,26 +162,6 @@ returns `invalid_query` naming the position to fix.
 - Transcripts are machine transcriptions of court audio, not court-reporter
   transcripts, and can misstate names and figures.
 
-## Summaries
-
-### `search_document_summaries`
-
-Search stored document summaries within one case.
-
-- Inputs: `case_id`, `query`, optional `limit`.
-- Returns: summary rows, their document IDs, each document's `docket_text` and
-  a `document_url` that opens it.
-
-### `get_document_summary`
-
-Read the stored summary for one document.
-
-- Input: `document_id`.
-- Returns: one summary or a typed not-found error whose `missing_document_ids`
-  identifies the requested UUID. The summary lists the documents it relates to,
-  and the summary and each related document include the court's `docket_text`
-  and a `document_url` that opens the document.
-
 ## Exact text
 
 ### `search_document_pages`
@@ -225,6 +205,20 @@ is a starting point for research, not a judgment of legal importance.
 - Inputs: `case_id`, optional `limit` from 1 to 25.
 - Returns: document rows with citation counts, each document's `docket_text`
   and `docket_entry_number`, and a `document_url` that opens it.
+
+### `list_related_documents`
+
+List the documents one document's docket entry refers to and the documents
+whose docket entries refer to it, such as the motion an order rules on or the
+objections and replies to a motion.
+
+- Input: `document_id`.
+- Returns: two lists, `references` and `referenced_by`, holding up to 20
+  documents between them. Each row has `document_id`, `document_url`, the
+  court's `docket_text`, `docket_entry_number`, `date_filed` and
+  `relationship_type`. `has_more` is true when more than 20 exist.
+- Limits: a link exists where one docket entry cites another by number. An
+  empty list does not establish that nothing relates to the document.
 
 ## Structured data
 

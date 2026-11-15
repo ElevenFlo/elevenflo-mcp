@@ -15,7 +15,7 @@ connection.
 ## The tool list is missing a tool
 
 The [tool catalog](https://elevenflo.com/docs/mcp/tool-catalog) is the canonical
-list, and every plan gets the same 16 tools. If one is missing, confirm your
+list, and every plan gets the same 15 tools. If one is missing, confirm your
 email address is verified and reconnect through OAuth; the client may have
 cached an older `tools/list` response. A published or organization-approved app
 can keep a frozen tool snapshot until its owner refreshes or republishes it.
@@ -27,8 +27,8 @@ require Pro.
 ## Search results are empty
 
 Resolve the case with `find_cases` first and narrow by `case_id`. Broaden date
-filters, and search summaries before full text. Use an exact phrase only when
-that phrase is likely to appear in the document.
+filters. Use an exact phrase only when that phrase is likely to appear in the
+document.
 
 ## Analysis fails on a long document
 

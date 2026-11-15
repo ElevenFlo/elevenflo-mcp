@@ -66,7 +66,7 @@ it in follow-up MCP calls.
 
 ## What it covers
 
-ElevenFlo MCP has 16 tools: 13 for research and three that manage the
+ElevenFlo MCP has 15 tools: 12 for research and three that manage the
 signed-in user's own monitors. The live `tools/list` response and the
 [tool catalog](docs/tool-catalog.md) are the canonical contract; the groups
 below are the shape of it.
@@ -80,8 +80,8 @@ Zero updates does not prove an inactive docket.
 **Documents and transcripts.** Search court documents and machine hearing
 transcripts across all cases or within one case, see which pages hold a few
 keywords, then read exact pages, the pages matching a query, or a transcript at
-a time. Read stored document summaries, and find the most-cited documents in a
-case.
+a time. Find the most-cited documents in a case and the documents linked to
+one document.
 
 **Datasets.** Query typed datasets when the question is about comparable
 records or a population rather than document text: list the datasets, describe

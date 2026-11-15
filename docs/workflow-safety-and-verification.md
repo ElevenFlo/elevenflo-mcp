@@ -1,7 +1,7 @@
 # Safety and verification
 
-Use the documents to check the result. A docket entry, document summary and exact
-passage provide different levels of evidence.
+Use the documents to check the result. A docket entry and an exact passage
+provide different levels of evidence.
 
 ## Acceptance checklist
 

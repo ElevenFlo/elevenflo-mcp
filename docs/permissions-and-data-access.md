@@ -25,7 +25,6 @@ can return:
 - Bankruptcy case metadata
 - Docket entries
 - Court-document text
-- Document summaries
 - Typed case updates for named cases or your saved monitors
 - Hearing transcripts, where indexed
 - Document relationship signals
@@ -45,8 +44,8 @@ canonical list.
 
 ElevenFlo indexes public court records (dockets, documents, and hearing
 transcripts). Research results link to public court documents and court citations.
-`read_document_pages` returns exact retrieved document text. Summaries and typed
-datasets are derived research aids; verify material claims against the document.
+`read_document_pages` returns exact retrieved document text. Typed datasets
+are derived research aids; verify material claims against the document.
 
 With `save_monitor`, `list_monitors`, `delete_monitor` and `list_case_updates`,
 the client can read and change the connected user's own saved monitors; it

@@ -69,8 +69,8 @@ State the case identity, review window and run time.
 
 Review the available case updates and docket entries within that scope.
 Separate when an update was detected from when its docket entry was entered.
-Read the material documents. Use summaries for orientation and exact text for
-amounts, dates, deadlines, financing terms and operative language.
+Read the material documents. Use exact text for amounts, dates, deadlines,
+financing terms and operative language.
 
 Return:
 - Up to five material developments, each with its court citation.

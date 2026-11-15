@@ -31,7 +31,7 @@ Review [PETITION DATE OR DOCKET RANGE]. State the case identity and review date.
 Find the petition, first-day declaration, financing and cash-collateral motions,
 cash management, wages, vendor, noticing and retention documents in that scope.
 Include relevant hearing notices, proposed orders and entered orders.
-Use summaries for orientation, then read exact text for material terms.
+Read exact text for material terms.
 
 Return:
 - A document map with docket entry number, docket text, filing date and source.

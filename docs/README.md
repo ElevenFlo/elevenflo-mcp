@@ -9,8 +9,8 @@ https://elevenflo.com/mcp
 
 Authentication uses ElevenFlo web-app sign-in, OAuth 2.1, PKCE, and explicit
 consent. The tool set is research tools plus monitor management: case lookup,
-docket research, court-document search and exact text, document summaries,
-document relationships, structured-dataset search and aggregation, and saved
+docket research, court-document search and exact text, document
+relationships, structured-dataset search and aggregation, and saved
 monitors whose changes `list_case_updates` reads.
 
 - [Before you connect](quickstart.md)
