@@ -183,9 +183,10 @@ transcripts before reading full text.
 
 Read pages of one document or transcript.
 
-- Inputs: `document_id` and exactly one of `pages` (numbers and ranges such
-  as `3-5,9`), `query` (a few keywords) or, for a hearing transcript, `time`
-  (such as `12:30`); optional `max_pages` from 1 to 10 (default 3).
+- Inputs: `document_id` and one of `pages` (numbers and ranges such as
+  `3-5,9`), `query` (a few keywords) or, for a hearing transcript, `time`
+  (such as `12:30`); optional `max_pages` from 1 to 10 (default 3). With none
+  of the three, the first `max_pages` pages are read.
 - Returns: each page's text and number, `page_count` and the `document_url`.
   One call reads 10 pages. When `pages` names more, the first 10 in page
   order are read and `unread_pages` lists the rest that exist in the
