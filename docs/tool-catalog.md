@@ -241,21 +241,34 @@ names a case (`case_id`, `id`, `case_name`, `case_number`,
 List every dataset.
 
 - Inputs: none.
-- Returns: `families` in the order a case runs, each with its `stage` and
-  `datasets`; a dataset gives its `dataset` name (the value the other dataset
-  tools take), `title`, what one `row` is and `complete_since`.
+- Returns: `columns` once (`dataset`, `one_row_per`), then `stages` in the
+  order a case runs. Each stage holds its `families`, and each family one
+  array per dataset in the order of `columns`: the `dataset` name (the value
+  the other dataset tools take) and what one row is.
+- The whole list is one credit. `describe_dataset` gives a dataset's title,
+  freshness and coverage.
 
 ### `describe_dataset`
 
 Call this before you query an unfamiliar dataset.
 
-- Input: `dataset`, a name returned by `list_datasets`.
+- Inputs: `dataset`, a name returned by `list_datasets`; optional `fields`,
+  up to 60 field names.
 - Returns: what one row is, `as_of`, `complete_since`, `grade`,
   `cases_covered`, caveats, one `fields` table and example calls. Each field
   row gives its name, type, unit, `fill` (the share of rows that hold a
   value), allowed values, the filter operators it accepts and its meaning.
   `extra_filters` lists filters that are not fields; `sort` and `facets` list
   the fields that sort and facet.
+- Every description is one credit. A wide dataset describes its main fields
+  in `fields` and names the rest by type in `more_fields`. Pass any of those
+  names as `fields` to get their rows; that response holds the dataset, its
+  title, what one row is and the rows asked for, in the order asked.
+- `case_fields` lists the case facts every dataset except `cases` carries
+  (chapter, court, judge, petition date, size ranges and the like) with each
+  one's type and its allowed values when the list is short. They filter,
+  select and group like the dataset's own fields; pass one as `fields` for its
+  full row.
 - A filter has one name, the one `describe_dataset` lists; there
   are no aliases. Sale-process dates filter on `latest_source_date_filed` and
   fees-by-professional on `latest_date_filed`. Calendar-date ranges support
