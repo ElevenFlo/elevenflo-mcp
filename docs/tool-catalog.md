@@ -1,7 +1,8 @@
 # Tool catalog
 
 The live `tools/list` response is the exact input and output contract. Inputs
-reject unknown fields, errors return `{code, message, retryable, recovery?, details?}`,
+reject unknown fields, and that rejection's `recovery` lists the arguments the
+tool takes. Errors return `{code, message, retryable, recovery?, details?}`,
 and public TextContent is the JSON copy of the same `structuredContent` payload.
 Every list-returning tool returns bounded rows; a `limit` or `max_pages`
 above a tool's maximum reads the maximum. ElevenFlo MCP
@@ -415,7 +416,7 @@ Count and summarize records across one dataset.
 This page is a static copy of the public catalog. Call
 `list_datasets` for the live list and `describe_dataset`
 for each dataset's fields, operations, and limits. Datasets outside the public
-catalog return `unknown_dataset`.
+catalog return `unknown_dataset`, and its `recovery` names the closest dataset names.
 
 `hearing-sessions` uses schema `hearing-sessions.v4`. `scope_kind` distinguishes
 bankruptcy-case, single-adversary, joint-adversary and unresolved ownership.
