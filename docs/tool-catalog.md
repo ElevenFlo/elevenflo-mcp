@@ -3,7 +3,8 @@
 The live `tools/list` response is the exact input and output contract. Inputs
 reject unknown fields, errors return `{code, message, retryable, recovery?, details?}`,
 and public TextContent is the JSON copy of the same `structuredContent` payload.
-Every list-returning tool returns bounded rows. ElevenFlo MCP
+Every list-returning tool returns bounded rows; a `limit` or `max_pages`
+above a tool's maximum reads the maximum. ElevenFlo MCP
 exposes 15 tools: 12 bankruptcy research tools and three tools that manage
 the connected user's own monitors. This page is the complete list,
 and a tool absent here is not available. See
@@ -186,6 +187,9 @@ Read pages of one document or transcript.
   as `3-5,9`), `query` (a few keywords) or, for a hearing transcript, `time`
   (such as `12:30`); optional `max_pages` from 1 to 10 (default 3).
 - Returns: each page's text and number, `page_count` and the `document_url`.
+  One call reads 10 pages. When `pages` names more, the first 10 in page
+  order are read and `unread_pages` lists the rest that exist in the
+  document, written so it can be passed as `pages` on the next call.
   With `query`, the pages holding every keyword come back in relevance order,
   all of them listed in `matched_pages`, with `has_more_matches` when more
   matched than were returned; if no page holds every keyword, the closest
