@@ -156,14 +156,18 @@ example `"cash collateral" AND (objection OR NOT interim)`. A malformed query
 returns `invalid_query` naming the position to fix.
 
 - Inputs: `query`; optional `content_type` (`filing`, the default, or
-  `transcript` for machine hearing transcripts), `case_id`,
-  `document_type_tags` (not transcripts), inclusive
+  `transcript`), `case_id`, `document_type_tags` (not transcripts), inclusive
   `date_filed_from`/`date_filed_to` dates, and `limit` from 1 to 25.
-- Returns: document rows, newest first, with `document_id`, `document_url`,
-  case, `docket_text` (the court's docket text in full), `docket_entry_number`
-  and date; court documents add type tags and a matching excerpt. An unknown `document_type_tags` value returns the allowed values.
-- Transcripts are machine transcriptions of court audio, not court-reporter
-  transcripts, and can misstate names and figures.
+- Returns: document rows with `document_id`, `document_url`, case,
+  `docket_text` (the court's docket text in full), `docket_entry_number`, date
+  and a matching excerpt. Filings come newest first and add type tags.
+  Transcripts come in relevance order and add `transcript_source_kind`. An
+  unknown `document_type_tags` value returns the allowed values.
+- A transcript is one of two kinds. `certified_filing` is a court reporter's
+  transcript filed on the docket; it reads by page like any filing.
+  `court_audio_asr` is a machine transcription of court audio, not a
+  court-reporter transcript; it can misstate names and figures and reads by
+  time.
 
 ## Exact text
 
@@ -186,7 +190,7 @@ transcripts before reading full text.
 Read pages of one document or transcript.
 
 - Inputs: `document_id` and one of `pages` (numbers and ranges such as
-  `3-5,9`), `query` (a few keywords) or, for a hearing transcript, `time`
+  `3-5,9`), `query` (a few keywords) or, for a court-audio transcript, `time`
   (such as `12:30`); optional `max_pages` from 1 to 10 (default 3). With none
   of the three, the first `max_pages` pages are read.
 - Returns: each page's text and number, `page_count` and the `document_url`.
@@ -196,8 +200,10 @@ Read pages of one document or transcript.
   With `query`, the pages holding every keyword come back in relevance order,
   all of them listed in `matched_pages`, with `has_more_matches` when more
   matched than were returned; if no page holds every keyword, the closest
-  pages carry `matched_terms`. A transcript reads as numbered blocks of
-  speaker turns with `start_time` and `end_time`.
+  pages carry `matched_terms`. A court-audio transcript reads as numbered
+  blocks of speaker turns with `start_time` and `end_time`; a court
+  reporter's transcript reads by page, and `time` on one returns
+  `invalid_request`.
 - Limits: a document without page numbers reads by `query` only
   (`source_not_searchable` otherwise). A page outside the document returns
   `page_not_found`; an unknown document returns a typed not-found error.

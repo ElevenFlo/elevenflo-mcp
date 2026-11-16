@@ -77,10 +77,11 @@ state, status and asset class) and read what changed for them, or for named
 cases, from a resumable cursor that also delivers corrections and removals.
 Zero updates does not prove an inactive docket.
 
-**Documents and transcripts.** Search court documents and machine hearing
-transcripts across all cases or within one case, see which pages hold a few
-keywords, then read exact pages, the pages matching a query, or a transcript at
-a time. Find the most-cited documents in a case and the documents linked to
+**Documents and transcripts.** Search court documents and hearing transcripts
+(court reporters' filed transcripts and machine transcriptions of court audio)
+across all cases or within one case, see which pages hold a few keywords, then
+read exact pages, the pages matching a query, or a court-audio transcript at a
+time. Find the most-cited documents in a case and the documents linked to
 one document.
 
 **Datasets.** Query typed datasets when the question is about comparable
