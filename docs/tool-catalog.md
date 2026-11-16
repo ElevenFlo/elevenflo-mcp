@@ -157,7 +157,8 @@ returns `invalid_query` naming the position to fix.
 
 - Inputs: `query`; optional `content_type` (`filing`, the default, or
   `transcript` for machine hearing transcripts), `case_id`,
-  `document_type_tags` (not transcripts), and `limit` from 1 to 25.
+  `document_type_tags` (not transcripts), inclusive
+  `date_filed_from`/`date_filed_to` dates, and `limit` from 1 to 25.
 - Returns: document rows, newest first, with `document_id`, `document_url`,
   case, `docket_text` (the court's docket text in full), `docket_entry_number`
   and date; court documents add type tags and a matching excerpt. An unknown `document_type_tags` value returns the allowed values.
