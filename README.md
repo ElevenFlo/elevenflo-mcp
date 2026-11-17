@@ -66,8 +66,9 @@ it in follow-up MCP calls.
 
 ## What it covers
 
-ElevenFlo MCP has 15 tools: 12 for research and three that manage the
-signed-in user's own monitors. The live `tools/list` response and the
+ElevenFlo MCP has 16 tools: 12 for research, three that manage the
+signed-in user's own monitors, and one that shows the account's plan and
+credits. The live `tools/list` response and the
 [tool catalog](docs/tool-catalog.md) are the canonical contract; the groups
 below are the shape of it.
 

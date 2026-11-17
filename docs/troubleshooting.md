@@ -15,7 +15,7 @@ connection.
 ## The tool list is missing a tool
 
 The [tool catalog](https://elevenflo.com/docs/mcp/tool-catalog) is the canonical
-list, and every plan gets the same 15 tools. If one is missing, confirm your
+list, and every plan gets the same 16 tools. If one is missing, confirm your
 email address is verified and reconnect through OAuth; the client may have
 cached an older `tools/list` response. A published or organization-approved app
 can keep a frozen tool snapshot until its owner refreshes or republishes it.

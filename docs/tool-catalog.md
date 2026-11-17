@@ -6,8 +6,9 @@ tool takes. Errors return `{code, message, retryable, recovery?, details?}`,
 and public TextContent is the JSON copy of the same `structuredContent` payload.
 Every list-returning tool returns bounded rows; a `limit` or `max_pages`
 above a tool's maximum reads the maximum. ElevenFlo MCP
-exposes 15 tools: 12 bankruptcy research tools and three tools that manage
-the connected user's own monitors. This page is the complete list,
+exposes 16 tools: 12 bankruptcy research tools, three that manage the
+connected user's own monitors, and one that shows the connected account's
+plan and credits. This page is the complete list,
 and a tool absent here is not available. See
 [Permissions and data access](https://elevenflo.com/docs/mcp/permissions-and-data-access)
 for what ElevenFlo MCP cannot do.
@@ -459,6 +460,7 @@ of 1 credit, returned records divided by 10 (rounded up), or canonical response
 bytes divided by 10,000 (rounded up). Protocol duplicates are counted only once.
 A 100-row response of 20 KB costs 10 credits; a 45 KB text response costs 5.
 Failed calls are not charged. Successful empty responses cost 1 credit.
+`show_plan_and_credits` is the one tool that costs none.
 
 Free includes 200 MCP credits per calendar month, with no daily limit.
 Pro includes 10,000 per calendar month and 2,000 per rolling 24 hours. Agents
@@ -469,7 +471,23 @@ reset at 00:00 UTC on the first of the month; Pro's rolling capacity recovers as
 usage ages past 24 hours. A result that exceeds remaining capacity, or the caller's
 `elevenflo/max_credits` request budget, is withheld and not charged. Every
 successful result reports its cost and the remaining balance in `_meta`. See
-current balances on your account page.
+current balances with `show_plan_and_credits` or on your account page.
+
+### `show_plan_and_credits`
+
+Show the connected account's plan and MCP credits.
+
+- Inputs: none.
+- Returns: `plan` (`Free` or `Pro`) and `monthly_credits`: the credits
+  included, used and remaining this month and when they reset. Pro adds
+  `daily_credits` for the rolling 24 hours. A Free account also receives
+  `upgrade`: what ElevenFlo Pro includes, its price, and a link that opens the
+  upgrade on elevenflo.com, where payment happens.
+- Costs no credits and works after a credit limit is reached. A client that
+  supports MCP Apps shows the result as a panel in the conversation; any other
+  client receives the same fields as text.
+- Limits: a prepaid tab holds a balance but no plan, so the tool is not
+  offered to one.
 
 Website document access has a separate rolling-day budget of 75 distinct
 documents on Pro. Free accounts keep their monthly download allowance instead.

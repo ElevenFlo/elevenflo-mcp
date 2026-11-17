@@ -29,6 +29,7 @@ can return:
 - Hearing transcripts, where indexed
 - Document relationship signals
 - Typed rows and aggregates from the public structured datasets
+- Your own account's plan and MCP credit balance (`show_plan_and_credits`)
 
 Structured datasets have a fixed allowlist and declared public fields. See
 [structured data](https://elevenflo.com/docs/mcp/tool-catalog#structured-data).
@@ -50,7 +51,9 @@ are derived research aids; verify material claims against the document.
 With `save_monitor`, `list_monitors`, `delete_monitor` and `list_case_updates`,
 the client can read and change the connected user's own saved monitors; it
 cannot read or change anyone else's. That account context is not a public court
-record. News search is not a public MCP tool.
+record. `show_plan_and_credits` reads the connected account's plan and credit
+balance and nothing else about the account; it cannot change the plan, and
+payment happens only on elevenflo.com. News search is not a public MCP tool.
 
 Connecting ElevenFlo MCP does not give ElevenFlo access to your firm's
 documents, email, matters, or client files. ElevenFlo receives only the tool
