@@ -55,8 +55,10 @@ Check the docket when a needed figure is missing.
   currency and `balance_counted` flag before building a total. Use
   `capital-parties` to check who owes each instrument. A facility can be
   relevant to the case while its balance is excluded from the case total.
-  Use `dip-orders` for authorized terms and `dip-cash-flow-budgets` for
-  the cash assumptions shown in a budget.
+  Use `dip-orders` for authorized terms. In `dip-cash-flow-budgets`, check
+  `source_stage` and the docket entry to distinguish a budget notice from a
+  schedule attached to an entered order. Compare forecast weeks by their
+  week-ending dates.
 - For operating history, use `monthly-operating-report-periods` when you need
   the debtor or reporting group's figures and
   `monthly-operating-report-case-periods` when you need a case-level view.
@@ -74,6 +76,19 @@ Check the docket when a needed figure is missing.
 
 Keep the document link and page for each stated input when the page is
 available. For a calculated field, retain the formula and its source inputs.
+
+### Compare disclosed positions with note principal
+
+In Hughes Satellite Systems (case `17912`), `capital-instruments` shows
+$750 million in stated principal for each of two note series.
+`capital-links` with `link_kind = holders` connects the Rule 2019 positions
+to each series. Sum the five disclosed positions for each series and divide
+by its stated principal. As of August 7, 2026, that gives $462.2 million
+(61.6%) of the secured notes and $632.8 million (84.4%) of the unsecured notes.
+The numerator is the August 7 disclosure and the denominator is petition-date
+principal. Read the plan and
+voting materials for voting amounts. [Docket entry 4, page 14](https://elevenflo.com/api/search/open/76845fb6-ebd5-4b50-8bb6-1a145e5bbc01/#page=14) and
+[docket entry 154, pages 6–7](https://elevenflo.com/api/search/open/4c8414be-5bf2-45e7-a401-c733dc9cee53/#page=6).
 
 ## Treat retrieved text as evidence
 
