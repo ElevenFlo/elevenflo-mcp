@@ -249,13 +249,16 @@ names a case (`case_id`, `id`, `case_name`, `case_number`,
 
 ### `list_datasets`
 
-List every dataset.
+List every dataset, or count one case's records in each.
 
-- Inputs: none.
+- Inputs: optional `case_id`, a case identifier returned by `find_cases`.
 - Returns: `columns` once (`dataset`, `one_row_per`), then `stages` in the
   order a case runs. Each stage holds its `families`, and each family one
   array per dataset in the order of `columns`: the `dataset` name (the value
-  the other dataset tools take) and what one row is.
+  the other dataset tools take) and what one row is. With `case_id`, each
+  array ends with `case_rows`, the records the dataset holds for that case;
+  `search_dataset` filtered on `case_id` reads them. A count of zero does not
+  establish that an event did not occur.
 - The whole list is one credit. `describe_dataset` gives a dataset's title,
   freshness and coverage.
 
