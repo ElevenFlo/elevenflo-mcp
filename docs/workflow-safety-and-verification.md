@@ -70,6 +70,10 @@ Check the docket when a needed figure is missing.
   liquidation analysis and projections in the disclosure statement when it
   provides them. Keep the debtors' estimates for the plan, their hypothetical
   chapter 7 estimates and your model assumptions in separate columns.
+  For separate elections, query `plan-class-recoveries` and select
+  `citations`. Mercer's disclosure statement estimates 38.2% for Class 3
+  holders who do not participate in the new money notes and 58.1% for
+  those who do. [Docket entry 14, page 189](https://elevenflo.com/api/search/open/077e0392-6870-4cbb-a396-bbd44991dfb7/#page=189).
 - For timeline comparisons, use the petition, sale order, confirmation and
   effective dates in `cases`. Compare the same milestone across similar cases.
   A sale order dates the court's authorization. Check the docket for closing.
