@@ -163,11 +163,11 @@ returns `invalid_query` naming the position to fix.
   `date_filed_from`/`date_filed_to` dates, and `limit` from 1 to 25.
 - Returns: document rows with `document_id`, `document_url`, case,
   `docket_text` (the court's docket text in full), `docket_entry_number`, date
-  and a matching excerpt. Filings come newest first and add type tags.
+  and a matching excerpt. Court documents come newest first and add type tags.
   Transcripts come in relevance order and add `transcript_source_kind`. An
   unknown `document_type_tags` value returns the allowed values.
 - A transcript is one of two kinds. `certified_filing` is a court reporter's
-  transcript filed on the docket; it reads by page like any filing.
+  transcript filed on the docket. Read it by page like other court documents.
   `court_audio_asr` is a machine transcription of court audio, not a
   court-reporter transcript; it can misstate names and figures and reads by
   time.
@@ -357,7 +357,7 @@ Count and summarize records across one dataset.
   needs `case_id` or `search`.
 - `sofa-disclosures`: one answer to a Statement of Financial Affairs
   (Official Form 207) question, with its `disclosure_type`, party, amount, dates
-  and the filing text that states it. An aggregate needs `case_id`.
+  and the source text that states it. An aggregate needs `case_id`.
 - `first-day-relief`: one first-day motion or order with its relief type,
   requested and granted payment caps in their stated currency, and the
   rulings the orders state (`granted_statuses`).
@@ -379,7 +379,13 @@ Count and summarize records across one dataset.
 - `plans`: each case's current Chapter 11 plan with lifecycle status, type,
   proponent, and filing, confirmation, and effective dates. A withheld date is
   null, never zero; an empty result never proves a plan event did not occur.
-- `plan-classes`
+- `plan-classes`: one row per class, with class-level recovery estimates and
+  the published `recoveries` when available. `recovery_mid_percent` can be
+  calculated from the class's bounds. Use the individual outcomes for elections.
+- `plan-class-recoveries`: one row per published recovery outcome. Filter
+  by `case_id`. Use `class_id` to join the class terms and `outcome`
+  and `outcome_label` to check which condition applies. Select `citations`
+  to verify stated estimates and terms on the source page.
 - `disclosure-solicitation-events`
 - `ballot-class-results`
 - `post-confirmation-reports`
