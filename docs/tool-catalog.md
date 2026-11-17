@@ -70,8 +70,8 @@ relevant terminal notice rather than relying on a projected date.
   entries with classified documents carry tags; entries known only from court
   RSS carry the court's short label and no tags, so tag and text filters can
   exclude them.
-- Returns: the `case_id`, `entries`, evidence, `has_more`, and `next_cursor`
-  (null when exhausted); PDF/text flags describe held artifacts. Each entry
+- Returns: the `case_id`, `entries`, evidence and, when more entries follow,
+  `next_cursor`; PDF/text flags describe held artifacts. Each entry
   carries its `docket_entry_number`, `date_filed` and `docket_text`, the court's
   own docket text in full. Every held document with a public UUID appears once,
   inside its entry, with its `document_type_tags` and a `document_url` that
@@ -108,7 +108,8 @@ notifications.
   the matching `monitor_ids`; a `remove` names a development that no longer
   matches, such as a corrected asset scope or a withdrawal. The first call
   pages a fixed `snapshot`; keep `next_cursor` and pass it later to get just
-  the `changes` since. `coverage` states the scope, what unknown facts left out,
+  the `changes` since. Every call returns `next_cursor` as a resume point;
+  `has_more` is true when more changes are ready now. `coverage` states the scope, what unknown facts left out,
   and what the covered cases hold.
 - Limits: zero changes does not mean nothing was filed. After a monitor is
   edited, added or deleted the cursor returns `monitor_changed`: call again
@@ -135,8 +136,8 @@ Save a monitor for the connected user, or edit one by `monitor_id`.
 
 List the connected user's monitors, oldest first, with their ids, filters,
 topics and `filter_revision`. `limit` is 1 to 100 (default 50); pass `next_cursor`
-back as `cursor` for the next page, and `total` and `has_more` say how many
-there are.
+back as `cursor` for the next page; it is absent on the last page. `total`
+counts every monitor.
 
 ### `delete_monitor`
 
@@ -231,7 +232,8 @@ objections and replies to a motion.
 - Returns: two lists, `references` and `referenced_by`, holding up to 20
   documents between them. Each row has `document_id`, `document_url`, the
   court's `docket_text`, `docket_entry_number`, `date_filed` and
-  `relationship_type`. `has_more` is true when more than 20 exist.
+  `relationship_type`. `truncated` is true when more than 20 exist; the rest
+  are not listed.
 - Limits: a link exists where one docket entry cites another by number. An
   empty list does not establish that nothing relates to the document.
 
@@ -296,8 +298,8 @@ Return typed rows from one dataset.
 - Inputs: `dataset`; optional typed `where`, `select`, `sort`, `limit`,
   `cursor`, and requested `facets` as listed by the dataset description.
 - Returns: `columns` once, then one array per record in that order, with
-  `total`, facet counts when asked, `next_cursor` when more records match,
-  `as_of` and `complete_since`. Wide projections clamp page size to the
+  `total` (null when not counted), facet counts when asked, `next_cursor`
+  when more records match, `as_of` (null when unknown) and `complete_since`. Wide projections clamp page size to the
   select budget.
 - Stored spellings: to find how a name is stored, filter the field with
   `contains` and request it as a facet.
