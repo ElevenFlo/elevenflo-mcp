@@ -344,6 +344,16 @@ Count and summarize records across one dataset.
 - `schedule-assets`: one disclosed asset item on a Schedule A/B; filter
   `asset_category` to `real_property` for real estate.
 - `codebtors`
+- `scheduled-claims`: one claim listed on a Schedule D or E/F, with its
+  bucket (`secured`, `priority_unsecured`, `nonpriority_unsecured`), stated
+  amounts and disputed, contingent and unliquidated checkboxes. An aggregate
+  needs `case_id` or `search`.
+- `sofa-disclosures`: one answer to a Statement of Financial Affairs
+  (Official Form 207) question, with its `fact_family`, party, amount, dates
+  and the filing text that states it. An aggregate needs `case_id`.
+- `first-day-relief`: one first-day motion or order with its relief type,
+  requested and granted payment caps in their stated currency, and the
+  rulings the orders state (`granted_statuses`).
 - `bar-dates`
 - `claim-transfers`
 - `rule-2019-statements`
