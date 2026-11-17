@@ -492,4 +492,4 @@ Show the connected account's plan and MCP credits.
 Website document access has a separate rolling-day budget of 75 distinct
 documents on Pro. Free accounts keep their monthly download allowance instead.
 Reopening the same document and PDF range requests do not consume additional
-rolling-day slots. Publicly published blog documents remain public.
+rolling-day slots.
