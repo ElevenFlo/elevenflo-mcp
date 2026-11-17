@@ -96,7 +96,7 @@ Run `describe_dataset` for `dip-facilities` and `dip-orders`, then run
   "select": ["case_id", "case_name", "facility_name", "facility_type",
     "court_outcome", "commitment_amount_usd", "commitment_answer_basis",
     "new_money_amount_usd", "new_money_answer_basis", "roll_up_state",
-    "roll_up_amount_usd", "roll_up_answer_basis", "source_document_urls"]
+    "roll_up_amount_usd", "roll_up_answer_basis", "document_urls"]
 }
 ```
 
@@ -105,7 +105,7 @@ Run `describe_dataset` for `dip-facilities` and `dip-orders`, then run
   "dataset": "dip-orders",
   "where": [{"field": "case_id", "op": "eq", "value": 47}],
   "select": ["case_id", "docket_entry_number", "order_phase", "disposition",
-    "date_filed", "source_document_url"],
+    "date_filed", "document_url"],
   "sort": [{"field": "date_filed", "direction": "asc"}]
 }
 ```

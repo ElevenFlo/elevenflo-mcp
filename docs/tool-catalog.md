@@ -350,7 +350,7 @@ Count and summarize records across one dataset.
   amounts and disputed, contingent and unliquidated checkboxes. An aggregate
   needs `case_id` or `search`.
 - `sofa-disclosures`: one answer to a Statement of Financial Affairs
-  (Official Form 207) question, with its `fact_family`, party, amount, dates
+  (Official Form 207) question, with its `disclosure_type`, party, amount, dates
   and the filing text that states it. An aggregate needs `case_id`.
 - `first-day-relief`: one first-day motion or order with its relief type,
   requested and granted payment caps in their stated currency, and the
