@@ -134,8 +134,9 @@ Save a monitor for the connected user, or edit one by `monitor_id`.
 ### `list_monitors`
 
 List the connected user's monitors, oldest first, with their ids, filters,
-topics and `filter_revision`. `limit` is 1 to 100 (default 50); `offset` pages
-on, and `total` and `has_more` say how many there are.
+topics and `filter_revision`. `limit` is 1 to 100 (default 50); pass `next_cursor`
+back as `cursor` for the next page, and `total` and `has_more` say how many
+there are.
 
 ### `delete_monitor`
 
@@ -289,7 +290,7 @@ Call this before you query an unfamiliar dataset.
 
 Return typed rows from one dataset.
 
-- Inputs: `dataset`; optional typed `where`, `select`, `sort`, `page_size`,
+- Inputs: `dataset`; optional typed `where`, `select`, `sort`, `limit`,
   `cursor`, and requested `facets` as listed by the dataset description.
 - Returns: `columns` once, then one array per record in that order, with
   `total`, facet counts when asked, `next_cursor` when more records match,
@@ -305,7 +306,7 @@ Return typed rows from one dataset.
 Count and summarize records across one dataset.
 
 - Inputs: `dataset` and `metrics`; optional typed `where`, `group_by`,
-  `order_by`, and a `limit` of up to 1,000 groups. A date field groups by a
+  `sort`, and a `limit` of up to 1,000 groups. A date field groups by a
   time bucket and a number field by a fixed `width`. A metric's own `where`
   counts only the rows it matches, so two metrics in one call give a rate.
 - Returns: `columns` once, then one array per group: the group fields, each

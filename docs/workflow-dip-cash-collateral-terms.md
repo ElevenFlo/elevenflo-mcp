@@ -95,7 +95,7 @@ Run `describe_dataset` for `dip-facilities` and `dip-orders`, then run
   "where": [{"field": "case_id", "op": "eq", "value": 47}],
   "select": ["case_id", "case_name", "facility_name", "facility_type",
     "court_outcome", "commitment_amount_usd", "commitment_answer_basis",
-    "new_money_amount_usd", "new_money_answer_basis", "roll_up_state",
+    "new_money_amount_usd", "new_money_answer_basis", "roll_up_status",
     "roll_up_amount_usd", "roll_up_answer_basis", "document_urls"]
 }
 ```
@@ -116,7 +116,7 @@ today. Review later docket developments separately.
 
 A row can support a specific comparison after source verification. Qualify each
 requested field, including its conditions and answer basis, and keep `stated`,
-`silent_full_read`, `by_reference` and `unread` separate. `roll_up_state` answers
+`silent_full_read`, `by_reference` and `unread` separate. `roll_up_status` answers
 whether a roll-up exists (`effective`, `on_final_order`, `requested_only`,
 `refinancing_not_roll_up`, `none`, `undetermined`); `roll_up_amount_usd` sizes it, so an
 `effective` row with no amount is a roll-up whose dollars are not stated.
