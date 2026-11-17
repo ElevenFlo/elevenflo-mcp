@@ -120,11 +120,11 @@ and current account balances. Failed calls are not charged.
 
 ## Documentation
 
-Published docs live at
-[elevenflo.com/docs/mcp/overview](https://elevenflo.com/docs/mcp/overview).
-The copies in this repository are the same pages.
+See the product at [elevenflo.com/product](https://elevenflo.com/product).
+Reference docs are published at [elevenflo.com/docs](https://elevenflo.com/docs);
+the copies in this repository are the same pages. Workflow recipes are
+published here only.
 
-- Overview: [elevenflo.com](https://elevenflo.com/docs/mcp/overview)
 - Setup and quickstart:
   [elevenflo.com](https://elevenflo.com/docs/mcp/setup) ·
   [docs/quickstart.md](docs/quickstart.md) ·
@@ -135,9 +135,7 @@ The copies in this repository are the same pages.
 - Permissions and data access:
   [elevenflo.com](https://elevenflo.com/docs/mcp/permissions-and-data-access) ·
   [docs/permissions-and-data-access.md](docs/permissions-and-data-access.md)
-- Workflow recipes:
-  [elevenflo.com](https://elevenflo.com/docs/mcp/workflows) ·
-  [docs/workflows.md](docs/workflows.md)
+- Workflow recipes: [docs/workflows.md](docs/workflows.md)
 - Troubleshooting: [docs/troubleshooting.md](docs/troubleshooting.md)
 
 Client setup: [Claude Code](docs/client-claude-code.md) ·

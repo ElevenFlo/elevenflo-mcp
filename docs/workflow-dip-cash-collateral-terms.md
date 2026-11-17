@@ -182,4 +182,4 @@ Report what the documents state without giving legal advice.
 
 Use the [verification checklist](https://elevenflo.com/docs/mcp/workflows/safety-and-verification#acceptance-checklist)
 before relying on the output. For amounts reported after a plan takes effect,
-see [post-confirmation reports](https://elevenflo.com/docs/mcp/workflows/post-confirmation-reports).
+see [post-confirmation reports](https://github.com/ElevenFlo/elevenflo-mcp/blob/main/docs/workflow-post-confirmation-reports.md).

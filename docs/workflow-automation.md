@@ -7,7 +7,7 @@ tools. Your client controls the schedule, saved files and notifications.
 ## Start with a manual run
 
 1. Connect ElevenFlo using the [setup instructions](https://elevenflo.com/docs/mcp/setup).
-2. Run the [daily case brief](https://elevenflo.com/docs/mcp/workflows/daily-case-brief)
+2. Run the [daily case brief](https://github.com/ElevenFlo/elevenflo-mcp/blob/main/docs/workflow-daily-case-brief.md)
    with a named case and explicit start and end times.
 3. Open the cited documents and check the material claims.
 4. Confirm that the client can use the same ElevenFlo connection in its
@@ -39,7 +39,7 @@ existing ElevenFlo connection. Run each weekday at [TIME AND TIMEZONE]
 until [END DATE]. Return results in this Dot conversation.
 
 Use the maintained daily case brief workflow:
-https://elevenflo.com/docs/mcp/workflows/daily-case-brief
+https://github.com/ElevenFlo/elevenflo-mcp/blob/main/docs/workflow-daily-case-brief.md
 For the first run, review [EXPLICIT START] through the actual run time.
 For later runs, start at the last successfully reviewed window end.
 State the exact window, run time and case identity in every brief.

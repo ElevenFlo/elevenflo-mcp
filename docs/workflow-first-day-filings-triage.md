@@ -16,7 +16,7 @@ an empty result does not establish that a motion was never filed.
 | Notices and hearing papers | Hearing date, objection procedure and source. |
 | Retention applications | Proposed professional and role; distinguish an application from approval. |
 
-Use the [DIP example](https://elevenflo.com/docs/mcp/workflows/dip-cash-collateral-terms)
+Use the [DIP example](https://github.com/ElevenFlo/elevenflo-mcp/blob/main/docs/workflow-dip-cash-collateral-terms.md)
 for a worked comparison of financing amounts and order language.
 
 ## Prompt

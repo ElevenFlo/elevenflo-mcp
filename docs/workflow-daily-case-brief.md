@@ -89,5 +89,5 @@ Report what the documents state without giving legal advice.
 
 Run the prompt manually and check its citations before scheduling it. Supply a
 new review window for each run, or use a verified saved run time. See
-[automation](https://elevenflo.com/docs/mcp/workflows/automation) and the
+[automation](https://github.com/ElevenFlo/elevenflo-mcp/blob/main/docs/workflow-automation.md) and the
 [verification checklist](https://elevenflo.com/docs/mcp/workflows/safety-and-verification#acceptance-checklist).
