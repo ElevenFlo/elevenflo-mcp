@@ -332,6 +332,7 @@ Count and summarize records across one dataset.
 - `voluntary-petitions`
 - `top-unsecured-creditors`
 - `capital-instruments`
+- `capital-stated-totals`
 - `capital-parties`
 - `capital-links`
 - `dip-facilities`
