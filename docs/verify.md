@@ -1,18 +1,11 @@
 # Verify the connection
 
-Ask your client:
+In a client with an MCP prompt picker, select **Brief a Chapter 11 case** (`case_brief`). Enter a debtor name or case number, or use the FTX Trading Ltd. example. Review and send the question in the conversation.
+
+You can also copy this question into a connected assistant:
 
 ```text
-Use ElevenFlo MCP to find the FTX Trading Ltd. case.
+Use ElevenFlo to find FTX Trading Ltd. Review the five latest docket entries. Which one, if any, changes what a creditor needs to know? Give the filing date, docket number and link. Distinguish a request from a court order.
 ```
 
-Expect:
-
-```text
-FTX Trading Ltd.
-case_id: 1857
-```
-
-`case_id` is the stable public case identifier. Pass it to follow-up calls.
-
-If the call fails or returns the wrong case, see Troubleshooting.
+Check that the answer identifies FTX Trading Ltd. (case ID 1857). Open a cited filing to verify the finding. For a follow-up, ask which page supports it. If the assistant cannot find the case, see Troubleshooting.
