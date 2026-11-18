@@ -196,7 +196,7 @@ Read pages of one document or transcript.
   `3-5,9`), `query` (a few keywords) or, for a court-audio transcript, `time`
   (such as `12:30`); optional `max_pages` from 1 to 10 (default 3). With none
   of the three, the first `max_pages` pages are read.
-- Returns: each page's text and number, `page_count` and the `document_url`.
+- Returns: each page's text and number, `page_count` and the `document_url`. For a numbered PDF page, `page_url` opens that page after sign-in.
   One call reads 10 pages. When `pages` names more, the first 10 in page
   order are read and `unread_pages` lists the rest that exist in the
   document, written so it can be passed as `pages` on the next call.

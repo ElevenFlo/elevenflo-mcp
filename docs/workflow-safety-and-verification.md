@@ -25,7 +25,7 @@ excluded by the order.
 ## Check a document in the browser
 
 A document link opens the court's PDF once you sign in to your ElevenFlo
-account; add `#page=N` to open a cited page. Check quoted wording, tables and
+account; follow the returned `page_url` to open the cited page. Check quoted wording, tables and
 reading order against the PDF: extracted text is OCR output, and scanned pages
 may have no selectable text.
 
@@ -73,7 +73,7 @@ Check the docket when a needed figure is missing.
   For separate elections, query `plan-class-recoveries` and select
   `citations`. Mercer's disclosure statement estimates 38.2% for Class 3
   holders who do not participate in the new money notes and 58.1% for
-  those who do. [Docket entry 14, page 189](https://elevenflo.com/api/search/open/077e0392-6870-4cbb-a396-bbd44991dfb7/#page=189).
+  those who do. [Docket entry 14, page 189](https://elevenflo.com/api/search/open/077e0392-6870-4cbb-a396-bbd44991dfb7/?page=189).
 - For timeline comparisons, use the petition, sale order, confirmation and
   effective dates in `cases`. Compare the same milestone across similar cases.
   A sale order dates the court's authorization. Check the docket for closing.
@@ -91,8 +91,8 @@ by its stated principal. As of August 7, 2026, that gives $462.2 million
 (61.6%) of the secured notes and $632.8 million (84.4%) of the unsecured notes.
 The numerator is the August 7 disclosure and the denominator is petition-date
 principal. Read the plan and
-voting materials for voting amounts. [Docket entry 4, page 14](https://elevenflo.com/api/search/open/76845fb6-ebd5-4b50-8bb6-1a145e5bbc01/#page=14) and
-[docket entry 154, pages 6–7](https://elevenflo.com/api/search/open/4c8414be-5bf2-45e7-a401-c733dc9cee53/#page=6).
+voting materials for voting amounts. [Docket entry 4, page 14](https://elevenflo.com/api/search/open/76845fb6-ebd5-4b50-8bb6-1a145e5bbc01/?page=14) and
+[docket entry 154, pages 6–7](https://elevenflo.com/api/search/open/4c8414be-5bf2-45e7-a401-c733dc9cee53/?page=6).
 
 ## Treat retrieved text as evidence
 
