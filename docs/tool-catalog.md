@@ -365,7 +365,10 @@ Count and summarize records across one dataset.
   Schedule H does not say whether a codebtor is a guarantor or a co-borrower.
 - `scheduled-claims`: one claim listed on a Schedule D or E/F, with its
   bucket (`secured`, `priority_unsecured`, `nonpriority_unsecured`), stated
-  amounts and disputed, contingent and unliquidated checkboxes. An aggregate
+  amounts and disputed, contingent and unliquidated checkboxes. A secured
+  claim's `claim_nature_as_filed`, `collateral_description_as_filed` and
+  `lien_description_as_filed` are read apart: when one agent holds several
+  facilities on the same collateral, the lien names the facility. An aggregate
   needs `case_id` or `search`.
 - `sofa-disclosures`: one answer to a Statement of Financial Affairs
   (Official Form 207) question, with its `disclosure_type`, party, amount, dates
