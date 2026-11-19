@@ -413,7 +413,12 @@ Count and summarize records across one dataset.
   is the granted deadline minus the linked motion's requested deadline; filter
   lte -1 for orders that gave less time than asked. An order a later order
   vacated has `sequence_status` vacated with `vacated_on_date`, and is never
-  returned as the operative order.
+  returned as the operative order. Count requests on `source_kind` motion:
+  a `related_paper` row is an objection, statement or other paper about a
+  motion, whose date can be another party's proposal; it names the motion it
+  concerns and carries no ruling. `objections_on_file` on a motion row counts
+  docket entries titled as an objection that cite the motion; 0 does not show
+  the request was unopposed.
 - `plans`: each case's current Chapter 11 plan with lifecycle status, type,
   proponent, and filing, confirmation, and effective dates. A withheld date is
   null, never zero; an empty result never proves a plan event did not occur.
