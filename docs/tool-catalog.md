@@ -352,6 +352,17 @@ Count and summarize records across one dataset.
 - `schedule-assets`: one disclosed asset item on a Schedule A/B; filter
   `asset_category` to `real_property` for real estate.
 - `codebtors`
+- `codebtor-obligations`: one schedule reference of one Schedule H row, joined
+  to the Schedule D or E/F claim or Schedule G contract the same filing
+  supports. `case_id` is required. `link_status` says how far the filing
+  supports the link: `line_match` (the printed line number and the creditor
+  name agree), `name_match` (a checked box and exactly one row for that
+  creditor), `line_match_name_differs`, `ambiguous`, `no_matching_row`,
+  `schedule_not_read` and `no_reference` carry no confirmed obligation.
+  `obligation_row_id` is the `id` of the row in `scheduled-claims` or
+  `executory-contracts`; one debt with several codebtors repeats on each, so
+  count distinct `obligation_row_id` and do not sum `obligation_amount_usd`.
+  Schedule H does not say whether a codebtor is a guarantor or a co-borrower.
 - `scheduled-claims`: one claim listed on a Schedule D or E/F, with its
   bucket (`secured`, `priority_unsecured`, `nonpriority_unsecured`), stated
   amounts and disputed, contingent and unliquidated checkboxes. An aggregate
