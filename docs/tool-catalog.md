@@ -406,7 +406,11 @@ Count and summarize records across one dataset.
   motion) or `matching_deadline` (the order is the first to grant exactly the
   requested deadline; an inference from the dates). A null sequence value or
   ruling means no link or an intermediate order is not on file; it does not
-  show that the court did not act.
+  show that the court did not act. `days_granted_vs_requested` on an order row
+  is the granted deadline minus the linked motion's requested deadline; filter
+  lte -1 for orders that gave less time than asked. An order a later order
+  vacated has `sequence_status` vacated with `vacated_on_date`, and is never
+  returned as the operative order.
 - `plans`: each case's current Chapter 11 plan with lifecycle status, type,
   proponent, and filing, confirmation, and effective dates. A withheld date is
   null, never zero; an empty result never proves a plan event did not occur.
