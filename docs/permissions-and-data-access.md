@@ -30,6 +30,8 @@ can return:
 - Document relationship signals
 - Typed rows and aggregates from the public structured datasets
 - Your own account's plan and MCP credit balance (`show_plan_and_credits`)
+- Coverage requests and reports you ask the client to send to ElevenFlo
+  (`request_coverage`, `submit_feedback`)
 
 Structured datasets have a fixed allowlist and declared public fields. See
 [structured data](https://elevenflo.com/docs/mcp/tool-catalog#structured-data).
@@ -53,7 +55,14 @@ the client can read and change the connected user's own saved monitors; it
 cannot read or change anyone else's. That account context is not a public court
 record. `show_plan_and_credits` reads the connected account's plan and credit
 balance and nothing else about the account; it cannot change the plan, and
-payment happens only on elevenflo.com. News search is not a public MCP tool.
+payment happens only on elevenflo.com. `request_coverage` and
+`submit_feedback` send ElevenFlo staff only what you ask the client to send:
+the case or documents you need, or your description of a problem and the case,
+document, dataset row, tool or Request ID it concerns. They do not send the
+conversation. Members of your ElevenFlo account share coverage requests, so
+they can read the documents you named and you can read theirs; people outside
+the account never see them. Reports stay between you and ElevenFlo staff.
+News search is not a public MCP tool.
 
 Connecting ElevenFlo MCP does not give ElevenFlo access to your firm's
 documents, email, matters, or client files. ElevenFlo receives only the tool

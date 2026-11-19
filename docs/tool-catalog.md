@@ -503,6 +503,53 @@ declaration reports classes that are not rows. A declaration with no class row
 does not appear. These class rows are what the declaration reports; they are
 not canonical plan votes.
 
+## Requests to ElevenFlo
+
+Two tools send ElevenFlo staff something from the signed-in user, and only
+when the user asks: a request to add a case or missing documents, and a report
+about wrong data, an incorrect citation or a failed tool, or a suggestion.
+Neither costs credits. A prepaid tab has no user to answer, so neither is
+offered to one. Resending the same request or report returns the one already
+received, so a client can retry safely after a lost response.
+
+### `request_coverage`
+
+Ask ElevenFlo to add a case it does not list, or documents missing from a case
+it does.
+
+- Inputs: `case_id` from `find_cases` with `missing_documents` naming the
+  filings, such as "Docket 412, the sale order". `missing_documents` is
+  required when the case already has documents. For a case ElevenFlo does not
+  list: `case_name` with `court` or `case_number`, and `confirm_not_listed`
+  once the user has ruled out the possible matches a first attempt returned.
+- Returns: `request_id`, the reference to quote when following up; `status`
+  (`needs_review`, then `fulfilled` or `declined`); `created`;
+  `documents_added`; `case_id` once the case is identified; `case_name`; and a
+  plain `message`. Staff email the user the outcome.
+- Members of one ElevenFlo account share one open request per case and can
+  read its notes. A request naming another missing filing adds it to the open
+  request.
+- If ElevenFlo lists a case matching the name or number, the tool returns
+  `case_listed` or `ambiguous_case` with the matches and records nothing.
+- A request records interest. It does not promise that ElevenFlo can obtain
+  the documents.
+
+### `submit_feedback`
+
+Report a problem with ElevenFlo data or tools, or make a suggestion.
+
+- Inputs: `category` (`data_correction`, `incorrect_citation`, `tool_failure`
+  or `suggestion`), a `description` of up to 1,000 characters, and the
+  references that locate the problem: `case_id`, `document_id` with `page`,
+  `dataset` with `row_id`, `tool_name`, or `request_id`, the Request ID a
+  failed tool returned. A data correction or incorrect citation names a case,
+  document or dataset; a tool failure names a tool or Request ID.
+- Returns: `feedback_id`, the reference to quote when following up; `status`;
+  `created`; and a plain `message`.
+- The report holds only these fields. ElevenFlo does not receive the
+  conversation, prompts or credentials. A Request ID is accepted only from the
+  user's own tool calls.
+
 ## Credits
 
 MCP credits measure returned data. Each successful response costs the largest
@@ -510,7 +557,7 @@ of 1 credit, returned records divided by 10 (rounded up), or canonical response
 bytes divided by 10,000 (rounded up). Protocol duplicates are counted only once.
 A 100-row response of 20 KB costs 10 credits; a 45 KB text response costs 5.
 Failed calls are not charged. Successful empty responses cost 1 credit.
-`show_plan_and_credits` is the one tool that costs none.
+`show_plan_and_credits`, `request_coverage` and `submit_feedback` cost none.
 
 Free includes 200 MCP credits per calendar month, with no daily limit.
 Pro includes 10,000 per calendar month and 2,000 per rolling 24 hours. Agents
