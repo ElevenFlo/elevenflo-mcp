@@ -360,14 +360,33 @@ Count and summarize records across one dataset.
   supports. `case_id` is required. `link_status` says how far the filing
   supports the link: `line_match` (the printed line number and the creditor
   name agree), `name_match` (a checked box and exactly one row for that
-  creditor), `line_match_name_differs`, `ambiguous`, `no_matching_row`,
+  creditor, or the one row whose description is the debt Schedule H notes
+  after the creditor's name), `line_match_name_differs`, `ambiguous`, `no_matching_row`,
   `schedule_not_read` and `no_reference` carry no confirmed obligation.
   `obligation_row_id` is the `id` of the row in `scheduled-claims` or
   `executory-contracts`; one debt with several codebtors repeats on each, so
   count distinct `obligation_row_id` and do not sum `obligation_amount_usd`.
-  Schedule H does not say whether a codebtor is a guarantor or a co-borrower.
+  Schedule H does not say whether a codebtor is a guarantor or a co-borrower;
+  `codebtor_debt_description_as_filed` carries what a filing prints about the
+  debt on Schedule H itself, when it prints anything.
   `codebtor_is_case_debtor` is true when the codebtor is itself a debtor on
-  the case's roster.
+  the case's roster. A debtor that files its schedules again has rows from
+  each filing: filter `is_latest_filing_for_debtor` to `true` to read one
+  filing per debtor, knowing a later filing can list only what it adds. A
+  codebtor listed against several creditors or schedules still has one row
+  per reference, so count distinct `codebtor_row_id` or codebtor names.
+  `candidate_lines` gives the schedule line of each candidate row of an
+  ambiguous reference. When the codebtor is another debtor of the case and
+  the reference is to Schedule D or E/F, `codebtor_own_row_status` says what
+  that debtor's own schedule lists for the creditor (`one_row`,
+  `several_rows`, `no_matching_row`, `schedule_not_read`) and
+  `codebtor_own_row_id` is its row in `scheduled-claims`: the same debt
+  scheduled by a second debtor, never a second exposure.
+  `codebtor_own_row_basis` says whether the row's description and lien
+  read as the debt or it is only the one row naming the creditor, and
+  `codebtor_own_amount_agrees` whether both debtors state one amount.
+  `scheduled_debtor_stated_role` and `codebtor_stated_role` carry
+  `borrower` or `guarantor` only where a debtor's own row prints it.
 - `scheduled-claims`: one claim listed on a Schedule D or E/F, with its
   bucket (`secured`, `priority_unsecured`, `nonpriority_unsecured`), stated
   amounts and disputed, contingent and unliquidated checkboxes. A secured
