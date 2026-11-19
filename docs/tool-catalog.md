@@ -376,7 +376,17 @@ Count and summarize records across one dataset.
 - `case-assets`
 - `contract-treatment-events`
 - `executory-contracts`
-- `exclusivity-periods`
+- `exclusivity-periods`: one row per exclusive period a motion requests or an
+  entered order grants, kept separately for filing a plan and soliciting
+  acceptances. Order rows (`source_kind` order) carry the granted deadline,
+  `granted_days_from_petition`, the docket-linked motion, and the sequence in
+  the case: `prior_deadline_date`, `days_extended`, `extension_number` and
+  `superseded_on_date`. For the deadline operative on a historical date, filter
+  `order_entered_date` lte and `superseded_on_date` gt that date. Motion rows
+  carry the requested deadline and, when an entered order's docket entry names
+  the motion, `ruling_disposition` and `ruling_deadline_date`. A null sequence
+  value or ruling means the docket link or an intermediate order is not on file;
+  it does not show that the court did not act.
 - `plans`: each case's current Chapter 11 plan with lifecycle status, type,
   proponent, and filing, confirmation, and effective dates. A withheld date is
   null, never zero; an empty result never proves a plan event did not occur.
