@@ -433,8 +433,9 @@ Count and summarize records across one dataset.
   acceptances. Order rows (`source_kind` order) carry the granted deadline,
   `granted_days_from_petition`, the linked motion, and the sequence in
   the case: `prior_deadline_date`, `days_extended`, `extension_number` and
-  `superseded_on_date`. For the deadline operative on a historical date, filter
-  `order_entered_date` lte and `superseded_on_date` gt that date. Motion rows
+  `superseded_on_date`. For the latest surviving grant on file on a historical date, filter
+  `order_filed_date` lte and `superseded_on_date` gt that date.
+  `order_entered_date` is available when the order’s court stamp explicitly gives an entry date. Motion rows
   carry the requested deadline and, when an entered order is linked,
   `ruling_disposition` and `ruling_deadline_date`. `link_basis` states how the
   motion and order were paired: `docket_entry` (the order's entry names the
