@@ -508,6 +508,7 @@ Count and summarize records across one dataset.
 - `professional-retention-rates`: one row per stated rate tier. Compare like
   with like: filter `band`, `period=hour` and `currency_code`, and filter
   `basis`, because a requested rate is not an approved one.
+- `professional-retention-fee-terms` — compare monthly, sale and restructuring terms by firm, role, fee kind, source basis and currency. Select `source_quote` for exceptions and credits and `source_pages` for the filed evidence.
 - `fee-applications`
 - `fee-decisions`
 - `fees-by-professional`: cumulative requested and allowed fee economics by applicant, case, and currency; group by `firm_name` for requested fees by firm. Requested fees are not court-allowed fees. Affiliates appear separately without parent-firm consolidation, and roles may be unknown. The public `requested_amount_rejected` boolean indicates that requested economics exclude rejected documents; surviving requests in the same rollup still contribute. `allowance_note` states in plain words when allowed totals are blank, when a final basis also counts interim awards, or when combined or undated awards are left out or added unchecked. Monetary sorts require `currency_code` with `eq`; the default sort is latest filing date. `sources` identifies contributors separately for each monetary field, with availability, counts and truncation. Null provenance awaits reprojection. Order-date filters select applicants without rebasing their lifetime totals to the selected month.
