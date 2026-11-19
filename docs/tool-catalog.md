@@ -207,8 +207,8 @@ Read pages of one document or transcript.
   blocks of speaker turns with `start_time` and `end_time`; a court
   reporter's transcript reads by page, and `time` on one returns
   `invalid_request`.
-- Limits: a document without page numbers reads by `query` only
-  (`source_not_searchable` otherwise). A page outside the document returns
+- When text is unavailable, `source_not_searchable` gives the original PDF link if ElevenFlo has a downloadable file. For a docket-only entry, it identifies the case for related-filing or hearing-transcript searches. Results from court audio should be cited as machine transcripts.
+- A document with text but no page map can be read by `query`. A page outside the document returns
   `page_not_found`; an unknown document returns a typed not-found error.
 
 ## Document relationships
