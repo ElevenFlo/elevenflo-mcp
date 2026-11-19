@@ -23,7 +23,7 @@ document row carries `has_primary_pdf: true`, open the document at
 1. `find_cases` to resolve a `case_id`.
 2. `list_docket_entries`, `search_documents`, or `find_key_documents` to
    select documents, and `list_related_documents` to follow one document to
-   the motion, order, objections or replies linked to it.
+   the motion, order, objections, replies or later amended version linked to it.
 3. `search_document_pages` to see which pages hold the keywords across up to
    25 documents.
 4. `read_document_pages` for the text of those pages, or of the pages in one
@@ -225,16 +225,19 @@ is a starting point for research, not a judgment of legal importance.
 ### `list_related_documents`
 
 List the documents one document's docket entry refers to and the documents
-whose docket entries refer to it, such as the motion an order rules on or the
-objections and replies to a motion.
+whose docket entries refer to it, such as the motion an order rules on, the
+objections and replies to a motion, or the later amended version, redline
+notice or order whose docket entry cites an earlier filing.
 
 - Input: `document_id`.
 - Returns: two lists, `references` and `referenced_by`, holding up to 20
-  documents between them. Each row has `document_id`, `document_url`, the
-  court's `docket_text`, `docket_entry_number`, `date_filed` and
-  `relationship_type`. `truncated` is true when more than 20 exist; the rest
-  are not listed.
-- Limits: a link exists where one docket entry cites another by number. An
+  documents between them, newest filing first in each. Each list holds up to
+  10, and either list fills the room the other leaves. Each row has
+  `document_id`, `document_url`, the court's `docket_text`,
+  `docket_entry_number`, `date_filed` and `relationship_type`. `truncated` is
+  true when more exist; the oldest in a full list are not listed.
+- Limits: a link exists where one docket entry cites another by number. It
+  does not establish that a later filing amends or replaces the cited one. An
   empty list does not establish that nothing relates to the document.
 
 ## Structured data
