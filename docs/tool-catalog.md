@@ -529,6 +529,10 @@ bankruptcy-case, single-adversary, joint-adversary and unresolved ownership.
 `adversary_proceedings` contains canonical court numbers, captions and available
 tracking URLs; `scope_sources` contains immutable public-document/hash references
 for qualified joint conferences. Unresolved scope does not assert case ownership.
+Select `matter_sources` for docket documents linked to the session's current
+matters. Each link names the matter and the filing's role, such as notice,
+adjournment or agenda. Pass its `document_id` to `read_document_pages` to
+check what the filing says about the setting.
 
 `ballot-class-results` uses schema `ballot-class-results.v3`. It returns one
 row per plan class on each current ballot tabulation declaration, with the
