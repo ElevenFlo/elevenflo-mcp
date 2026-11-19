@@ -383,6 +383,12 @@ Count and summarize records across one dataset.
 - `monthly-operating-report-case-periods`
 - `monthly-operating-report-coverage`
 - `keip-kerp`
+- `keip-kerp-terms`: one row per payout trigger or payment condition of a
+  program at one stage. Join `program_id` to a `keip-kerp` id. Compare the
+  `requested` and `authorized` rows that share a `term_label`; `order_effect`
+  says what the order did. Read `award_amount` with `award_unit` and
+  `award_scope`. Select `citations` for the source pages. A program without
+  rows has no terms available in this dataset; that does not show it has none.
 - `asset-sales`
 - `case-assets`
 - `contract-treatment-events`
