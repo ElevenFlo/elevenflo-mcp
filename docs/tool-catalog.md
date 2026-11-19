@@ -166,6 +166,11 @@ returns `invalid_query` naming the position to fix.
   and a matching excerpt. Court documents come newest first and add type tags.
   Transcripts come in relevance order and add `transcript_source_kind`. An
   unknown `document_type_tags` value returns the allowed values.
+- The filing type `venue_or_dismissal_motion` covers motions to transfer venue,
+  motions to dismiss a bankruptcy case and motions to dismiss an adversary
+  complaint. Narrow by the relief sought, for example `"motion to dismiss" AND
+  1112`, and check the caption and proceeding. To include responsive filings
+  and opinions, search the text across filing types.
 - A transcript is one of two kinds. `certified_filing` is a court reporter's
   transcript filed on the docket. Read it by page like other court documents.
   `court_audio_asr` is a machine transcription of court audio, not a
