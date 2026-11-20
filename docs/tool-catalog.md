@@ -309,6 +309,11 @@ Return typed rows from one dataset.
   `total` (null when not counted), facet counts when asked, `next_cursor`
   when more records match, `as_of` (null when unknown) and `complete_since`. Wide projections clamp page size to the
   select budget.
+- To find rows from a known filing, check which operators the dataset lists
+  for `document_id` or `docket_entry_number`. Use `eq` for one filing or
+  `in` for several. Pair docket entry numbers with `case_id` to identify
+  the case. Datasets that require `case_id` also need it with a filing UUID.
+  Both fields refer to the source filing identified on each row.
 - Stored spellings: to find how a name is stored, filter the field with
   `contains` and request it as a facet.
 - Limits: a `cases` screen on `assets_range` or `liabilities_range` cannot
