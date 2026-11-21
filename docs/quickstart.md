@@ -16,5 +16,5 @@ The transport is remote HTTP: `--transport http` in Claude Code, "streaming
 HTTP" in ChatGPT developer mode, "Streamable HTTP" elsewhere.
 
 Sign-in is OAuth, with no API key or `Authorization` header to paste. An
-agent without an account uses a [purchased credential](agent-purchases.md)
+agent without an account uses a [purchased credential](https://elevenflo.com/docs/mcp/agent-purchases)
 instead.

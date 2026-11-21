@@ -2,7 +2,7 @@
 
 [Open ElevenFlo in Claude](https://claude.ai/directory/connectors/elevenflo),
 choose **Connect**, and sign in to ElevenFlo. This works in Claude on the web
-and in the desktop app.
+and in the desktop app. Once connected, [try a question and open the cited filing](https://elevenflo.com/docs/mcp/setup#verify-the-connection).
 
 On Team and Enterprise plans, an owner adds ElevenFlo once under
 **Admin Settings → Connectors**. Members then connect their own accounts.

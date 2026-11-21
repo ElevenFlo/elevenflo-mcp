@@ -1,7 +1,7 @@
 # Gemini
 
 These setup paths require verification with your Google account. Contact
-[support](support.md) to confirm ElevenFlo connection availability before setup.
+[support](https://elevenflo.com/docs/mcp/setup#support) to confirm ElevenFlo connection availability before setup.
 
 ## Gemini Enterprise
 
@@ -13,7 +13,7 @@ support; a client secret does not replace PKCE or resource binding.
 
 Follow [Google's administrator setup guide](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/custom-mcp-server/set-up-custom-mcp-server)
 for organization policy, permissions, data store creation, and action enablement.
-Then follow [Verify the connection](verify.md). An answer alone does not prove
+Then follow [Verify the connection](https://elevenflo.com/docs/mcp/setup#verify-the-connection). An answer alone does not prove
 that Gemini called ElevenFlo.
 
 ## Gemini app
@@ -27,8 +27,8 @@ for your account before continuing.
 2. Under **Custom apps for Spark**, select **Add a custom app**.
 3. Enter `https://elevenflo.com/mcp` and follow the sign-in prompts.
 4. Select ElevenFlo with `@` in your prompt, then
-   [verify a tool call](verify.md).
+   [verify a tool call](https://elevenflo.com/docs/mcp/setup#verify-the-connection).
 
 If account linking fails or credentials are requested, contact
-[support](support.md). Use Connected Apps settings to disconnect or remove
+[support](https://elevenflo.com/docs/mcp/setup#support). Use Connected Apps settings to disconnect or remove
 ElevenFlo when needed.

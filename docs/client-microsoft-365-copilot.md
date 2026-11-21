@@ -2,7 +2,7 @@
 
 The ElevenFlo package is a draft for administrator setup. It is not a published
 Microsoft listing, and its sign-in flow has not been verified in a customer
-tenant. Contact [support](support.md) to confirm availability before setup.
+tenant. Contact [support](https://elevenflo.com/docs/mcp/setup#support) to confirm availability before setup.
 
 An administrator or developer can prepare a declarative agent with an MCP
 plugin for `https://elevenflo.com/mcp`. Follow
@@ -20,7 +20,7 @@ After your administrator validates and installs the configured package:
 1. Open the assigned agent in Microsoft 365 Copilot.
 2. Request a case lookup and follow the ElevenFlo sign-in prompts.
 3. Approve the `mcp:access` scope with your own ElevenFlo account.
-4. Follow [Verify the connection](verify.md) and check the cited document.
+4. Follow [Verify the connection](https://elevenflo.com/docs/mcp/setup#verify-the-connection) and check the cited document.
 
 Available tools come from authenticated discovery. Your administrator must
 verify which tools Microsoft enables for the agent.

@@ -7,7 +7,7 @@ token as a bearer credential on the public MCP endpoint. Check
 the current offer and whether new purchases are enabled.
 
 People use the same endpoint through
-[OAuth sign-in](quickstart.md); a tab is for an agent that holds a wallet and
+[OAuth sign-in](https://elevenflo.com/docs/mcp/setup#before-you-connect); a tab is for an agent that holds a wallet and
 no ElevenFlo account.
 
 ## Offer
@@ -15,7 +15,7 @@ no ElevenFlo account.
 One purchase is **USD 5.00 for 100 MCP credits**. A credit measures
 returned data: each successful call costs
 `max(1, ceil(records / 10), ceil(bytes / 10000))`, the same formula as
-subscribed accounts (see [credits](tool-catalog.md#credits)). Credits do not
+subscribed accounts (see [credits](https://elevenflo.com/docs/mcp/tool-catalog#credits)). Credits do not
 expire. Buying again with the same purchase token adds 100 credits to the same
 tab. A refund or dispute revokes the tab.
 

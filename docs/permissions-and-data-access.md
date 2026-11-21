@@ -15,7 +15,7 @@ consent. Existing verified team membership and the member's normal ElevenFlo
 permissions remain required.
 
 > [!WARNING]
-> People sign in with OAuth only. Do not paste an API token or custom `Authorization` header for ElevenFlo MCP; your client manages the bearer tokens that the OAuth flow issues. An agent without an account uses its purchased credential instead: see [Pay as an agent](agent-purchases.md).
+> People sign in with OAuth only. Do not paste an API token or custom `Authorization` header for ElevenFlo MCP; your client manages the bearer tokens that the OAuth flow issues. An agent without an account uses its purchased credential instead: see [Pay as an agent](https://elevenflo.com/docs/mcp/agent-purchases).
 
 ## What the tools can access
 

@@ -610,7 +610,7 @@ Failed calls are not charged. Successful empty responses cost 1 credit.
 Free includes 200 MCP credits per calendar month, with no daily limit.
 Pro includes 10,000 per calendar month and 2,000 per rolling 24 hours. Agents
 without an account buy prepaid tabs of 100 credits for USD 5.00; see
-[Pay as an agent](agent-purchases.md). All clients
+[Pay as an agent](https://elevenflo.com/docs/mcp/agent-purchases). All clients
 share the account balance and its 120-request-per-minute limit. Monthly balances
 reset at 00:00 UTC on the first of the month; Pro's rolling capacity recovers as
 usage ages past 24 hours. A result that exceeds remaining capacity, or the caller's
